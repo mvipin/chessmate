@@ -1,273 +1,475 @@
-# ChessMate: Autonomous Chess Robot
+# ChessMate - ROS2 Chess Robot
 
 [![ROS2](https://img.shields.io/badge/ROS2-Humble-blue)](https://docs.ros.org/en/humble/)
 [![Platform](https://img.shields.io/badge/Platform-Raspberry%20Pi%204-red)](https://www.raspberrypi.org/)
 [![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
-[![Hackaday](https://img.shields.io/badge/Hackaday-Project-orange)](https://hackaday.io/project/your-project-id)
+[![Hackaday](https://img.shields.io/badge/Hackaday-Project-orange)](https://hackaday.io/project/203400-chessmate-ros2-chess-robot)
 
-An autonomous chess-playing robot system built with ROS2, featuring a 6-DOF robotic arm, computer vision board sensing, and distributed computing architecture. ChessMate can play chess against human opponents with full game management, move validation, and real-time visualization.
+![ChessMate Robot](images/chessmate3.jpg)
 
-## 🏗️ **System Architecture**
+**An AI chess master with expressive eyes, custom electronics, and a precision arm that will checkmate you with style!**
 
-ChessMate uses a distributed architecture with multiple specialized components:
+ChessMate is a fully autonomous chess-playing robot that physically moves pieces on a real chessboard. Built with ROS2, it combines professional-grade chess AI (Stockfish), custom electronics with home-fabricated PCBs, a 6-DOF SCARA robotic arm, and expressive animatronics to create an engaging chess opponent with personality.
 
-### **Hardware Architecture**
-- **🤖 6-DOF Robotic Arm**: SCARA-style arm for precise piece manipulation
-- **📋 Smart Chessboard**: Magnetic reed sensor array for piece detection
-- **🧠 Raspberry Pi 4**: Main computing unit running ROS2 nodes
-- **⚡ Dual Pi Pico Controllers**: Real-time control for board sensing and arm movement
-- **🖥️ Development Host**: Optional GUI and visualization support
+## Table of Contents
 
-### **Software Architecture**
-```
-┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   Development   │    │  Raspberry Pi   │    │   Controllers   │
-│      Host       │    │      Host       │    │   (Pi Picos)    │
-├─────────────────┤    ├─────────────────┤    ├─────────────────┤
-│ • RViz2         │◄──►│ • Game Manager  │◄──►│ • ChessBoard    │
-│ • rqt Dashboard │    │ • Chess Engine  │    │ • Robot Arm     │
-│ • Monitoring    │    │ • Hardware I/F  │    │ • Mock/Real     │
-└─────────────────┘    └─────────────────┘    └─────────────────┘
-```
-
-## 🚀 **Key Features**
-
-### **🎮 Game Management**
-- **Stockfish Integration**: UCI-compatible chess engine with adjustable skill levels
-- **Move Validation**: Real-time legal move checking and game rule enforcement
-- **Game State Tracking**: Complete FEN notation and move history management
-- **Multiple Game Modes**: Human vs Computer, analysis mode, position setup
-
-### **🤖 Robot Control**
-- **Precise Manipulation**: Sub-millimeter repeatability for piece placement
-- **Collision Avoidance**: Safe trajectory planning and execution
-- **Adaptive Gripping**: Automatic piece detection and secure handling
-- **Home Position**: Automatic calibration and error recovery
-
-### **📡 Distributed Computing**
-- **ROS2 Communication**: Reliable inter-node messaging and service calls
-- **Mock/Real/Sim Modes**: Development without hardware dependencies
-- **Scalable Architecture**: Easy addition of new sensors and actuators
-- **Real-time Performance**: Low-latency control loops for responsive gameplay
-
-### **🔧 Development Features**
-- **Hardware Abstraction**: Same code runs on Pi, development host, and simulation
-- **Comprehensive Testing**: Unit tests, integration tests, and mock hardware
-- **Modular Design**: Independent packages for easy maintenance and extension
-- **Rich Visualization**: Real-time 3D robot model and game state display
-
-## 📦 **ROS2 Packages**
-
-| Package | Purpose | Documentation |
-|---------|---------|---------------|
-| [`chessmate_msgs`](chessmate_dev_ws/src/chessmate_msgs/) | Message definitions and service interfaces | [README](chessmate_dev_ws/src/chessmate_msgs/README.md) |
-| [`chessmate_hardware`](chessmate_dev_ws/src/chessmate_hardware/) | Hardware interfaces and device drivers | [README](chessmate_dev_ws/src/chessmate_hardware/README.md) |
-| [`chessmate_engine`](chessmate_dev_ws/src/chessmate_engine/) | Chess engine integration (Stockfish) | [README](chessmate_dev_ws/src/chessmate_engine/README.md) |
-| [`chessmate_description`](chessmate_dev_ws/src/chessmate_description/) | Robot models and visualization | [README](chessmate_dev_ws/src/chessmate_description/README.md) |
-| [`chessmate_kinematics`](chessmate_dev_ws/src/chessmate_kinematics/) | Motion planning and kinematics | [README](chessmate_dev_ws/src/chessmate_kinematics/README.md) |
-
-## 🛠️ **Building the Software**
-
-### **Prerequisites**
-- **ROS2 Humble** (Ubuntu 22.04 recommended)
-- **Python 3.10+** with pip
-- **Git** for version control
-- **Raspberry Pi 4** (for hardware deployment)
-
-### **Quick Start**
-```bash
-# Clone the repository
-git clone https://github.com/your-username/ChessMate.git
-cd ChessMate
-
-# Run automated setup (installs dependencies and builds workspace)
-cd chessmate_dev_ws
-./setup_and_build.sh
-
-# Source the workspace
-source /opt/ros/humble/setup.bash
-source install/setup.bash  # (or install_arm/setup.bash on Pi)
-
-# Test the installation
-./scripts/test_controllers.sh
-```
-
-### **Development Setup**
-For detailed development setup including IDE configuration, debugging tools, and advanced build options, see:
-- [Development Setup Guide](docs/ROS2_CONVERSION_ROADMAP.md)
-- [Testing Strategy](docs/ROS2_INTEGRATION_TESTING_STRATEGY.md)
-- [Hardware Integration](docs/HARDWARE_INTEGRATION_LOG.md)
-
-## 🔧 **Building the Hardware**
-
-### **Mechanical Design**
-Complete CAD files, 3D printing instructions, and assembly guides are available on the Hackaday project page:
-
-**🔗 [ChessMate Hardware Documentation](https://hackaday.io/project/your-project-id)**
-
-### **Electronics**
-- **Schematics**: Available in the Hackaday project files
-- **PCB Designs**: Custom boards for sensor integration
-- **Wiring Diagrams**: Complete connection documentation
-- **Component Lists**: BOM with supplier information
-
-### **Assembly Guide**
-*[Placeholder - Hardware assembly documentation will be added as construction progresses]*
-
-## 🧪 **Testing**
-
-### **System Testing**
-
-ChessMate provides comprehensive system testing with increasing complexity levels:
-
-```bash
-# Level 0: Individual Pi Pico Controllers (no ROS2)
-./scripts/test_chessmate_system.sh pico --mode mock --controller both
-./scripts/test_chessmate_system.sh pico --mode real --controller chessboard
-
-# Level 1: ROS2 Integration Testing
-./scripts/test_chessmate_system.sh ros2 --mode mock --controller both
-./scripts/test_chessmate_system.sh ros2 --mode real --controller robot
-
-# Level 2: Complete Chess Game Simulation
-./scripts/test_chessmate_system.sh game --mode mock --duration 300
-./scripts/test_chessmate_system.sh game --mode real --duration 600 --skill-level 10
-```
-
-**Get help for any test script:**
-```bash
-./scripts/test_chessmate_system.sh --help
-./chessmate_dev_ws/scripts/test_pi_host.sh --help
-./chessmate_dev_ws/scripts/test_x86_host.sh --help
-```
-
-**Clean up processes between tests:**
-```bash
-./scripts/cleanup_chessmate_processes.sh          # Full cleanup
-./scripts/cleanup_chessmate_processes.sh --help   # See cleanup options
-```
-
-**For detailed component testing and configuration:**
-- **Pi Host Components**: See [ROS Workspace README](chessmate_dev_ws/README.md)
-- **x86 Host Components**: See [ROS Workspace README](chessmate_dev_ws/README.md)
-- **Hardware Setup**: See [Hardware Documentation](docs/)
-
-### **Expected Results**
-- **Controller Tests**: ✅ ChessBoard and Robot controllers respond to commands
-- **Integration Tests**: ✅ ROS2 nodes communicate properly
-- **Timing Tests**: ✅ Move execution within 3-15 seconds
-- **Visualization**: ✅ Robot model displays correctly in RViz2
-
-### **Test Coverage**
-- **Unit Tests**: Individual component validation
-- **Integration Tests**: Multi-component system validation
-- **Hardware Tests**: Real device communication verification
-- **Mock Tests**: Development without hardware dependencies
-
-For detailed testing procedures, see [Testing Guide](chessmate_dev_ws/TESTING_GUIDE.md).
-
-## 📊 **Results & Visualizations**
-
-### **System Demonstrations**
-*[Placeholder - Demo videos and animations will be added as system development progresses]*
-
-- **🎥 YouTube Demos**: Complete game demonstrations
-- **📹 RViz Animations**: Robot motion planning visualization
-- **📈 Performance Metrics**: Move timing and accuracy analysis
-- **🎮 Game Recordings**: Human vs ChessMate matches
-
-### **ROS2 System Visualization**
-```bash
-# View node graph
-rqt_graph
-
-# Monitor system performance
-rqt
-
-# 3D robot visualization
-rviz2 -d src/chessmate_description/rviz/chessmate_default.rviz
-```
-
-### **Real-time Monitoring**
-- **Node Communication**: Live message flow visualization
-- **Robot State**: Joint positions and end-effector tracking
-- **Game Progress**: Move history and board state updates
-- **System Health**: Hardware status and error monitoring
-
-## 🏆 **Project Milestones**
-
-### **✅ Completed**
-- [x] ROS2 workspace setup and package structure
-- [x] Pi Pico controller firmware (ChessBoard + Robot)
-- [x] USB Serial communication protocols
-- [x] Mock hardware testing framework
-- [x] Basic robot kinematics and control
-- [x] Chess engine integration (Stockfish)
-- [x] Distributed development environment
-
-### **🚧 In Progress**
-- [ ] Physical robot construction and assembly
-- [ ] Computer vision board sensing integration
-- [ ] Advanced motion planning and collision avoidance
-- [ ] Complete game flow automation
-- [ ] Performance optimization and tuning
-
-### **📋 Planned**
-- [ ] Tournament mode with multiple difficulty levels
-- [ ] Web interface for remote play
-- [ ] Machine learning move prediction
-- [ ] Multi-robot coordination for larger boards
-- [ ] Educational mode with move explanations
-
-## 📚 **Documentation**
-
-### **Technical Documentation**
-- [System Architecture](docs/HACKADAY_LOG_NEW_DESIGN.md)
-- [ROS2 Integration](docs/ROS2_CONVERSION_ROADMAP.md)
-- [Hardware Interfaces](docs/ROBOT_CONTROLLER_USB_ARCHITECTURE.md)
-- [Testing Framework](docs/ROS2_INTEGRATION_TESTING_STRATEGY.md)
-- [Development Logs](docs/)
-
-### **API Documentation**
-- [Message Interfaces](chessmate_dev_ws/src/chessmate_msgs/README.md)
-- [Service Definitions](chessmate_dev_ws/src/chessmate_msgs/README.md#service-definitions)
-- [Hardware Abstraction](chessmate_dev_ws/src/chessmate_hardware/README.md#hardware-abstraction)
-
-## 🤝 **Contributing**
-
-We welcome contributions! Please see our contributing guidelines:
-
-1. **Fork the repository** and create a feature branch
-2. **Follow ROS2 coding standards** and naming conventions
-3. **Add tests** for new functionality
-4. **Update documentation** for any API changes
-5. **Submit a pull request** with a clear description
-
-### **Development Environment**
-- Use the provided development container or follow setup instructions
-- Run tests before submitting: `./test.sh all`
-- Ensure code passes linting and formatting checks
-
-## 📄 **License**
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 **Acknowledgments**
-
-- **ROS2 Community** for the excellent robotics framework
-- **Stockfish Team** for the powerful chess engine
-- **Raspberry Pi Foundation** for accessible computing hardware
-- **Open Source Community** for countless libraries and tools
-
-## 📞 **Contact**
-
-- **Project Lead**: [Your Name](mailto:your.email@example.com)
-- **Hackaday Project**: [ChessMate Project Page](https://hackaday.io/project/your-project-id)
-- **Issues**: [GitHub Issues](https://github.com/your-username/ChessMate/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/your-username/ChessMate/discussions)
+- [Key Features](#key-features)
+- [System Architecture](#system-architecture)
+- [ROS2 Packages](#ros2-packages)
+  - [chessmate_msgs](#chessmate_msgs)
+  - [chessmate_hardware](#chessmate_hardware)
+  - [chessmate_engine](#chessmate_engine)
+  - [chessmate_description](#chessmate_description)
+  - [chessmate_kinematics](#chessmate_kinematics)
+- [Getting Started](#getting-started)
+- [Building the Hardware](#building-the-hardware)
+- [Testing](#testing)
+- [Documentation](#documentation)
 
 ---
 
-**⭐ Star this repository if you find ChessMate interesting!**
+## Key Features
 
-*Built with ❤️ using ROS2, Python, and lots of coffee ☕*
+| Category | Features |
+|----------|----------|
+| **Chess Intelligence** | Stockfish engine integration (skill levels 1-20), real-time move validation, FEN notation tracking, position analysis |
+| **Robotic Precision** | 6-DOF SCARA arm, sub-millimeter positioning accuracy, adaptive gripping, four-corner calibration |
+| **Board Sensing** | 64 hall effect sensors, custom CNC-fabricated PCBs, 8×8 NeoPixel LED matrix, real-time move detection |
+| **User Interface** | OLED display with rotary encoder, expressive servo-driven eyes, text-to-speech synthesis |
+| **Architecture** | Three-controller distributed design (Pi + 2× Pico), topic-based ROS2 communication, mock/real mode support |
+
+---
+
+## System Architecture
+
+ChessMate uses a distributed three-controller architecture with topic-based ROS2 communication. Each controller handles specific responsibilities, communicating via serial protocols and ROS2 topics.
+
+### Controller Responsibilities
+
+| Controller | Role | Responsibilities |
+|------------|------|------------------|
+| **Raspberry Pi 4** | The Brain | Chess engine integration and move calculation, game state management and rule enforcement, audio processing for speech and sound effects, system-wide coordination and safety oversight |
+| **Board Controller** | The Senses | Real-time monitoring of all 64 chess piece positions, visual feedback through LED matrix, user interface management (OLED, buttons, rotary encoder), move detection and validation, player interaction handling |
+| **Mechanical Controller** | The Body | Precision robotic arm movement control, adaptive gripper operation for different pieces, animatronic facial expressions and eye movements, safety systems and emergency stop coordination, real-time motion execution |
+
+### Hardware Architecture
+
+The diagram below shows the physical hardware components and their connections. The Raspberry Pi 4 serves as the central brain, communicating with two Pi Pico microcontrollers via USB serial at 9600 baud. The Board Controller handles all sensing and user interface components, while the Mechanical Controller manages actuation and motion.
+
+```mermaid
+graph TB
+    subgraph "Raspberry Pi 4 - Main Brain"
+        A[Stockfish Engine]
+        B[Game Management]
+        C[Audio Processing]
+    end
+
+    subgraph "Board Controller - Pi Pico"
+        D[64 Hall Effect Sensors]
+        E[8x8 NeoPixel LED Matrix]
+        F[OLED Display + Rotary Encoder]
+    end
+
+    subgraph "Mechanical Controller - Pi Pico"
+        G[Stepper Motors - Arm]
+        H[Servo Motors - Gripper/Eyes]
+        I[Limit Switches - Safety]
+    end
+
+    A <--> B
+    B <--> C
+    B <-->|"/dev/ttyACM0 @ 9600 baud"| D
+    B <-->|"/dev/ttyACM1 @ 9600 baud"| G
+    D --> E
+    D --> F
+    G --> H
+    G --> I
+```
+
+### ROS2 Node Communication
+
+The diagram below illustrates the topic-based communication between ROS2 nodes. The Game Management node orchestrates all game logic, requesting move calculations from the Chess Engine Server and dispatching physical moves to the Arduino Communication node. Human moves detected by the board sensors flow back through the communication node to the game manager.
+
+```mermaid
+graph LR
+    subgraph "Production Nodes"
+        GM[topic_game_management]
+        CE[topic_chess_engine_server]
+        AC[topic_arduino_communication]
+    end
+
+    GM -->|"/engine/calculate_move_request"| CE
+    CE -->|"/engine/calculate_move_response"| GM
+    GM -->|"/robot/execute_move_request"| AC
+    AC -->|"/robot/execute_move_response"| GM
+    AC -->|"/game/human_move"| GM
+    GM -->|"/chessboard/set_mode_request"| AC
+    AC -->|"/chessboard/set_mode_response"| GM
+    GM -->|"/game/state"| EXT[External Monitors]
+```
+
+### Game Flow State Machine
+
+The state machine below shows the complete game flow from initialization through game completion. The system waits for human moves, validates them against legal move lists, calculates computer responses using Stockfish, and executes physical piece movements. The cycle continues until checkmate, stalemate, or resignation.
+
+```mermaid
+stateDiagram-v2
+    [*] --> Initialization
+    Initialization --> WaitingForHuman: Game Started
+    WaitingForHuman --> ValidatingMove: Human Move Detected
+    ValidatingMove --> WaitingForHuman: Invalid Move
+    ValidatingMove --> ComputerThinking: Valid Move
+    ComputerThinking --> ExecutingMove: Best Move Calculated
+    ExecutingMove --> WaitingForHuman: Move Complete
+    ValidatingMove --> GameOver: Checkmate/Stalemate
+    ComputerThinking --> GameOver: Checkmate/Stalemate
+    GameOver --> [*]
+```
+
+### Active Topics
+
+| Topic | Type | Description |
+|-------|------|-------------|
+| `/game/state` | GameState | Current game status and board position |
+| `/game/control` | String | Game control commands (start, pause, reset) |
+| `/game/human_move` | String | Detected human moves from chessboard (UCI format) |
+| `/engine/calculate_move_request` | String | Engine calculation requests (FEN position) |
+| `/engine/calculate_move_response` | String | Engine responses (best move + evaluation) |
+| `/robot/execute_move_request` | String | Robot movement commands (6-char format) |
+| `/robot/execute_move_response` | String | Robot movement confirmations |
+
+### Serial Protocol
+
+**ChessBoard Controller (/dev/ttyACM0):**
+```
+Host → Board: "mode:real\n" | "mode:mock\n" | "legal:e2e4,d2d4,g1f3\n"
+Board → Host: "e2e4\n" (4-character UCI move)
+```
+
+**Robot Controller (/dev/ttyACM1):**
+```
+Host → Robot: "mode:real\n" | "mode:mock\n" | "move:e2pe4p\n"
+Robot → Host: "ACK: Executing move\n" → "DONE: Move complete\n"
+
+6-Character Move Format: [from_square][piece][to_square][dest_piece]
+Examples: e2pe4p (pawn e2→e4), g1nf3n (knight g1→f3), e1kg1k (castling)
+```
+
+---
+
+## ROS2 Packages
+
+### chessmate_msgs
+
+Custom ROS2 message definitions for inter-node communication.
+
+**Message Definitions:**
+
+| Message | Fields | Description |
+|---------|--------|-------------|
+| `BoardState` | `fen_position`, `square_occupancy[64]`, `white_to_move`, `castling_rights` | Chess board state representation |
+| `ChessMove` | `from_square`, `to_square`, `piece_type`, `move_type`, `is_capture`, `algebraic_notation`, `uci_notation` | Complete chess move definition |
+| `GameState` | `board_state`, `game_phase`, `game_status`, `move_history[]`, `legal_moves[]` | Full game state with history |
+| `RobotStatus` | `status`, `x/y/z_position`, `gripper_closed`, `has_error`, `error_message` | Robot controller feedback |
+
+**Service Definitions:**
+
+| Service | Request | Response |
+|---------|---------|----------|
+| `CalculateMove` | `board_fen`, `time_limit`, `skill_level` | `success`, `best_move`, `uci_move`, `evaluation` |
+| `ExecuteMove` | `move`, `validate_move`, `timeout` | `success`, `message`, `execution_time` |
+| `ValidateMove` | `board_fen`, `proposed_move` | `is_legal`, `validation_message`, `legal_moves[]` |
+
+**Usage:**
+```python
+from chessmate_msgs.msg import BoardState, ChessMove, GameState
+from chessmate_msgs.srv import ExecuteMove, CalculateMove
+
+move = ChessMove()
+move.from_square = "e2"
+move.to_square = "e4"
+move.piece_type = "pawn"
+move.algebraic_notation = "e4"
+```
+
+```bash
+# Inspect message structure
+ros2 interface show chessmate_msgs/msg/BoardState
+ros2 interface show chessmate_msgs/srv/ExecuteMove
+```
+
+### chessmate_hardware
+
+Hardware abstraction layer for GPIO, serial communication, and peripheral devices.
+
+**Nodes:**
+
+| Node | Purpose | Key Topics |
+|------|---------|------------|
+| `topic_arduino_communication` | Serial interface to Pi Pico controllers | Pub: `/game/human_move`, Sub: `/robot/execute_move_request` |
+| `rotary_encoder_node` | User input from rotary encoder | Pub: `RotaryEncoderEvent` |
+| `lcd_display_node` | OLED display management | Sub: `LCDCommand` |
+
+**Configuration Parameters:**
+
+| Parameter | Default | Description |
+|-----------|---------|-------------|
+| `board_controller_port` | `/dev/ttyACM0` | Serial port for board controller |
+| `arm_controller_port` | `/dev/ttyACM1` | Serial port for arm controller |
+| `baud_rate` | `9600` | Serial communication baud rate |
+| `use_mock_hardware` | auto-detect | Enable mock mode for development |
+
+**Launch:**
+```bash
+# Mock mode for development
+ros2 launch chessmate_hardware unified_hardware.launch.py platform:=linux_host hardware_mode:=mock
+
+# Real hardware on Raspberry Pi
+ros2 launch chessmate_hardware unified_hardware.launch.py platform:=raspberry_pi hardware_mode:=real
+```
+
+### chessmate_engine
+
+Stockfish chess engine integration and game management.
+
+**Nodes:**
+
+| Node | Purpose | Topics |
+|------|---------|--------|
+| `topic_chess_engine_server` | Stockfish UCI interface | Sub: `/engine/calculate_move_request`, Pub: `/engine/calculate_move_response` |
+| `topic_game_management` | Game orchestration | Pub: `/game/state`, Sub: `/game/human_move`, `/game/control` |
+
+**Configuration Parameters:**
+
+| Parameter | Default | Description |
+|-----------|---------|-------------|
+| `stockfish_path` | `/usr/games/stockfish` | Path to Stockfish binary |
+| `default_skill_level` | `10` | Engine skill (1-20) |
+| `default_time_limit` | `5.0` | Thinking time in seconds |
+| `hash_size_mb` | `128` | Engine hash table size |
+
+**Usage:**
+```bash
+# Start engine node
+ros2 run chessmate_engine topic_chess_engine_server
+
+# Request move calculation
+ros2 topic pub --once /engine/calculate_move_request std_msgs/String \
+  "{data: 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1|5.0|10'}"
+```
+
+### chessmate_description
+
+URDF robot model, 3D meshes, and visualization configuration.
+
+**Contents:**
+- `urdf/` - URDF/xacro robot descriptions
+- `meshes/visual/` - High-quality STL meshes for visualization
+- `meshes/collision/` - Simplified collision meshes
+- `rviz/` - Pre-configured RViz setups
+- `launch/` - Visualization launchers
+
+**Robot Specifications:**
+
+| Joint | Type | Range | Max Velocity |
+|-------|------|-------|--------------|
+| J1 (Base) | Revolute | ±180° | 90°/s |
+| J2 (Shoulder) | Revolute | ±90° | 90°/s |
+| J3 (Upper Arm) | Revolute | ±135° | 90°/s |
+| J4 (Forearm) | Revolute | ±180° | 120°/s |
+| J5 (Wrist) | Revolute | ±90° | 120°/s |
+| J6 (Gripper) | Prismatic | 0-50mm | 10mm/s |
+
+**Launch:**
+```bash
+# RViz visualization
+ros2 launch chessmate_description display.launch.py use_gui:=true
+
+# Gazebo simulation
+ros2 launch chessmate_description gazebo.launch.py world:=chess_table
+```
+
+### chessmate_kinematics
+
+SCARA inverse kinematics and chess square coordinate mapping.
+
+**Components:**
+
+| Module | Purpose |
+|--------|---------|
+| `scara_kinematics.py` | Forward/inverse kinematics solver |
+| `chess_coordinate_mapper.py` | Map chess notation to robot coordinates |
+| `kinematics_server.py` | ROS2 service interface |
+
+**Configuration (`config/scara_config.yaml`):**
+```yaml
+arm:
+  link1_length: 0.15  # meters
+  link2_length: 0.15
+  z_min: 0.0
+  z_max: 0.1
+board:
+  square_size: 0.05   # meters
+  origin_offset: [0.1, 0.1, 0.0]
+```
+
+---
+
+## Getting Started
+
+### Prerequisites
+
+| Requirement | Specification |
+|-------------|---------------|
+| OS | Ubuntu 22.04 LTS (Jammy) |
+| ROS2 | Humble Hawksbill |
+| Hardware | Raspberry Pi 4 (4GB+ recommended) |
+| Python | 3.10+ |
+| Dependencies | `python-chess`, `stockfish`, `pyserial` |
+
+### Quick Start
+
+#### Existing Setup
+
+```bash
+# Navigate to workspace
+cd ~/ChessMate-ROS2/chessmate_dev_ws
+
+# Source ROS2 environment
+source /opt/ros/humble/setup.bash
+source install/setup.bash  # (or install_arm/setup.bash on Pi)
+
+# Launch complete chess game system (mock mode)
+./launch_production_game.sh --mode mock
+
+# Launch with real hardware
+./launch_production_game.sh --mode real
+
+# Test package functionality
+python3 -c "import rclpy, chess; print('✅ ChessMate packages ready!')"
+
+# Run system tests
+cd ../scripts
+./test_chessmate_system.sh game --mode mock --duration 300
+```
+
+#### New Setup
+
+```bash
+git clone https://github.com/mvipin/ChessMate-ROS2.git
+cd ChessMate-ROS2
+sudo apt update && sudo apt install -y ros-humble-desktop python3-pip stockfish
+pip3 install python-chess pyserial
+cd chessmate_dev_ws && ./setup_and_build.sh
+source /opt/ros/humble/setup.bash && source install/setup.bash
+./scripts/test_controllers.sh
+```
+
+### Development Setup
+
+See [ROS2 Conversion Roadmap](docs/ROS2_CONVERSION_ROADMAP.md) and [ROS Workspace README](chessmate_dev_ws/README.md).
+
+---
+
+## Building the Hardware
+
+### Mechanical System
+
+| Specification | Value |
+|---------------|-------|
+| Arm Type | 6-DOF SCARA |
+| Workspace | Full 8×8 chessboard |
+| Repeatability | Sub-millimeter |
+| Actuation | NEMA 17 steppers with microstepping |
+
+### Electronic System
+
+| Component | Description |
+|-----------|-------------|
+| **Sensors** | 64 hall effect sensors with I2C expanders, CNC-milled PCBs |
+| **Display** | 8×8 NeoPixel LED matrix + SSD1306 OLED |
+| **Controllers** | Dual Pi Pico microcontrollers |
+| **Motors** | NEMA 17 steppers + servo motors |
+
+### Calibration
+
+**Sensor Calibration:** Place pieces in starting positions → record baseline → set detection thresholds → validate all squares.
+
+**Arm Calibration:** Home position via limit switches → four-corner board registration → 64-point square mapping → EEPROM storage.
+
+For detailed hardware documentation, CAD files, and schematics: [Hackaday Project](https://hackaday.io/project/203400-chessmate-ros2-chess-robot)
+
+---
+
+## Testing
+
+### Test Levels
+
+| Level | Description | Command |
+|-------|-------------|---------|
+| **Level 0** | Pi Pico controllers (no ROS2) | `./scripts/test_chessmate_system.sh pico --mode mock --controller both` |
+| **Level 1** | ROS2 integration | `./scripts/test_chessmate_system.sh ros2 --mode mock --controller both` |
+| **Level 2** | Complete chess game | `./scripts/test_chessmate_system.sh game --mode mock --duration 300` |
+
+### Common Commands
+
+```bash
+# Mock game simulation (5 minutes)
+./scripts/test_chessmate_system.sh game --mode mock --duration 300
+
+# Real hardware game
+./scripts/test_chessmate_system.sh game --mode real --duration 600 --skill-level 10
+
+# Cleanup between tests
+./scripts/cleanup_chessmate_processes.sh
+
+# Help
+./scripts/test_chessmate_system.sh --help
+```
+
+### Monitoring
+
+```bash
+ros2 topic echo /game/state              # Game state
+ros2 topic echo /game/human_move         # Human moves
+ros2 topic echo /robot/execute_move_response  # Robot execution
+rqt_graph                                 # System topology
+```
+
+See [Testing Guide](chessmate_dev_ws/TESTING_GUIDE.md) for detailed procedures.
+
+---
+
+## Documentation
+
+| Category | Resources |
+|----------|-----------|
+| **Technical** | [Architecture & Data Flow](chessmate_dev_ws/ARCHITECTURE_AND_DATA_FLOW.md), [ROS2 Conversion Roadmap](docs/ROS2_CONVERSION_ROADMAP.md), [Testing Strategy](docs/ROS2_INTEGRATION_TESTING_STRATEGY.md) |
+| **Packages** | [ROS Workspace](chessmate_dev_ws/README.md), [Messages](chessmate_dev_ws/src/chessmate_msgs/README.md), [Hardware](chessmate_dev_ws/src/chessmate_hardware/README.md), [Engine](chessmate_dev_ws/src/chessmate_engine/README.md) |
+| **Controllers** | [ChessBoard Controller](ChessBoard/README.md), [Robot Controller](Robot/README.md), [Test Scripts](scripts/README.md) |
+| **External** | [Hackaday Project](https://hackaday.io/project/203400-chessmate-ros2-chess-robot), [ROS2 Humble Docs](https://docs.ros.org/en/humble/), [Stockfish](https://stockfishchess.org/) |
+
+---
+
+## Contributing
+
+1. Fork and create a feature branch: `git checkout -b feature/your-feature`
+2. Follow ROS2 coding standards and Python PEP 8
+3. Add tests and run: `./scripts/test_chessmate_system.sh game --mode mock --duration 300`
+4. Submit a pull request with clear description
+
+---
+
+## License
+
+MIT License - see [LICENSE](LICENSE) file.
+
+---
+
+## Acknowledgments
+
+Thanks to the ROS2 Community, Stockfish Team, Raspberry Pi Foundation, and Hackaday Community.
+
+---
+
+**Links:** [GitHub](https://github.com/mvipin/ChessMate-ROS2) | [Hackaday](https://hackaday.io/project/203400-chessmate-ros2-chess-robot) | [Issues](https://github.com/mvipin/ChessMate-ROS2/issues)
