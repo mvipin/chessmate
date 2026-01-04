@@ -12,7 +12,7 @@ import time
 import threading
 import json
 from std_msgs.msg import String
-from chessmate_msgs.msg import GameState
+from chessmate.msg import GameState
 
 class Step6GameTest(Node):
     def __init__(self):

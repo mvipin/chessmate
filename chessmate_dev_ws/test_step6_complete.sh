@@ -37,19 +37,19 @@ trap cleanup EXIT INT TERM
 
 echo "🚀 Starting complete ChessMate system..."
 
-# Start all components
+# Start all components (using consolidated chessmate package)
 echo "1️⃣ Starting topic-based chess engine..."
-ros2 run chessmate_engine topic_chess_engine_server &
+ros2 run chessmate topic_chess_engine_server.py &
 ENGINE_PID=$!
 
 echo "2️⃣ Starting topic-based Arduino communication..."
-ros2 run chessmate_hardware topic_arduino_communication \
+ros2 run chessmate topic_arduino_communication.py \
     --ros-args \
     --param hardware_mode:=mock &
 ARDUINO_PID=$!
 
 echo "3️⃣ Starting topic-based game management..."
-ros2 run chessmate_engine topic_game_management \
+ros2 run chessmate topic_game_management.py \
     --ros-args \
     --param hardware_mode:=mock \
     --param auto_start:=false \
