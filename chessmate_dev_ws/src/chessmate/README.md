@@ -29,10 +29,9 @@ chessmate/
 │   │   ├── gpio_abstraction.py
 │   │   ├── lcd_display_node.py
 │   │   └── rotary_encoder_node.py
-│   ├── kinematics/                # Kinematics components
-│   │   ├── scara_kinematics.py
-│   │   └── chess_coordinate_mapper.py
-│   └── nodes/                     # Additional nodes
+│   └── kinematics/                # Kinematics components
+│       ├── scara_kinematics.py
+│       └── chess_coordinate_mapper.py
 ├── action/                        # Action definitions
 │   └── ExecuteChessMove.action
 ├── msg/                           # Message definitions
@@ -60,6 +59,10 @@ chessmate/
 ├── launch/                        # Launch files
 ├── scripts/                       # Utility scripts
 ├── test/                          # Test files
+│   ├── unit/                      # Pytest unit tests
+│   ├── integration/               # ROS2 integration tests
+│   ├── system/                    # Full system tests
+│   └── hardware/                  # Hardware-specific tests
 ├── CMakeLists.txt
 ├── package.xml
 └── README.md
@@ -312,19 +315,45 @@ float64 execution_time
 
 ## Testing
 
+### Test Structure
+
+```
+test/
+├── unit/                  # Pytest unit tests (no ROS2 required)
+│   └── test_scara_kinematics.py
+├── integration/           # ROS2 integration tests
+│   ├── test_arduino_serial.py
+│   └── test_ros2_hardware.py
+├── system/                # Full system tests
+│   └── test_full_game.py
+├── hardware/              # Hardware-specific tests (Pi only)
+│   ├── test_lcd.py
+│   ├── test_rotary_encoder.py
+│   └── test_rotary_encoder_gpio.py
+└── conftest.py            # Shared pytest fixtures
+```
+
 ### Run Unit Tests
 ```bash
 cd chessmate_dev_ws
-python3 -m pytest src/chessmate/test/
+./scripts/run_unit_tests.sh
+
+# Or directly with pytest
+python3 -m pytest src/chessmate/test/unit/ -v
 ```
 
-### Integration Tests
+### Run Integration Tests
 ```bash
-# Full game simulation test
-./test_step6_complete.sh
+./scripts/run_integration_tests.sh
 
-# Individual component tests
-python3 test_step6_full_game.py
+# Or run specific test
+python3 src/chessmate/test/integration/test_arduino_serial.py --port /dev/ttyACM0
+```
+
+### Run System Tests
+```bash
+# Full game simulation (starts all nodes)
+./scripts/run_system_test.sh
 ```
 
 ### Hardware Tests (Mock Mode)

@@ -6,19 +6,43 @@
 echo "🎮 ChessMate Production Game Launch"
 echo "=================================="
 
-cd "$(dirname "$0")"
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+WORKSPACE_DIR="$(dirname "$SCRIPT_DIR")"
+cd "$WORKSPACE_DIR"
 
-# Source virtual environment first for Python dependencies
-VENV_PATH="${HOME}/ChessMate-ROS2/chessmate_env"
-if [ -f "${VENV_PATH}/bin/activate" ]; then
-    source "${VENV_PATH}/bin/activate"
-    # Also ensure PYTHONPATH includes venv site-packages for ros2 run commands
-    VENV_SITE_PACKAGES="${VENV_PATH}/lib/python3.12/site-packages"
-    export PYTHONPATH="${VENV_SITE_PACKAGES}:${PYTHONPATH}"
-    echo "✅ Virtual environment activated: ${VENV_PATH}"
-else
-    echo "⚠️  Virtual environment not found at ${VENV_PATH}"
-fi
+# Setup ROS2 environment
+setup_ros2_env() {
+    # Source virtual environment for Python dependencies
+    VENV_PATH="${HOME}/ChessMate-ROS2/chessmate_env"
+    if [ -f "${VENV_PATH}/bin/activate" ]; then
+        source "${VENV_PATH}/bin/activate"
+        export PYTHONPATH="${VENV_PATH}/lib/python3.12/site-packages:${PYTHONPATH}"
+        echo "✅ Virtual environment activated"
+    else
+        echo "⚠️  Virtual environment not found at ${VENV_PATH}"
+    fi
+
+    # Auto-detect ROS distro
+    if [ -f "/opt/ros/jazzy/setup.bash" ]; then
+        source /opt/ros/jazzy/setup.bash
+    elif [ -f "/opt/ros/humble/setup.bash" ]; then
+        source /opt/ros/humble/setup.bash
+    else
+        echo "❌ No ROS2 installation found!"
+        exit 1
+    fi
+
+    export ROS_VERSION=2
+    export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+
+    # Source workspace
+    if [ -f "$WORKSPACE_DIR/install/setup.bash" ]; then
+        source "$WORKSPACE_DIR/install/setup.bash"
+    elif [ -f "$WORKSPACE_DIR/install_arm/setup.bash" ]; then
+        source "$WORKSPACE_DIR/install_arm/setup.bash"
+    fi
+    echo "✅ ROS2 environment ready"
+}
 
 # Parse command line arguments
 HARDWARE_MODE="real"  # Default to real mode
@@ -59,17 +83,8 @@ fi
 echo "Hardware mode: $HARDWARE_MODE"
 echo ""
 
-# Build everything
-#echo "🔨 Building ChessMate system..."
-#colcon build --packages-select chessmate_engine chessmate_hardware chessmate_msgs --build-base build_arm --install-base install_arm --symlink-install
-
-#if [ $? -ne 0 ]; then
-#    echo "❌ Build failed!"
-#    exit 1
-#fi
-
-# Source workspace
-source setup_ros2_fixed.bash
+# Setup ROS2 environment
+setup_ros2_env
 
 # Check for controller availability (using udev symlinks)
 echo "🔍 Checking for Pico controllers..."

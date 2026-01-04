@@ -1,0 +1,16 @@
+# ChessMate ROS2 Python Dependencies
+# Install with: pip install -r requirements.txt
+# Note: Create venv with --system-site-packages to include ROS2 packages
+
+# Serial communication with Pi Pico controllers
+pyserial>=3.5
+
+# Chess engine interface
+python-chess>=1.999
+
+# Configuration file parsing
+PyYAML>=6.0
+
+# Build tools (if not using system ROS2 installation)
+# colcon-common-extensions
+

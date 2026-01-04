@@ -5,7 +5,7 @@ Simple test script to monitor rotary encoder events
 
 import rclpy
 from rclpy.node import Node
-from chessmate_msgs.msg import RotaryEncoderEvent
+from chessmate.msg import RotaryEncoderEvent
 
 class RotaryEncoderTest(Node):
     def __init__(self):
