@@ -43,8 +43,6 @@ setup_ros2_env() {
     # Source workspace
     if [ -f "$WORKSPACE_DIR/install/setup.bash" ]; then
         source "$WORKSPACE_DIR/install/setup.bash"
-    elif [ -f "$WORKSPACE_DIR/install_arm/setup.bash" ]; then
-        source "$WORKSPACE_DIR/install_arm/setup.bash"
     fi
     echo "✅ ROS2 environment ready"
 }

@@ -26,8 +26,6 @@ fi
 # Source workspace for chessmate package
 if [ -f "$WORKSPACE_DIR/install/setup.bash" ]; then
     source "$WORKSPACE_DIR/install/setup.bash"
-elif [ -f "$WORKSPACE_DIR/install_arm/setup.bash" ]; then
-    source "$WORKSPACE_DIR/install_arm/setup.bash"
 fi
 
 echo "Running unit tests..."

@@ -1,8 +1,0 @@
-# ForwardKinematics.srv - Joint angles to Cartesian position
-# Request
-float64[3] joint_angles    # [theta1, theta2, z] in radians/meters
----
-# Response
-geometry_msgs/Pose end_effector_pose
-bool success
-string message

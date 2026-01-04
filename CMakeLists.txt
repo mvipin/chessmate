@@ -36,16 +36,8 @@ rosidl_generate_interfaces(${PROJECT_NAME}
   "msg/ArduinoCommand.msg"
   "msg/RobotAnimation.msg"
   "msg/SensorReading.msg"
-  # Services
-  "srv/ForwardKinematics.srv"
-  "srv/InverseKinematics.srv"
-  "srv/ChessSquareKinematics.srv"
+  # Services (production only)
   "srv/CalculateMove.srv"
-  "srv/GetBestMove.srv"
-  "srv/EvaluatePosition.srv"
-  "srv/ValidateMove.srv"
-  "srv/UpdateGameState.srv"
-  "srv/CalibrateArm.srv"
   "srv/ExecuteMove.srv"
   "srv/SetBoardMode.srv"
   # Actions
@@ -69,23 +61,15 @@ install(DIRECTORY chessmate/
 # ============ EXECUTABLE NODES ============
 # Install Python executable scripts
 install(PROGRAMS
-  # Engine nodes
+  # Engine nodes (production topic-based)
   chessmate/engine/topic_chess_engine_server.py
   chessmate/engine/topic_game_management.py
-  chessmate/engine/chess_engine_server.py
-  chessmate/engine/chess_game_manager.py
   chessmate/engine/simple_chess_engine.py
-  # Hardware nodes
+  # Hardware nodes (production topic-based)
   chessmate/hardware/topic_arduino_communication.py
-  chessmate/hardware/arduino_communication_node.py
-  chessmate/hardware/unified_arduino_bridge.py
   chessmate/hardware/rotary_encoder_node.py
   chessmate/hardware/lcd_display_node.py
   chessmate/hardware/robot_animation_controller.py
-  chessmate/hardware/game_management_node.py
-  chessmate/hardware/unified_hardware_test.py
-  # Scripts
-  scripts/kinematics_server.py
   DESTINATION lib/${PROJECT_NAME}
 )
 
@@ -132,7 +116,7 @@ if(BUILD_TESTING)
   ament_lint_auto_find_test_dependencies()
   
   # Python tests
-  ament_add_pytest_test(test_scara_kinematics test/unit/test_scara_kinematics.py)
+  # (Kinematics tests removed - kinematics handled by robot controller)
 endif()
 
 # ============ EXPORT ============

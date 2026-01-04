@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-Step 6: Full Game Management Test
+Full Game Integration Test
 
-Test complete ChessMate system with proper game orchestration
+Tests complete ChessMate system with proper game orchestration.
+Validates engine-robot coordination and multi-move game flow.
 """
 
 import rclpy
@@ -14,9 +15,12 @@ import json
 from std_msgs.msg import String
 from chessmate.msg import GameState
 
-class Step6GameTest(Node):
+
+class FullGameIntegrationTest(Node):
+    """Integration test for complete ChessMate game flow."""
+
     def __init__(self):
-        super().__init__('step6_game_test')
+        super().__init__('full_game_integration_test')
         
         # Game control publisher
         self.game_control_publisher = self.create_publisher(String, 'game/control', 10)
@@ -55,7 +59,7 @@ class Step6GameTest(Node):
         self.target_moves = 15  # Play up to 15 full moves (30 half-moves)
         self.max_test_time = 300  # 5 minutes maximum
         
-        self.get_logger().info("🧪 Step 6 full game test initialized")
+        self.get_logger().info("🧪 Full game integration test initialized")
     
     def handle_game_state(self, msg):
         """Handle game state updates"""
@@ -92,8 +96,8 @@ class Step6GameTest(Node):
             self.complete_test()
     
     def run_full_game_test(self):
-        """Run complete game management test"""
-        self.get_logger().info("🚀 Starting Step 6 full game test...")
+        """Run complete game management test."""
+        self.get_logger().info("🚀 Starting full game integration test...")
         
         try:
             # Wait for game management to initialize
@@ -122,7 +126,7 @@ class Step6GameTest(Node):
             game_finished = (self.current_game_state and
                            self.current_game_state.status == self.current_game_state.STATUS_FINISHED)
 
-            self.get_logger().info("🏁 Step 6 test completed!")
+            self.get_logger().info("🏁 Integration test completed!")
             self.get_logger().info(f"Moves played: {moves_played}/{self.target_moves}")
 
             if game_finished:
@@ -147,7 +151,7 @@ class Step6GameTest(Node):
             return success
             
         except Exception as e:
-            self.get_logger().error(f"❌ Step 6 test failed: {e}")
+            self.get_logger().error(f"❌ Integration test failed: {e}")
             return False
     
     def send_game_command(self, command):
@@ -200,15 +204,15 @@ class Step6GameTest(Node):
             self.send_game_command('stop')
 
 def main():
-    print("🔧 STEP 6: Full Game Management Test")
+    print("🔧 Full Game Integration Test")
     print("=" * 40)
     print("Testing complete ChessMate system with proper game orchestration...")
     print("")
-    
+
     rclpy.init()
-    
+
     try:
-        test_node = Step6GameTest()
+        test_node = FullGameIntegrationTest()
         executor = SingleThreadedExecutor()
         executor.add_node(test_node)
         
@@ -237,15 +241,15 @@ def main():
         print("")
         print("=" * 50)
         if result[0]:
-            print("🎉 STEP 6 SUCCESS!")
+            print("🎉 INTEGRATION TEST SUCCESS!")
             print("✅ Complete ChessMate system working!")
             print("✅ Game management orchestration working!")
             print("✅ Full game flow with all components!")
-            print("✅ No hacks or bypasses - full functionality!")
+            print("✅ Full production functionality verified!")
             print("")
             print("🚀 READY FOR PRODUCTION DEPLOYMENT!")
         else:
-            print("❌ STEP 6 FAILED!")
+            print("❌ INTEGRATION TEST FAILED!")
             print("🔍 Game management integration has issues")
         print("=" * 50)
         

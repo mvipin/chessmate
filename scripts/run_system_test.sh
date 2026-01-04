@@ -2,11 +2,11 @@
 # Copyright (c) 2025 Vipin M
 # Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
-# Test Step 6: Complete ChessMate System
-echo "🎉 Step 6: Complete ChessMate System Test"
-echo "========================================"
-echo "Testing full game management with all components"
-echo "NO HACKS OR BYPASSES - Full functionality!"
+# ChessMate Full System Integration Test
+echo "🎉 ChessMate Full System Integration Test"
+echo "=========================================="
+echo "Testing complete game management with all components"
+echo "Full production functionality!"
 echo ""
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
@@ -56,9 +56,6 @@ setup_ros2_env() {
     if [ -f "$ROS2_WS_DIR/install/setup.bash" ]; then
         source "$ROS2_WS_DIR/install/setup.bash"
         echo "✅ ROS2 workspace sourced: ${ROS2_WS_DIR}/install/setup.bash"
-    elif [ -f "$ROS2_WS_DIR/install_arm/setup.bash" ]; then
-        source "$ROS2_WS_DIR/install_arm/setup.bash"
-        echo "✅ ROS2 workspace sourced: ${ROS2_WS_DIR}/install_arm/setup.bash"
     else
         echo "❌ ROS2 workspace install not found in ${ROS2_WS_DIR}"
         exit 1
@@ -146,25 +143,21 @@ TEST_RESULT=$?
 echo ""
 echo "=============================================="
 if [ $TEST_RESULT -eq 0 ]; then
-    echo "🎉 STEP 6 COMPLETE SUCCESS!"
-    echo "✅ Topic-based chess engine: WORKING"
-    echo "✅ Topic-based Arduino communication: WORKING"
-    echo "✅ Topic-based game management: WORKING"
+    echo "🎉 INTEGRATION TEST SUCCESS!"
+    echo "✅ Chess engine: WORKING"
+    echo "✅ Arduino communication: WORKING"
+    echo "✅ Game management: WORKING"
     echo "✅ Full game orchestration: WORKING"
     echo "✅ Human-computer game flow: WORKING"
-    echo "✅ No ROS2 service issues: SOLVED"
-    echo "✅ No ROS2 timer issues: SOLVED"
-    echo "✅ No hacks or bypasses: FULL FUNCTIONALITY"
     echo ""
-    echo "🎯 ACHIEVEMENT UNLOCKED:"
-    echo "   Complete ChessMate system with full functionality!"
+    echo "🎯 Complete ChessMate system verified!"
     echo ""
     echo "🚀 READY FOR:"
     echo "   - Real hardware deployment"
     echo "   - Production use"
     echo "   - Full chess games"
 else
-    echo "❌ Step 6 failed"
+    echo "❌ Integration test failed"
     echo "🔍 Game management integration needs debugging"
 fi
 echo "=============================================="

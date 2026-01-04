@@ -337,7 +337,7 @@ cd ~/ChessMate-ROS2
 
 # Source ROS2 environment
 source /opt/ros/humble/setup.bash
-source install/setup.bash  # (or install_arm/setup.bash on Pi)
+source install/setup.bash
 
 # Launch complete chess game system (mock mode)
 ./scripts/launch_production_game.sh --mode mock
@@ -359,8 +359,8 @@ git clone https://github.com/mvipin/ChessMate-ROS2.git
 cd ChessMate-ROS2
 sudo apt update && sudo apt install -y ros-humble-desktop python3-pip stockfish
 pip3 install python-chess pyserial
-./scripts/build_x86.sh  # or ./scripts/build_arm.sh on Raspberry Pi
-source /opt/ros/humble/setup.bash && source install_x86/setup.bash
+./scripts/build.sh  # Auto-detects x86 or ARM platform
+source /opt/ros/humble/setup.bash && source install/setup.bash
 ./scripts/test_controllers.sh
 ```
 

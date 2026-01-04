@@ -201,7 +201,6 @@ class GPIOAbstraction:
             if bouncetime <= 0:
                 bouncetime = 100  # Default to 100ms if invalid
 
-            print(f"DEBUG: Setting up GPIO pin {pin} with bouncetime={bouncetime}")
             self.GPIO.add_event_detect(pin, gpio_edge, callback=callback, bouncetime=bouncetime)
         else:
             self.GPIO.add_event_detect(pin, edge.value, callback, bouncetime)
