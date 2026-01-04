@@ -8,6 +8,18 @@ echo "=================================="
 
 cd "$(dirname "$0")"
 
+# Source virtual environment first for Python dependencies
+VENV_PATH="${HOME}/ChessMate-ROS2/chessmate_env"
+if [ -f "${VENV_PATH}/bin/activate" ]; then
+    source "${VENV_PATH}/bin/activate"
+    # Also ensure PYTHONPATH includes venv site-packages for ros2 run commands
+    VENV_SITE_PACKAGES="${VENV_PATH}/lib/python3.12/site-packages"
+    export PYTHONPATH="${VENV_SITE_PACKAGES}:${PYTHONPATH}"
+    echo "✅ Virtual environment activated: ${VENV_PATH}"
+else
+    echo "⚠️  Virtual environment not found at ${VENV_PATH}"
+fi
+
 # Parse command line arguments
 HARDWARE_MODE="real"  # Default to real mode
 
@@ -59,20 +71,36 @@ echo ""
 # Source workspace
 source setup_ros2_fixed.bash
 
-# Check for controller availability
+# Check for controller availability (using udev symlinks)
 echo "🔍 Checking for Pico controllers..."
 
-if [ ! -e "/dev/ttyACM0" ] || [ ! -e "/dev/ttyACM1" ]; then
+CHESSBOARD_PORT="/dev/chessboard"
+ROBOT_PORT="/dev/robot"
+
+# Fallback to ttyACM* if udev symlinks not found
+if [ ! -e "$CHESSBOARD_PORT" ]; then
+    if [ -e "/dev/ttyACM0" ]; then
+        CHESSBOARD_PORT="/dev/ttyACM0"
+    fi
+fi
+
+if [ ! -e "$ROBOT_PORT" ]; then
+    if [ -e "/dev/ttyACM1" ]; then
+        ROBOT_PORT="/dev/ttyACM1"
+    fi
+fi
+
+if [ ! -e "$CHESSBOARD_PORT" ] || [ ! -e "$ROBOT_PORT" ]; then
     echo "❌ Error: Pico controllers not found:"
-    [ ! -e "/dev/ttyACM0" ] && echo "   ChessBoard controller missing at /dev/ttyACM0"
-    [ ! -e "/dev/ttyACM1" ] && echo "   Robot controller missing at /dev/ttyACM1"
+    [ ! -e "$CHESSBOARD_PORT" ] && echo "   ChessBoard controller missing"
+    [ ! -e "$ROBOT_PORT" ] && echo "   Robot controller missing"
     echo ""
     echo "💡 Please connect the Pico controllers and try again"
     exit 1
 else
     echo "✅ Pico controllers found:"
-    echo "   ChessBoard controller: /dev/ttyACM0"
-    echo "   Robot controller: /dev/ttyACM1"
+    echo "   ChessBoard controller: $CHESSBOARD_PORT"
+    echo "   Robot controller: $ROBOT_PORT"
     echo "   Mode: $HARDWARE_MODE"
 fi
 
@@ -99,8 +127,8 @@ echo "2️⃣ Starting Arduino communication (${HARDWARE_MODE} mode)..."
 ros2 run chessmate_hardware topic_arduino_communication \
     --ros-args \
     --param hardware_mode:=${HARDWARE_MODE} \
-    --param chessboard_port:=/dev/ttyACM0 \
-    --param robot_port:=/dev/ttyACM1 &
+    --param chessboard_port:=${CHESSBOARD_PORT} \
+    --param robot_port:=${ROBOT_PORT} &
 ARDUINO_PID=$!
 
 # Start game management
@@ -150,9 +178,9 @@ echo "🎮 ChessMate is ready for play!"
 echo ""
 echo "📋 Game Status:"
 echo "   - Hardware mode: ${HARDWARE_MODE}"
-echo "   - ChessBoard: /dev/ttyACM0"
-echo "   - Robot: /dev/ttyACM1"
-echo "   - Skill level: 5"
+echo "   - ChessBoard: ${CHESSBOARD_PORT}"
+echo "   - Robot: ${ROBOT_PORT}"
+echo "   - Skill level: ${SKILL_LEVEL:-19}"
 echo ""
 echo "🎯 To monitor the game:"
 echo "   ros2 topic echo /game/state"

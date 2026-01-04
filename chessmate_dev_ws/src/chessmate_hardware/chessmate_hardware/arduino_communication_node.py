@@ -48,9 +48,9 @@ class ArduinoCommunicationNode(Node):
     def __init__(self):
         super().__init__('arduino_communication_node')
         
-        # Declare parameters
-        self.declare_parameter('chessboard_controller_port', '/dev/ttyACM0')
-        self.declare_parameter('robot_controller_port', '/dev/ttyACM1')
+        # Declare parameters (using udev symlinks for persistent naming)
+        self.declare_parameter('chessboard_controller_port', '/dev/chessboard')
+        self.declare_parameter('robot_controller_port', '/dev/robot')
         self.declare_parameter('baud_rate', 9600)
         self.declare_parameter('timeout', 1.0)
         self.declare_parameter('use_mock_hardware', not GPIOAbstraction.is_raspberry_pi())

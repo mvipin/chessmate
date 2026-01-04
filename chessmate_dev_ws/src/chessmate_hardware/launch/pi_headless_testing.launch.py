@@ -45,13 +45,13 @@ def generate_launch_description():
         ),
         DeclareLaunchArgument(
             'chessboard_port',
-            default_value='/dev/ttyACM0',
-            description='ChessBoard controller USB port'
+            default_value='/dev/chessboard',
+            description='ChessBoard controller USB port (udev symlink)'
         ),
         DeclareLaunchArgument(
             'robot_port',
-            default_value='/dev/ttyACM1',
-            description='Robot controller USB port'
+            default_value='/dev/robot',
+            description='Robot controller USB port (udev symlink)'
         ),
         DeclareLaunchArgument(
             'stockfish_path',

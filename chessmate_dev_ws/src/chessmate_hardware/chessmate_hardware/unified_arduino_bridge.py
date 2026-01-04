@@ -77,13 +77,13 @@ class UnifiedArduinoBridge(Node):
     def __init__(self):
         super().__init__('unified_arduino_bridge')
         
-        # Declare parameters
+        # Declare parameters (using udev symlinks for persistent naming)
         self.declare_parameters(
             namespace='',
             parameters=[
                 # Serial port configuration
-                ('chessboard_port', '/dev/ttyACM0'),
-                ('robot_port', '/dev/ttyACM1'),
+                ('chessboard_port', '/dev/chessboard'),
+                ('robot_port', '/dev/robot'),
                 ('baud_rate', 9600),
                 ('timeout', 2.0),
                 ('use_mock_hardware', False),

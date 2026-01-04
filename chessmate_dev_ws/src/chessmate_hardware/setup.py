@@ -41,11 +41,16 @@ setup(
             'arduino_communication_node = chessmate_hardware.arduino_communication_node:main',
             'unified_arduino_bridge = chessmate_hardware.unified_arduino_bridge:main',
             'topic_arduino_communication = chessmate_hardware.topic_arduino_communication:main',
+            'game_management_node = chessmate_hardware.game_management_node:main',
 
             # UI components (for Raspberry Pi deployment)
             'rotary_encoder_node = chessmate_hardware.rotary_encoder_node:main',
             'lcd_display_node = chessmate_hardware.lcd_display_node:main',
             'robot_animation_controller = chessmate_hardware.robot_animation_controller:main',
+
+            # Test utilities
+            'test_arduino_serial = chessmate_hardware.test_arduino_serial:main',
+            'unified_hardware_test = chessmate_hardware.unified_hardware_test:main',
         ],
     },
 )

@@ -14,19 +14,32 @@ echo "============================================"
 
 # Setup environment
 export ROS_DOMAIN_ID=0
-source /opt/ros/humble/setup.bash
 
-# Build arguments with comprehensive Python 3.10 configuration
+# Auto-detect ROS2 distribution
+if [ -f /opt/ros/jazzy/setup.bash ]; then
+    source /opt/ros/jazzy/setup.bash
+    echo "Using ROS2 Jazzy"
+elif [ -f /opt/ros/humble/setup.bash ]; then
+    source /opt/ros/humble/setup.bash
+    echo "Using ROS2 Humble"
+else
+    echo "Error: No supported ROS2 distribution found"
+    exit 1
+fi
+
+# Detect Python version dynamically
+PYTHON_EXECUTABLE=$(which python3)
+PYTHON_VERSION=$(python3 -c "import sys; print(f'{sys.version_info.major}.{sys.version_info.minor}')")
+echo "Using Python $PYTHON_VERSION at $PYTHON_EXECUTABLE"
+
+# Build arguments with dynamic Python configuration
 BUILD_ARGS=(
     --build-base build_x86
     --install-base install_x86
     --cmake-args
-        -DPython3_EXECUTABLE=/usr/bin/python3.10
-        -DPYTHON_EXECUTABLE=/usr/bin/python3.10
+        -DPython3_EXECUTABLE=$PYTHON_EXECUTABLE
+        -DPYTHON_EXECUTABLE=$PYTHON_EXECUTABLE
         -DPython3_FIND_STRATEGY=LOCATION
-        -DPython3_ROOT_DIR=/usr
-        -DPYTHON_INCLUDE_DIR=/usr/include/python3.10
-        -DPYTHON_LIBRARY=/usr/lib/x86_64-linux-gnu/libpython3.10.so
         -DCMAKE_BUILD_TYPE=Release
 )
 

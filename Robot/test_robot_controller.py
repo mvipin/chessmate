@@ -15,8 +15,8 @@ import time
 import sys
 from datetime import datetime
 
-# Configuration
-USB_PORT = '/dev/ttyACM1'  # Assuming Robot controller is on ACM1
+# Configuration (using udev symlink for persistent naming)
+USB_PORT = '/dev/robot'  # Robot controller via udev symlink
 BAUD_RATE = 9600
 TIMEOUT = 1.0
 

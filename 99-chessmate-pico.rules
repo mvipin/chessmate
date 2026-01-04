@@ -1,0 +1,10 @@
+# ChessMate Pi Pico udev rules
+# Install with: sudo cp 99-chessmate-pico.rules /etc/udev/rules.d/
+# Reload with: sudo udevadm control --reload-rules && sudo udevadm trigger
+
+# Robot Controller Pi Pico (Serial: E6614C311B5A9B37)
+SUBSYSTEM=="tty", ATTRS{idVendor}=="2e8a", ATTRS{idProduct}=="000a", ATTRS{serial}=="E6614C311B5A9B37", SYMLINK+="robot", MODE="0666"
+
+# ChessBoard Controller Pi Pico (Serial: E6614C311B5E6436)
+SUBSYSTEM=="tty", ATTRS{idVendor}=="2e8a", ATTRS{idProduct}=="000a", ATTRS{serial}=="E6614C311B5E6436", SYMLINK+="chessboard", MODE="0666"
+

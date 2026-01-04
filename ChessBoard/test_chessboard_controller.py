@@ -15,8 +15,8 @@ import time
 import sys
 from datetime import datetime
 
-# Configuration
-USB_PORT = '/dev/ttyACM0'
+# Configuration (using udev symlink for persistent naming)
+USB_PORT = '/dev/chessboard'  # ChessBoard controller via udev symlink
 BAUD_RATE = 9600
 TIMEOUT = 1.0
 

@@ -6,8 +6,9 @@ Tests direct serial communication with Arduino using character-based protocol.
 This is the primary test for validating Arduino connectivity before ROS 2 integration.
 
 Usage:
-    ros2 run chessmate_hardware test_arduino_serial --port /dev/ttyACM0
-    python3 test_arduino_serial.py --port /dev/ttyACM0
+    ros2 run chessmate_hardware test_arduino_serial --port /dev/robot
+    ros2 run chessmate_hardware test_arduino_serial --port /dev/chessboard
+    python3 test_arduino_serial.py --port /dev/robot
 """
 
 import serial
@@ -16,7 +17,7 @@ import sys
 import argparse
 
 
-def test_arduino_character_protocol(port='/dev/ttyACM0', baud=9600):
+def test_arduino_character_protocol(port='/dev/robot', baud=9600):
     """Test character-based protocol with Arduino"""
     print(f"🔤 Testing Arduino Character Protocol on {port}...")
     
@@ -100,8 +101,8 @@ def test_arduino_character_protocol(port='/dev/ttyACM0', baud=9600):
 def main():
     """Main test function"""
     parser = argparse.ArgumentParser(description='Arduino Serial Communication Test')
-    parser.add_argument('--port', '-p', default='/dev/ttyACM0', 
-                       help='Serial port (default: /dev/ttyACM0)')
+    parser.add_argument('--port', '-p', default='/dev/robot',
+                       help='Serial port (default: /dev/robot, also: /dev/chessboard)')
     parser.add_argument('--baud', '-b', type=int, default=9600,
                        help='Baud rate (default: 9600)')
     

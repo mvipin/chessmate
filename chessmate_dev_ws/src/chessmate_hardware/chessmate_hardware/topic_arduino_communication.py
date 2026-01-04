@@ -23,10 +23,10 @@ class TopicArduinoCommunication(Node):
     def __init__(self):
         super().__init__('topic_arduino_communication')
         
-        # Parameters
+        # Parameters (using udev symlinks for persistent naming)
         self.hardware_mode = self.declare_parameter('hardware_mode', 'mock').value
-        self.chessboard_port = self.declare_parameter('chessboard_port', '/dev/ttyACM0').value
-        self.robot_port = self.declare_parameter('robot_port', '/dev/ttyACM1').value
+        self.chessboard_port = self.declare_parameter('chessboard_port', '/dev/chessboard').value
+        self.robot_port = self.declare_parameter('robot_port', '/dev/robot').value
         
         # Topic-based service interfaces
         self.setup_topic_services()

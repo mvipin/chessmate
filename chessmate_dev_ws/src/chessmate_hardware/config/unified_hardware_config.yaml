@@ -12,9 +12,9 @@
     hardware_mode: "real"  # Options: "real", "mock", "simulation"
     use_mock_hardware: false  # Derived from hardware_mode
 
-    # Serial Port Configuration
-    serial_chessboard_port: "/dev/ttyACM0"
-    serial_robot_port: "/dev/ttyACM1"
+    # Serial Port Configuration (using udev symlinks for persistent naming)
+    serial_chessboard_port: "/dev/chessboard"
+    serial_robot_port: "/dev/robot"
     serial_baud_rate: 9600
     serial_timeout: 2.0
 
