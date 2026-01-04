@@ -7,21 +7,42 @@ Robot Controller USB Communication Test Script
 
 This script tests the Robot Pi Pico controller via USB Serial.
 It verifies command processing and move execution.
+
+Device naming:
+  - Primary: /dev/robot (udev symlink for persistent naming)
+  - Fallback: /dev/ttyACM1, /dev/ttyACM0 (if udev rules not installed)
 """
 
 import serial
 import threading
 import time
 import sys
+import os
 from datetime import datetime
 
-# Configuration (using udev symlink for persistent naming)
-USB_PORT = '/dev/robot'  # Robot controller via udev symlink
+# Configuration
 BAUD_RATE = 9600
 TIMEOUT = 1.0
 
+
+def detect_robot_port():
+    """Detect Robot controller port with fallback logic."""
+    ports_to_try = [
+        '/dev/robot',      # Primary: udev symlink
+        '/dev/ttyACM1',    # Fallback: typical second USB device
+        '/dev/ttyACM0',    # Fallback: first USB device
+    ]
+
+    for port in ports_to_try:
+        if os.path.exists(port):
+            return port
+
+    return None
+
 class RobotTester:
-    def __init__(self, port=USB_PORT, baud=BAUD_RATE):
+    def __init__(self, port=None, baud=BAUD_RATE):
+        if port is None:
+            port = detect_robot_port()
         self.port = port
         self.baud = baud
         self.serial_conn = None
@@ -191,16 +212,22 @@ def main():
     """Main test function"""
     print("🤖 Robot Controller USB Test")
     print("=" * 50)
-    
-    # Check if port exists
-    import os
-    if not os.path.exists(USB_PORT):
-        print(f"❌ Robot controller not found at {USB_PORT}")
+
+    # Detect Robot controller port
+    port = detect_robot_port()
+    if port is None:
+        print("❌ Robot controller not found")
+        print("   Checked: /dev/robot, /dev/ttyACM1, /dev/ttyACM0")
         print("   Make sure the Robot Pi Pico is connected via USB")
-        print("   You may need to adjust the USB_PORT in the script")
         return 1
-    
-    tester = RobotTester()
+
+    if port == '/dev/robot':
+        print(f"✅ Using udev symlink: {port}")
+    else:
+        print(f"⚠️  Using fallback port: {port}")
+        print("   To enable persistent naming, install udev rules")
+
+    tester = RobotTester(port=port)
     
     try:
         # Connect to controller

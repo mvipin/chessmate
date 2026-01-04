@@ -5,23 +5,45 @@
 """
 ChessBoard Controller USB Communication Test Script
 
-This script tests the ChessBoard Pi Pico controller via USB Serial (/dev/ttyACM0).
+This script tests the ChessBoard Pi Pico controller via USB Serial.
 It verifies all command types and mock game flow.
+
+Device naming:
+  - Primary: /dev/chessboard (udev symlink for persistent naming)
+  - Fallback: /dev/ttyACM0, /dev/ttyACM1 (if udev rules not installed)
 """
 
 import serial
 import threading
 import time
 import sys
+import os
 from datetime import datetime
 
-# Configuration (using udev symlink for persistent naming)
-USB_PORT = '/dev/chessboard'  # ChessBoard controller via udev symlink
+# Configuration
 BAUD_RATE = 9600
 TIMEOUT = 1.0
 
+
+def detect_chessboard_port():
+    """Detect ChessBoard controller port with fallback logic."""
+    ports_to_try = [
+        '/dev/chessboard',  # Primary: udev symlink
+        '/dev/ttyACM0',     # Fallback: typical first USB device
+        '/dev/ttyACM1',     # Fallback: second USB device
+    ]
+
+    for port in ports_to_try:
+        if os.path.exists(port):
+            return port
+
+    return None
+
+
 class ChessBoardTester:
-    def __init__(self, port=USB_PORT, baud=BAUD_RATE):
+    def __init__(self, port=None, baud=BAUD_RATE):
+        if port is None:
+            port = detect_chessboard_port()
         self.port = port
         self.baud = baud
         self.serial_conn = None
@@ -210,8 +232,22 @@ def main():
     """Main test function"""
     print("🏁 ChessBoard Controller USB Test")
     print("=" * 50)
-    
-    tester = ChessBoardTester()
+
+    # Detect ChessBoard controller port
+    port = detect_chessboard_port()
+    if port is None:
+        print("❌ ChessBoard controller not found")
+        print("   Checked: /dev/chessboard, /dev/ttyACM0, /dev/ttyACM1")
+        print("   Make sure the ChessBoard Pi Pico is connected via USB")
+        return 1
+
+    if port == '/dev/chessboard':
+        print(f"✅ Using udev symlink: {port}")
+    else:
+        print(f"⚠️  Using fallback port: {port}")
+        print("   To enable persistent naming, install udev rules")
+
+    tester = ChessBoardTester(port=port)
     
     try:
         # Connect to controller
