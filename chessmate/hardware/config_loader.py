@@ -95,28 +95,28 @@ class ConfigLoader:
         search_paths = [
             # Environment variable override
             os.environ.get('CHESSMATE_CONFIG'),
-            
+
             # Current directory
             './unified_hardware_config.yaml',
             './config/unified_hardware_config.yaml',
-            
-            # Package directory
-            os.path.join(os.path.dirname(__file__), '..', 'config', 'unified_hardware_config.yaml'),
-            
+
+            # Repository root config directory (from chessmate/hardware/ -> ../../config/)
+            os.path.join(os.path.dirname(__file__), '..', '..', 'config', 'unified_hardware_config.yaml'),
+
             # System-wide locations
             '/etc/chessmate/unified_hardware_config.yaml',
             '/opt/chessmate/config/unified_hardware_config.yaml',
-            
+
             # User home directory
             os.path.expanduser('~/.chessmate/unified_hardware_config.yaml'),
         ]
-        
+
         for path in search_paths:
             if path and os.path.exists(path):
                 return path
-        
+
         # If no config file found, create a default one
-        default_path = os.path.join(os.path.dirname(__file__), '..', 'config', 'unified_hardware_config.yaml')
+        default_path = os.path.join(os.path.dirname(__file__), '..', '..', 'config', 'unified_hardware_config.yaml')
         print(f"Warning: No configuration file found. Using default: {default_path}")
         return default_path
     

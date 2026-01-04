@@ -5,7 +5,7 @@
 [![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
 [![Hackaday](https://img.shields.io/badge/Hackaday-Project-orange)](https://hackaday.io/project/203400-chessmate-ros2-chess-robot)
 
-![ChessMate Robot](images/chessmate3.jpg)
+![ChessMate Robot](assets/images/chessmate3.jpg)
 
 **An AI chess master with expressive eyes, custom electronics, and a precision arm that will checkmate you with style!**
 
@@ -333,24 +333,23 @@ board:
 
 ```bash
 # Navigate to workspace
-cd ~/ChessMate-ROS2/chessmate_dev_ws
+cd ~/ChessMate-ROS2
 
 # Source ROS2 environment
 source /opt/ros/humble/setup.bash
 source install/setup.bash  # (or install_arm/setup.bash on Pi)
 
 # Launch complete chess game system (mock mode)
-./launch_production_game.sh --mode mock
+./scripts/launch_production_game.sh --mode mock
 
 # Launch with real hardware
-./launch_production_game.sh --mode real
+./scripts/launch_production_game.sh --mode real
 
 # Test package functionality
 python3 -c "import rclpy, chess; print('✅ ChessMate packages ready!')"
 
 # Run system tests
-cd ../scripts
-./test_chessmate_system.sh game --mode mock --duration 300
+./scripts/test_chessmate_system.sh game --mode mock --duration 300
 ```
 
 #### New Setup
@@ -360,14 +359,14 @@ git clone https://github.com/mvipin/ChessMate-ROS2.git
 cd ChessMate-ROS2
 sudo apt update && sudo apt install -y ros-humble-desktop python3-pip stockfish
 pip3 install python-chess pyserial
-cd chessmate_dev_ws && ./setup_and_build.sh
-source /opt/ros/humble/setup.bash && source install/setup.bash
+./scripts/build_x86.sh  # or ./scripts/build_arm.sh on Raspberry Pi
+source /opt/ros/humble/setup.bash && source install_x86/setup.bash
 ./scripts/test_controllers.sh
 ```
 
 ### Development Setup
 
-See [ROS2 Conversion Roadmap](docs/ROS2_CONVERSION_ROADMAP.md) and [ROS Workspace README](chessmate_dev_ws/README.md).
+See [ROS2 Conversion Roadmap](docs/ROS2_CONVERSION_ROADMAP.md).
 
 ---
 
@@ -436,7 +435,7 @@ ros2 topic echo /robot/execute_move_response  # Robot execution
 rqt_graph                                 # System topology
 ```
 
-See [Testing Guide](chessmate_dev_ws/TESTING_GUIDE.md) for detailed procedures.
+See [Testing Guide](docs/TESTING_GUIDE.md) for detailed procedures.
 
 ---
 
@@ -444,9 +443,9 @@ See [Testing Guide](chessmate_dev_ws/TESTING_GUIDE.md) for detailed procedures.
 
 | Category | Resources |
 |----------|-----------|
-| **Technical** | [Architecture & Data Flow](chessmate_dev_ws/ARCHITECTURE_AND_DATA_FLOW.md), [ROS2 Conversion Roadmap](docs/ROS2_CONVERSION_ROADMAP.md), [Testing Strategy](docs/ROS2_INTEGRATION_TESTING_STRATEGY.md) |
-| **Packages** | [ROS Workspace](chessmate_dev_ws/README.md), [Messages](chessmate_dev_ws/src/chessmate_msgs/README.md), [Hardware](chessmate_dev_ws/src/chessmate_hardware/README.md), [Engine](chessmate_dev_ws/src/chessmate_engine/README.md) |
-| **Controllers** | [ChessBoard Controller](ChessBoard/README.md), [Robot Controller](Robot/README.md), [Test Scripts](scripts/README.md) |
+| **Technical** | [Architecture & Data Flow](docs/ARCHITECTURE_AND_DATA_FLOW.md), [ROS2 Conversion Roadmap](docs/ROS2_CONVERSION_ROADMAP.md), [Testing Strategy](docs/ROS2_INTEGRATION_TESTING_STRATEGY.md) |
+| **Packages** | [Messages](src/chessmate_msgs/README.md), [Hardware](src/chessmate_hardware/README.md), [Engine](src/chessmate_engine/README.md) |
+| **Controllers** | [ChessBoard Controller](controllers/chessboard/README.md), [Robot Controller](controllers/robot/README.md), [Test Scripts](scripts/README.md) |
 | **External** | [Hackaday Project](https://hackaday.io/project/203400-chessmate-ros2-chess-robot), [ROS2 Humble Docs](https://docs.ros.org/en/humble/), [Stockfish](https://stockfishchess.org/) |
 
 ---

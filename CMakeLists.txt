@@ -86,7 +86,6 @@ install(PROGRAMS
   chessmate/hardware/unified_hardware_test.py
   # Scripts
   scripts/kinematics_server.py
-  scripts/chess_animation_demo.py
   DESTINATION lib/${PROJECT_NAME}
 )
 
@@ -133,7 +132,7 @@ if(BUILD_TESTING)
   ament_lint_auto_find_test_dependencies()
   
   # Python tests
-  ament_add_pytest_test(test_scara_kinematics test/test_scara_kinematics.py)
+  ament_add_pytest_test(test_scara_kinematics test/unit/test_scara_kinematics.py)
 endif()
 
 # ============ EXPORT ============

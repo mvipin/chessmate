@@ -1,7 +1,7 @@
 import os
 import subprocess
 
-def generate_move_sound(start_square, end_square, input_dir='sounds/squares', output_dir='sounds/moves'):
+def generate_move_sound(start_square, end_square, input_dir='assets/sounds/squares', output_dir='assets/sounds/moves'):
     """Generate a .wav file for a chess move by concatenating two square sounds using ffmpeg's concat filter."""
     # Ensure the output directory exists
     os.makedirs(output_dir, exist_ok=True)
@@ -22,7 +22,7 @@ def generate_move_sound(start_square, end_square, input_dir='sounds/squares', ou
 
     print(f"Generated move sound: {move_sound_file}")
 
-def generate_all_moves(input_dir='sounds/squares', output_dir='sounds/moves'):
+def generate_all_moves(input_dir='assets/sounds/squares', output_dir='assets/sounds/moves'):
     """Generate .wav files for all possible moves."""
     squares = [f"{col}{row}" for col in 'abcdefgh' for row in '12345678']
 

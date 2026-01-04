@@ -13,7 +13,12 @@ cd "$WORKSPACE_DIR"
 # Setup ROS2 environment
 setup_ros2_env() {
     # Source virtual environment for Python dependencies
-    VENV_PATH="${HOME}/ChessMate-ROS2/chessmate_env"
+    # Try workspace-relative path first, then fall back to home directory
+    if [ -f "${WORKSPACE_DIR}/chessmate_env/bin/activate" ]; then
+        VENV_PATH="${WORKSPACE_DIR}/chessmate_env"
+    else
+        VENV_PATH="${HOME}/ChessMate-ROS2/chessmate_env"
+    fi
     if [ -f "${VENV_PATH}/bin/activate" ]; then
         source "${VENV_PATH}/bin/activate"
         export PYTHONPATH="${VENV_PATH}/lib/python3.12/site-packages:${PYTHONPATH}"

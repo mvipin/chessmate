@@ -26,24 +26,24 @@ for script in "$SCRIPT_DIR"/*.sh; do
     fi
 done
 
-# ChessBoard scripts
-CHESSBOARD_DIR="$PROJECT_ROOT/ChessBoard"
+# ChessBoard controller scripts
+CHESSBOARD_DIR="$PROJECT_ROOT/controllers/chessboard"
 if [ -d "$CHESSBOARD_DIR" ]; then
     for script in "$CHESSBOARD_DIR"/*.sh; do
         if [ -f "$script" ]; then
             chmod +x "$script"
-            echo "✅ Made executable: ChessBoard/$(basename "$script")"
+            echo "✅ Made executable: controllers/chessboard/$(basename "$script")"
         fi
     done
 fi
 
-# Robot scripts
-ROBOT_DIR="$PROJECT_ROOT/Robot"
+# Robot controller scripts
+ROBOT_DIR="$PROJECT_ROOT/controllers/robot"
 if [ -d "$ROBOT_DIR" ]; then
     for script in "$ROBOT_DIR"/*.sh; do
         if [ -f "$script" ]; then
             chmod +x "$script"
-            echo "✅ Made executable: Robot/$(basename "$script")"
+            echo "✅ Made executable: controllers/robot/$(basename "$script")"
         fi
     done
 fi

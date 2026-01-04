@@ -9,6 +9,12 @@ log/
 log_x86/
 log_arm/
 
+# Python virtual environment
+chessmate_env/
+*_env/
+venv/
+.venv/
+
 # Python
 __pycache__/
 *.pyc
@@ -26,3 +32,7 @@ __pycache__/
 # OS
 .DS_Store
 Thumbs.db
+
+# Local directories (not tracked)
+docs/
+legacy/

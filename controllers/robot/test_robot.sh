@@ -27,7 +27,7 @@ elif [ -e "/dev/ttyACM1" ]; then
     ROBOT_PORT="/dev/ttyACM1"
     echo "⚠️  udev symlink not found, using fallback: $ROBOT_PORT"
     echo "   To enable persistent naming, install udev rules:"
-    echo "   sudo cp chessmate_dev_ws/99-chessmate-pico.rules /etc/udev/rules.d/"
+    echo "   sudo cp config/99-chessmate-pico.rules /etc/udev/rules.d/"
     echo "   sudo udevadm control --reload-rules && sudo udevadm trigger"
 elif [ -e "/dev/ttyACM0" ]; then
     ROBOT_PORT="/dev/ttyACM0"

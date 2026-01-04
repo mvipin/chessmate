@@ -10,16 +10,33 @@ echo "NO HACKS OR BYPASSES - Full functionality!"
 echo ""
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-WORKSPACE_DIR="$(dirname "$SCRIPT_DIR")"
-cd "$WORKSPACE_DIR"
+PACKAGE_DIR="$(dirname "$SCRIPT_DIR")"  # ChessMate-ROS2 package directory
+# Navigate up to find the ROS2 workspace root (chessmate_ws)
+# Structure: chessmate_ws/src/ChessMate-ROS2/scripts/
+ROS2_WS_DIR="$(dirname "$(dirname "$PACKAGE_DIR")")"  # chessmate_ws
+PROJECT_ROOT="$(dirname "$ROS2_WS_DIR")"  # ChessMate project root
+
+cd "$PACKAGE_DIR"
 
 # Setup ROS2 environment
 setup_ros2_env() {
     # Source virtual environment for Python dependencies
-    VENV_PATH="${HOME}/ChessMate-ROS2/chessmate_env"
+    # Try project root first, then workspace, then home directory
+    if [ -f "${PROJECT_ROOT}/chessmate_env/bin/activate" ]; then
+        VENV_PATH="${PROJECT_ROOT}/chessmate_env"
+    elif [ -f "${ROS2_WS_DIR}/chessmate_env/bin/activate" ]; then
+        VENV_PATH="${ROS2_WS_DIR}/chessmate_env"
+    elif [ -f "${HOME}/ChessMate/chessmate_env/bin/activate" ]; then
+        VENV_PATH="${HOME}/ChessMate/chessmate_env"
+    else
+        VENV_PATH="${HOME}/ChessMate-ROS2/chessmate_env"
+    fi
     if [ -f "${VENV_PATH}/bin/activate" ]; then
         source "${VENV_PATH}/bin/activate"
         export PYTHONPATH="${VENV_PATH}/lib/python3.12/site-packages:${PYTHONPATH}"
+        echo "✅ Virtual environment activated: ${VENV_PATH}"
+    else
+        echo "⚠️  Virtual environment not found"
     fi
 
     # Auto-detect ROS distro
@@ -35,11 +52,16 @@ setup_ros2_env() {
     export ROS_VERSION=2
     export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
 
-    # Source workspace
-    if [ -f "$WORKSPACE_DIR/install/setup.bash" ]; then
-        source "$WORKSPACE_DIR/install/setup.bash"
-    elif [ -f "$WORKSPACE_DIR/install_arm/setup.bash" ]; then
-        source "$WORKSPACE_DIR/install_arm/setup.bash"
+    # Source ROS2 workspace (chessmate_ws/install/setup.bash)
+    if [ -f "$ROS2_WS_DIR/install/setup.bash" ]; then
+        source "$ROS2_WS_DIR/install/setup.bash"
+        echo "✅ ROS2 workspace sourced: ${ROS2_WS_DIR}/install/setup.bash"
+    elif [ -f "$ROS2_WS_DIR/install_arm/setup.bash" ]; then
+        source "$ROS2_WS_DIR/install_arm/setup.bash"
+        echo "✅ ROS2 workspace sourced: ${ROS2_WS_DIR}/install_arm/setup.bash"
+    else
+        echo "❌ ROS2 workspace install not found in ${ROS2_WS_DIR}"
+        exit 1
     fi
 }
 
@@ -117,7 +139,7 @@ echo "4️⃣ Running complete ChessMate system test..."
 echo "   This will play up to 15 moves or until someone wins!"
 echo "   Full chess game with proper orchestration!"
 
-timeout 360s python3 src/chessmate/test/system/test_full_game.py
+timeout 360s python3 test/system/test_full_game.py
 
 TEST_RESULT=$?
 
