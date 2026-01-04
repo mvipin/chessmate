@@ -31,15 +31,23 @@ source install_arm/setup.bash  # (or install/setup.bash on x86)
 ../scripts/test_chessmate_system.sh game --mode real --duration 600
 ```
 
-## 📦 **ROS2 Packages**
+## 📦 **ROS2 Package**
+
+The ChessMate system uses a single consolidated package containing all components:
 
 | Package | Purpose | Documentation |
 |---------|---------|---------------|
-| [`chessmate_msgs`](src/chessmate_msgs/) | Message definitions and service interfaces | [README](src/chessmate_msgs/README.md) |
-| [`chessmate_hardware`](src/chessmate_hardware/) | Hardware interfaces and device drivers | [README](src/chessmate_hardware/README.md) |
-| [`chessmate_engine`](src/chessmate_engine/) | Chess engine integration (Stockfish) | [README](src/chessmate_engine/README.md) |
-| [`chessmate_description`](src/chessmate_description/) | Robot models and visualization | [README](src/chessmate_description/README.md) |
-| [`chessmate_kinematics`](src/chessmate_kinematics/) | Motion planning and kinematics | [README](src/chessmate_kinematics/README.md) |
+| [`chessmate`](src/chessmate/) | Unified package with all ChessMate components | [README](src/chessmate/README.md) |
+
+### Package Components
+
+| Component | Location | Description |
+|-----------|----------|-------------|
+| Chess Engine | `chessmate/engine/` | Stockfish integration, move calculation |
+| Hardware | `chessmate/hardware/` | Arduino communication, GPIO, LCD, encoder |
+| Kinematics | `chessmate/kinematics/` | SCARA kinematics, coordinate mapping |
+| Description | `chessmate/description/` | URDF models, meshes, RViz configs |
+| Messages | `chessmate/msg/`, `srv/`, `action/` | ROS2 interface definitions |
 
 ## 🧪 **Testing Framework**
 
@@ -52,7 +60,7 @@ source install_arm/setup.bash  # (or install/setup.bash on x86)
 ./scripts/test_ros2_system.sh
 
 # Complete game simulation (Pi + Controllers)
-ros2 launch chessmate_hardware integration_testing.launch.py \
+ros2 launch chessmate integration_testing.launch.py \
     test_mode:=game_simulation \
     chessboard_port:=/dev/ttyACM0 \
     robot_port:=/dev/ttyACM1
@@ -62,7 +70,7 @@ ros2 launch chessmate_hardware integration_testing.launch.py \
 **On Raspberry Pi:**
 ```bash
 export ROS_DOMAIN_ID=42
-ros2 launch chessmate_hardware pi_headless_testing.launch.py \
+ros2 launch chessmate pi_headless_testing.launch.py \
     test_mode:=comprehensive \
     ros_domain_id:=42
 ```
@@ -70,7 +78,7 @@ ros2 launch chessmate_hardware pi_headless_testing.launch.py \
 **On Development Host:**
 ```bash
 export ROS_DOMAIN_ID=42
-ros2 launch chessmate_hardware host_visualization.launch.py \
+ros2 launch chessmate host_visualization.launch.py \
     pi_hostname:=chessmate-pi.local \
     ros_domain_id:=42 \
     enable_rviz:=true
@@ -93,8 +101,8 @@ colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release
 
 ### **Incremental Builds**
 ```bash
-# Rebuild specific package
-colcon build --packages-select chessmate_hardware --symlink-install
+# Rebuild the chessmate package
+colcon build --packages-select chessmate --symlink-install
 
 # Clean build
 rm -rf build* install* log*
@@ -110,7 +118,7 @@ source /opt/ros/humble/setup.bash
 source install_arm/setup.bash
 
 # Run complete game simulation
-ros2 launch chessmate_hardware integration_testing.launch.py \
+ros2 launch chessmate integration_testing.launch.py \
     test_mode:=game_simulation \
     chessboard_port:=/dev/ttyACM0 \
     robot_port:=/dev/ttyACM1 \
@@ -119,7 +127,7 @@ ros2 launch chessmate_hardware integration_testing.launch.py \
 
 **What this includes:**
 - ✅ ChessBoard controller communication
-- ✅ Robot controller communication  
+- ✅ Robot controller communication
 - ✅ Stockfish chess engine integration
 - ✅ Complete game flow simulation
 - ✅ Move validation and execution
@@ -128,13 +136,13 @@ ros2 launch chessmate_hardware integration_testing.launch.py \
 ### **Mock vs Real Hardware**
 ```bash
 # With real controllers (requires Pi Picos)
-ros2 launch chessmate_hardware unified_hardware.launch.py \
+ros2 launch chessmate unified_hardware.launch.py \
     hardware_mode:=real \
     chessboard_port:=/dev/ttyACM0 \
     robot_port:=/dev/ttyACM1
 
 # With mock controllers (development mode)
-ros2 launch chessmate_hardware unified_hardware.launch.py \
+ros2 launch chessmate unified_hardware.launch.py \
     hardware_mode:=mock
 ```
 
@@ -220,7 +228,7 @@ source install_arm/setup.bash
 
 ### **3. Run Complete Game Simulation**
 ```bash
-ros2 launch chessmate_hardware integration_testing.launch.py test_mode:=game_simulation
+ros2 launch chessmate integration_testing.launch.py test_mode:=game_simulation
 ```
 
 ### **4. Develop and Test Changes**
