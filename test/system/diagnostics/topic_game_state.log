@@ -1,0 +1,651 @@
+=== Game State Messages ===
+status: 1
+result: 0
+white_to_move: false
+move_number: 3
+halfmove_clock: 2
+fen: rnbqkb1r/pppp1ppp/5n2/4p3/4P3/P1N5/1PPP1PPP/R1BQKBNR b KQkq - 2 3
+last_move:
+  from_square: ''
+  to_square: ''
+  piece_type: ''
+  move_type: ''
+  promotion_piece: ''
+  is_capture: false
+  confidence: 0.0
+  timestamp: 0
+game_start_time:
+  sec: 0
+  nanosec: 0
+white_time_remaining: 0.0
+black_time_remaining: 0.0
+time_control_enabled: false
+white_player: Human
+black_player: ChessMate
+event_name: ChessMate Game
+opening_name: ''
+---
+status: 1
+result: 0
+white_to_move: true
+move_number: 4
+halfmove_clock: 3
+fen: r1bqkb1r/pppp1ppp/2n2n2/4p3/4P3/P1N5/1PPP1PPP/R1BQKBNR w KQkq - 3 4
+last_move:
+  from_square: ''
+  to_square: ''
+  piece_type: ''
+  move_type: ''
+  promotion_piece: ''
+  is_capture: false
+  confidence: 0.0
+  timestamp: 0
+game_start_time:
+  sec: 0
+  nanosec: 0
+white_time_remaining: 0.0
+black_time_remaining: 0.0
+time_control_enabled: false
+white_player: Human
+black_player: ChessMate
+event_name: ChessMate Game
+opening_name: ''
+---
+status: 1
+result: 0
+white_to_move: false
+move_number: 4
+halfmove_clock: 4
+fen: r1bqkb1r/pppp1ppp/2n2n2/4p3/4P3/P7/1PPP1PPP/RNBQKBNR b KQkq - 4 4
+last_move:
+  from_square: ''
+  to_square: ''
+  piece_type: ''
+  move_type: ''
+  promotion_piece: ''
+  is_capture: false
+  confidence: 0.0
+  timestamp: 0
+game_start_time:
+  sec: 0
+  nanosec: 0
+white_time_remaining: 0.0
+black_time_remaining: 0.0
+time_control_enabled: false
+white_player: Human
+black_player: ChessMate
+event_name: ChessMate Game
+opening_name: ''
+---
+status: 1
+result: 0
+white_to_move: true
+move_number: 5
+halfmove_clock: 0
+fen: r1bqkb1r/pppp1ppp/2n5/4p3/4n3/P7/1PPP1PPP/RNBQKBNR w KQkq - 0 5
+last_move:
+  from_square: ''
+  to_square: ''
+  piece_type: ''
+  move_type: ''
+  promotion_piece: ''
+  is_capture: false
+  confidence: 0.0
+  timestamp: 0
+game_start_time:
+  sec: 0
+  nanosec: 0
+white_time_remaining: 0.0
+black_time_remaining: 0.0
+time_control_enabled: false
+white_player: Human
+black_player: ChessMate
+event_name: ChessMate Game
+opening_name: ''
+---
+status: 1
+result: 0
+white_to_move: false
+move_number: 5
+halfmove_clock: 0
+fen: r1bqkb1r/pppp1ppp/2n5/4p3/4n3/PP6/2PP1PPP/RNBQKBNR b KQkq - 0 5
+last_move:
+  from_square: ''
+  to_square: ''
+  piece_type: ''
+  move_type: ''
+  promotion_piece: ''
+  is_capture: false
+  confidence: 0.0
+  timestamp: 0
+game_start_time:
+  sec: 0
+  nanosec: 0
+white_time_remaining: 0.0
+black_time_remaining: 0.0
+time_control_enabled: false
+white_player: Human
+black_player: ChessMate
+event_name: ChessMate Game
+opening_name: ''
+---
+status: 1
+result: 0
+white_to_move: true
+move_number: 6
+halfmove_clock: 1
+fen: r1bqk2r/pppp1ppp/2n5/2b1p3/4n3/PP6/2PP1PPP/RNBQKBNR w KQkq - 1 6
+last_move:
+  from_square: ''
+  to_square: ''
+  piece_type: ''
+  move_type: ''
+  promotion_piece: ''
+  is_capture: false
+  confidence: 0.0
+  timestamp: 0
+game_start_time:
+  sec: 0
+  nanosec: 0
+white_time_remaining: 0.0
+black_time_remaining: 0.0
+time_control_enabled: false
+white_player: Human
+black_player: ChessMate
+event_name: ChessMate Game
+opening_name: ''
+---
+status: 1
+result: 0
+white_to_move: false
+move_number: 6
+halfmove_clock: 0
+fen: r1bqk2r/pppp1ppp/2n5/2b1p3/4n3/PP3P2/2PP2PP/RNBQKBNR b KQkq - 0 6
+last_move:
+  from_square: ''
+  to_square: ''
+  piece_type: ''
+  move_type: ''
+  promotion_piece: ''
+  is_capture: false
+  confidence: 0.0
+  timestamp: 0
+game_start_time:
+  sec: 0
+  nanosec: 0
+white_time_remaining: 0.0
+black_time_remaining: 0.0
+time_control_enabled: false
+white_player: Human
+black_player: ChessMate
+event_name: ChessMate Game
+opening_name: ''
+---
+status: 1
+result: 0
+white_to_move: true
+move_number: 7
+halfmove_clock: 1
+fen: r1bqk2r/pppp1ppp/2n5/4p3/4n3/PP3P2/2PP1bPP/RNBQKBNR w KQkq - 1 7
+last_move:
+  from_square: ''
+  to_square: ''
+  piece_type: ''
+  move_type: ''
+  promotion_piece: ''
+  is_capture: false
+  confidence: 0.0
+  timestamp: 0
+game_start_time:
+  sec: 0
+  nanosec: 0
+white_time_remaining: 0.0
+black_time_remaining: 0.0
+time_control_enabled: false
+white_player: Human
+black_player: ChessMate
+event_name: ChessMate Game
+opening_name: ''
+---
+status: 1
+result: 0
+white_to_move: false
+move_number: 7
+halfmove_clock: 2
+fen: r1bqk2r/pppp1ppp/2n5/4p3/4n3/PP3P2/2PPKbPP/RNBQ1BNR b kq - 2 7
+last_move:
+  from_square: ''
+  to_square: ''
+  piece_type: ''
+  move_type: ''
+  promotion_piece: ''
+  is_capture: false
+  confidence: 0.0
+  timestamp: 0
+game_start_time:
+  sec: 0
+  nanosec: 0
+white_time_remaining: 0.0
+black_time_remaining: 0.0
+time_control_enabled: false
+white_player: Human
+black_player: ChessMate
+event_name: ChessMate Game
+opening_name: ''
+---
+status: 1
+result: 0
+white_to_move: true
+move_number: 8
+halfmove_clock: 0
+fen: r1bqk2r/ppp2ppp/2n5/3pp3/4n3/PP3P2/2PPKbPP/RNBQ1BNR w kq - 0 8
+last_move:
+  from_square: ''
+  to_square: ''
+  piece_type: ''
+  move_type: ''
+  promotion_piece: ''
+  is_capture: false
+  confidence: 0.0
+  timestamp: 0
+game_start_time:
+  sec: 0
+  nanosec: 0
+white_time_remaining: 0.0
+black_time_remaining: 0.0
+time_control_enabled: false
+white_player: Human
+black_player: ChessMate
+event_name: ChessMate Game
+opening_name: ''
+---
+status: 1
+result: 0
+white_to_move: false
+move_number: 8
+halfmove_clock: 0
+fen: r1bqk2r/ppp2ppp/2n5/3pp3/3Pn3/PP3P2/2P1KbPP/RNBQ1BNR b kq - 0 8
+last_move:
+  from_square: ''
+  to_square: ''
+  piece_type: ''
+  move_type: ''
+  promotion_piece: ''
+  is_capture: false
+  confidence: 0.0
+  timestamp: 0
+game_start_time:
+  sec: 0
+  nanosec: 0
+white_time_remaining: 0.0
+black_time_remaining: 0.0
+time_control_enabled: false
+white_player: Human
+black_player: ChessMate
+event_name: ChessMate Game
+opening_name: ''
+---
+status: 1
+result: 0
+white_to_move: true
+move_number: 9
+halfmove_clock: 0
+fen: r1bqk2r/ppp2ppp/2n5/3pp3/3bn3/PP3P2/2P1K1PP/RNBQ1BNR w kq - 0 9
+last_move:
+  from_square: ''
+  to_square: ''
+  piece_type: ''
+  move_type: ''
+  promotion_piece: ''
+  is_capture: false
+  confidence: 0.0
+  timestamp: 0
+game_start_time:
+  sec: 0
+  nanosec: 0
+white_time_remaining: 0.0
+black_time_remaining: 0.0
+time_control_enabled: false
+white_player: Human
+black_player: ChessMate
+event_name: ChessMate Game
+opening_name: ''
+---
+status: 1
+result: 0
+white_to_move: false
+move_number: 9
+halfmove_clock: 1
+fen: r1bqk2r/ppp2ppp/2n5/3pp3/3bn3/PP3P2/2PNK1PP/R1BQ1BNR b kq - 1 9
+last_move:
+  from_square: ''
+  to_square: ''
+  piece_type: ''
+  move_type: ''
+  promotion_piece: ''
+  is_capture: false
+  confidence: 0.0
+  timestamp: 0
+game_start_time:
+  sec: 0
+  nanosec: 0
+white_time_remaining: 0.0
+black_time_remaining: 0.0
+time_control_enabled: false
+white_player: Human
+black_player: ChessMate
+event_name: ChessMate Game
+opening_name: ''
+---
+status: 1
+result: 0
+white_to_move: true
+move_number: 10
+halfmove_clock: 2
+fen: r1bqk2r/ppp2ppp/2n5/3pp3/3b4/PPn2P2/2PNK1PP/R1BQ1BNR w kq - 2 10
+last_move:
+  from_square: ''
+  to_square: ''
+  piece_type: ''
+  move_type: ''
+  promotion_piece: ''
+  is_capture: false
+  confidence: 0.0
+  timestamp: 0
+game_start_time:
+  sec: 0
+  nanosec: 0
+white_time_remaining: 0.0
+black_time_remaining: 0.0
+time_control_enabled: false
+white_player: Human
+black_player: ChessMate
+event_name: ChessMate Game
+opening_name: ''
+---
+status: 1
+result: 0
+white_to_move: false
+move_number: 10
+halfmove_clock: 3
+fen: r1bqk2r/ppp2ppp/2n5/3pp3/3b4/PPnK1P2/2PN2PP/R1BQ1BNR b kq - 3 10
+last_move:
+  from_square: ''
+  to_square: ''
+  piece_type: ''
+  move_type: ''
+  promotion_piece: ''
+  is_capture: false
+  confidence: 0.0
+  timestamp: 0
+game_start_time:
+  sec: 0
+  nanosec: 0
+white_time_remaining: 0.0
+black_time_remaining: 0.0
+time_control_enabled: false
+white_player: Human
+black_player: ChessMate
+event_name: ChessMate Game
+opening_name: ''
+---
+status: 1
+result: 0
+white_to_move: true
+move_number: 11
+halfmove_clock: 4
+fen: r2qk2r/ppp2ppp/2n5/3ppb2/3b4/PPnK1P2/2PN2PP/R1BQ1BNR w kq - 4 11
+last_move:
+  from_square: ''
+  to_square: ''
+  piece_type: ''
+  move_type: ''
+  promotion_piece: ''
+  is_capture: false
+  confidence: 0.0
+  timestamp: 0
+game_start_time:
+  sec: 0
+  nanosec: 0
+white_time_remaining: 0.0
+black_time_remaining: 0.0
+time_control_enabled: false
+white_player: Human
+black_player: ChessMate
+event_name: ChessMate Game
+opening_name: ''
+---
+status: 1
+result: 0
+white_to_move: false
+move_number: 11
+halfmove_clock: 5
+fen: r2qk2r/ppp2ppp/2n5/3ppb2/3bN3/PPnK1P2/2P3PP/R1BQ1BNR b kq - 5 11
+last_move:
+  from_square: ''
+  to_square: ''
+  piece_type: ''
+  move_type: ''
+  promotion_piece: ''
+  is_capture: false
+  confidence: 0.0
+  timestamp: 0
+game_start_time:
+  sec: 0
+  nanosec: 0
+white_time_remaining: 0.0
+black_time_remaining: 0.0
+time_control_enabled: false
+white_player: Human
+black_player: ChessMate
+event_name: ChessMate Game
+opening_name: ''
+---
+status: 1
+result: 0
+white_to_move: true
+move_number: 12
+halfmove_clock: 0
+fen: r2qk2r/ppp2ppp/2n5/4pb2/3bp3/PPnK1P2/2P3PP/R1BQ1BNR w kq - 0 12
+last_move:
+  from_square: ''
+  to_square: ''
+  piece_type: ''
+  move_type: ''
+  promotion_piece: ''
+  is_capture: false
+  confidence: 0.0
+  timestamp: 0
+game_start_time:
+  sec: 0
+  nanosec: 0
+white_time_remaining: 0.0
+black_time_remaining: 0.0
+time_control_enabled: false
+white_player: Human
+black_player: ChessMate
+event_name: ChessMate Game
+opening_name: ''
+---
+status: 1
+result: 0
+white_to_move: false
+move_number: 12
+halfmove_clock: 0
+fen: r2qk2r/ppp2ppp/2n5/4pb2/3bP3/PPnK4/2P3PP/R1BQ1BNR b kq - 0 12
+last_move:
+  from_square: ''
+  to_square: ''
+  piece_type: ''
+  move_type: ''
+  promotion_piece: ''
+  is_capture: false
+  confidence: 0.0
+  timestamp: 0
+game_start_time:
+  sec: 0
+  nanosec: 0
+white_time_remaining: 0.0
+black_time_remaining: 0.0
+time_control_enabled: false
+white_player: Human
+black_player: ChessMate
+event_name: ChessMate Game
+opening_name: ''
+---
+status: 1
+result: 0
+white_to_move: true
+move_number: 13
+halfmove_clock: 0
+fen: r2qk2r/ppp2ppp/2n5/4pb2/3bP3/PP1K4/2P3PP/R1Bn1BNR w kq - 0 13
+last_move:
+  from_square: ''
+  to_square: ''
+  piece_type: ''
+  move_type: ''
+  promotion_piece: ''
+  is_capture: false
+  confidence: 0.0
+  timestamp: 0
+game_start_time:
+  sec: 0
+  nanosec: 0
+white_time_remaining: 0.0
+black_time_remaining: 0.0
+time_control_enabled: false
+white_player: Human
+black_player: ChessMate
+event_name: ChessMate Game
+opening_name: ''
+---
+status: 1
+result: 0
+white_to_move: false
+move_number: 13
+halfmove_clock: 0
+fen: r2qk2r/ppp2ppp/2n5/4pP2/3b4/PP1K4/2P3PP/R1Bn1BNR b kq - 0 13
+last_move:
+  from_square: ''
+  to_square: ''
+  piece_type: ''
+  move_type: ''
+  promotion_piece: ''
+  is_capture: false
+  confidence: 0.0
+  timestamp: 0
+game_start_time:
+  sec: 0
+  nanosec: 0
+white_time_remaining: 0.0
+black_time_remaining: 0.0
+time_control_enabled: false
+white_player: Human
+black_player: ChessMate
+event_name: ChessMate Game
+opening_name: ''
+---
+status: 1
+result: 0
+white_to_move: true
+move_number: 14
+halfmove_clock: 1
+fen: r2qk2r/ppp2ppp/1bn5/4pP2/8/PP1K4/2P3PP/R1Bn1BNR w kq - 1 14
+last_move:
+  from_square: ''
+  to_square: ''
+  piece_type: ''
+  move_type: ''
+  promotion_piece: ''
+  is_capture: false
+  confidence: 0.0
+  timestamp: 0
+game_start_time:
+  sec: 0
+  nanosec: 0
+white_time_remaining: 0.0
+black_time_remaining: 0.0
+time_control_enabled: false
+white_player: Human
+black_player: ChessMate
+event_name: ChessMate Game
+opening_name: ''
+---
+status: 1
+result: 0
+white_to_move: false
+move_number: 14
+halfmove_clock: 2
+fen: r2qk2r/ppp2ppp/1bn5/4pP2/2K5/PP6/2P3PP/R1Bn1BNR b kq - 2 14
+last_move:
+  from_square: ''
+  to_square: ''
+  piece_type: ''
+  move_type: ''
+  promotion_piece: ''
+  is_capture: false
+  confidence: 0.0
+  timestamp: 0
+game_start_time:
+  sec: 0
+  nanosec: 0
+white_time_remaining: 0.0
+black_time_remaining: 0.0
+time_control_enabled: false
+white_player: Human
+black_player: ChessMate
+event_name: ChessMate Game
+opening_name: ''
+---
+status: 1
+result: 0
+white_to_move: true
+move_number: 15
+halfmove_clock: 3
+fen: r3k2r/ppp2ppp/1bn5/4pP2/2Kq4/PP6/2P3PP/R1Bn1BNR w kq - 3 15
+last_move:
+  from_square: ''
+  to_square: ''
+  piece_type: ''
+  move_type: ''
+  promotion_piece: ''
+  is_capture: false
+  confidence: 0.0
+  timestamp: 0
+game_start_time:
+  sec: 0
+  nanosec: 0
+white_time_remaining: 0.0
+black_time_remaining: 0.0
+time_control_enabled: false
+white_player: Human
+black_player: ChessMate
+event_name: ChessMate Game
+opening_name: ''
+---
+status: 0
+result: 0
+white_to_move: true
+move_number: 15
+halfmove_clock: 3
+fen: r3k2r/ppp2ppp/1bn5/4pP2/2Kq4/PP6/2P3PP/R1Bn1BNR w kq - 3 15
+last_move:
+  from_square: ''
+  to_square: ''
+  piece_type: ''
+  move_type: ''
+  promotion_piece: ''
+  is_capture: false
+  confidence: 0.0
+  timestamp: 0
+game_start_time:
+  sec: 0
+  nanosec: 0
+white_time_remaining: 0.0
+black_time_remaining: 0.0
+time_control_enabled: false
+white_player: Human
+black_player: ChessMate
+event_name: ChessMate Game
+opening_name: ''
+---

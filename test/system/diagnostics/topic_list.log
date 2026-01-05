@@ -1,0 +1,57 @@
+=== ROS2 Topic List ===
+
+=== Initial capture at Sun Jan  4 07:14:18 PM PST 2026 ===
+/chessboard/legal_moves
+/chessboard/set_mode_request
+/chessboard/set_mode_response
+/engine/calculate_move_request
+/engine/calculate_move_response
+/game/control
+/game/human_move
+/game/state
+/parameter_events
+/robot/execute_move_request
+/robot/execute_move_response
+/rosout
+
+=== Capture 1 at Sun Jan  4 07:15:10 PM PST 2026 ===
+/chessboard/legal_moves
+/chessboard/set_mode_request
+/chessboard/set_mode_response
+/engine/calculate_move_request
+/engine/calculate_move_response
+/game/control
+/game/human_move
+/game/state
+/parameter_events
+/robot/execute_move_request
+/robot/execute_move_response
+/rosout
+
+=== Capture 2 at Sun Jan  4 07:15:49 PM PST 2026 ===
+/chessboard/legal_moves
+/chessboard/set_mode_request
+/chessboard/set_mode_response
+/engine/calculate_move_request
+/engine/calculate_move_response
+/game/control
+/game/human_move
+/game/state
+/parameter_events
+/robot/execute_move_request
+/robot/execute_move_response
+/rosout
+
+=== Capture 3 at Sun Jan  4 07:16:30 PM PST 2026 ===
+/game/human_move
+/game/state
+/parameter_events
+/robot/execute_move_response
+/rosout
+
+=== Final capture at Sun Jan  4 07:17:08 PM PST 2026 ===
+/game/human_move
+/game/state
+/parameter_events
+/robot/execute_move_response
+/rosout

@@ -1,0 +1,106 @@
+=== ROS2 Node Info ===
+
+=== Node: /arduino_communication ===
+/arduino_communication
+  Subscribers:
+    /chessboard/legal_moves: std_msgs/msg/String
+    /chessboard/set_mode_request: std_msgs/msg/String
+    /robot/execute_move_request: std_msgs/msg/String
+  Publishers:
+    /chessboard/set_mode_response: std_msgs/msg/String
+    /game/human_move: std_msgs/msg/String
+    /parameter_events: rcl_interfaces/msg/ParameterEvent
+    /robot/execute_move_response: std_msgs/msg/String
+    /rosout: rcl_interfaces/msg/Log
+  Service Servers:
+    /arduino_communication/describe_parameters: rcl_interfaces/srv/DescribeParameters
+    /arduino_communication/get_parameter_types: rcl_interfaces/srv/GetParameterTypes
+    /arduino_communication/get_parameters: rcl_interfaces/srv/GetParameters
+    /arduino_communication/get_type_description: type_description_interfaces/srv/GetTypeDescription
+    /arduino_communication/list_parameters: rcl_interfaces/srv/ListParameters
+    /arduino_communication/set_parameters: rcl_interfaces/srv/SetParameters
+    /arduino_communication/set_parameters_atomically: rcl_interfaces/srv/SetParametersAtomically
+  Service Clients:
+
+  Action Servers:
+
+  Action Clients:
+
+
+=== Node: /chess_engine_server ===
+/chess_engine_server
+  Subscribers:
+    /engine/calculate_move_request: std_msgs/msg/String
+  Publishers:
+    /engine/calculate_move_response: std_msgs/msg/String
+    /parameter_events: rcl_interfaces/msg/ParameterEvent
+    /rosout: rcl_interfaces/msg/Log
+  Service Servers:
+    /chess_engine_server/describe_parameters: rcl_interfaces/srv/DescribeParameters
+    /chess_engine_server/get_parameter_types: rcl_interfaces/srv/GetParameterTypes
+    /chess_engine_server/get_parameters: rcl_interfaces/srv/GetParameters
+    /chess_engine_server/get_type_description: type_description_interfaces/srv/GetTypeDescription
+    /chess_engine_server/list_parameters: rcl_interfaces/srv/ListParameters
+    /chess_engine_server/set_parameters: rcl_interfaces/srv/SetParameters
+    /chess_engine_server/set_parameters_atomically: rcl_interfaces/srv/SetParametersAtomically
+  Service Clients:
+
+  Action Servers:
+
+  Action Clients:
+
+
+=== Node: /full_game_integration_test ===
+/full_game_integration_test
+  Subscribers:
+    /game/state: chessmate/msg/GameState
+  Publishers:
+    /game/control: std_msgs/msg/String
+    /game/human_move: std_msgs/msg/String
+    /parameter_events: rcl_interfaces/msg/ParameterEvent
+    /rosout: rcl_interfaces/msg/Log
+  Service Servers:
+    /full_game_integration_test/describe_parameters: rcl_interfaces/srv/DescribeParameters
+    /full_game_integration_test/get_parameter_types: rcl_interfaces/srv/GetParameterTypes
+    /full_game_integration_test/get_parameters: rcl_interfaces/srv/GetParameters
+    /full_game_integration_test/get_type_description: type_description_interfaces/srv/GetTypeDescription
+    /full_game_integration_test/list_parameters: rcl_interfaces/srv/ListParameters
+    /full_game_integration_test/set_parameters: rcl_interfaces/srv/SetParameters
+    /full_game_integration_test/set_parameters_atomically: rcl_interfaces/srv/SetParametersAtomically
+  Service Clients:
+
+  Action Servers:
+
+  Action Clients:
+
+
+=== Node: /game_management ===
+/game_management
+  Subscribers:
+    /chessboard/set_mode_response: std_msgs/msg/String
+    /engine/calculate_move_response: std_msgs/msg/String
+    /game/control: std_msgs/msg/String
+    /game/human_move: std_msgs/msg/String
+    /robot/execute_move_response: std_msgs/msg/String
+  Publishers:
+    /chessboard/legal_moves: std_msgs/msg/String
+    /chessboard/set_mode_request: std_msgs/msg/String
+    /engine/calculate_move_request: std_msgs/msg/String
+    /game/state: chessmate/msg/GameState
+    /parameter_events: rcl_interfaces/msg/ParameterEvent
+    /robot/execute_move_request: std_msgs/msg/String
+    /rosout: rcl_interfaces/msg/Log
+  Service Servers:
+    /game_management/describe_parameters: rcl_interfaces/srv/DescribeParameters
+    /game_management/get_parameter_types: rcl_interfaces/srv/GetParameterTypes
+    /game_management/get_parameters: rcl_interfaces/srv/GetParameters
+    /game_management/get_type_description: type_description_interfaces/srv/GetTypeDescription
+    /game_management/list_parameters: rcl_interfaces/srv/ListParameters
+    /game_management/set_parameters: rcl_interfaces/srv/SetParameters
+    /game_management/set_parameters_atomically: rcl_interfaces/srv/SetParametersAtomically
+  Service Clients:
+
+  Action Servers:
+
+  Action Clients:
+

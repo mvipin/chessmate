@@ -1,0 +1,47 @@
+=== Human Move Messages ===
+data: '{"move": "b1c3", "timestamp": 1767582888.9040678, "source": "chessboard_controller", "mode": "mock"}'
+---
+data: '{"move": "trigger_legal_move", "timestamp": 1767582893.1878917}'
+---
+data: '{"move": "c3b1", "timestamp": 1767582900.657449, "source": "chessboard_controller", "mode": "mock"}'
+---
+data: '{"move": "trigger_legal_move", "timestamp": 1767582904.9099438}'
+---
+data: '{"move": "b2b3", "timestamp": 1767582909.0641685, "source": "chessboard_controller", "mode": "mock"}'
+---
+data: '{"move": "trigger_legal_move", "timestamp": 1767582913.4529293}'
+---
+data: '{"move": "f2f3", "timestamp": 1767582917.1029751, "source": "chessboard_controller", "mode": "mock"}'
+---
+data: '{"move": "trigger_legal_move", "timestamp": 1767582920.09861}'
+---
+data: '{"move": "e1e2", "timestamp": 1767582926.0677326, "source": "chessboard_controller", "mode": "mock"}'
+---
+data: '{"move": "trigger_legal_move", "timestamp": 1767582929.763901}'
+---
+data: '{"move": "d2d4", "timestamp": 1767582934.8166027, "source": "chessboard_controller", "mode": "mock"}'
+---
+data: '{"move": "trigger_legal_move", "timestamp": 1767582939.067511}'
+---
+data: '{"move": "b1d2", "timestamp": 1767582945.054899, "source": "chessboard_controller", "mode": "mock"}'
+---
+data: '{"move": "trigger_legal_move", "timestamp": 1767582949.1426914}'
+---
+data: '{"move": "e2d3", "timestamp": 1767582951.9089465, "source": "chessboard_controller", "mode": "mock"}'
+---
+data: '{"move": "trigger_legal_move", "timestamp": 1767582956.272515}'
+---
+data: '{"move": "d2e4", "timestamp": 1767582961.0038164, "source": "chessboard_controller", "mode": "mock"}'
+---
+data: '{"move": "trigger_legal_move", "timestamp": 1767582964.9540017}'
+---
+data: '{"move": "f3e4", "timestamp": 1767582967.22726, "source": "chessboard_controller", "mode": "mock"}'
+---
+data: '{"move": "trigger_legal_move", "timestamp": 1767582970.8968098}'
+---
+data: '{"move": "e4f5", "timestamp": 1767582975.1362393, "source": "chessboard_controller", "mode": "mock"}'
+---
+data: '{"move": "trigger_legal_move", "timestamp": 1767582977.9973514}'
+---
+data: '{"move": "d3c4", "timestamp": 1767582983.86475, "source": "chessboard_controller", "mode": "mock"}'
+---

@@ -53,12 +53,12 @@ ChessMate is a fully autonomous chess-playing robot that physically moves pieces
     - [Robot Animatronics Flow](#robot-animatronics-flow)
 - [Getting Started](#getting-started)
 - [Testing](#testing)
+  - [Overview](#overview)
   - [Test Levels](#test-levels)
-  - [Test Scripts](#test-scripts)
-  - [Testing Workflow](#testing-workflow)
-  - [Common Commands](#common-commands)
-  - [Monitoring](#monitoring)
-  - [Troubleshooting Tests](#troubleshooting-tests)
+  - [Running Tests](#running-tests)
+  - [Monitoring & Diagnostics](#monitoring--diagnostics)
+  - [Diagnostic Session Example](#diagnostic-session-example)
+  - [Troubleshooting](#troubleshooting)
 
 ---
 
@@ -764,6 +764,10 @@ See [ROS2 Conversion Roadmap](docs/ROS2_CONVERSION_ROADMAP.md).
 
 ## Testing
 
+### Overview
+
+ChessMate uses a multi-level testing approach that progresses from isolated controller tests to full system integration. Tests can run in mock mode (simulated hardware) or real mode (physical hardware connected).
+
 ### Test Levels
 
 | Level | Description | Command |
@@ -772,7 +776,9 @@ See [ROS2 Conversion Roadmap](docs/ROS2_CONVERSION_ROADMAP.md).
 | **Level 1** | ROS2 integration | `./scripts/test_chessmate_system.sh ros2 --mode mock --controller both` |
 | **Level 2** | Complete chess game | `./scripts/test_chessmate_system.sh game --mode mock --duration 300` |
 
-### Test Scripts
+### Running Tests
+
+**Test Scripts:**
 
 | Script | Description |
 |--------|-------------|
@@ -797,27 +803,7 @@ python3 scripts/test_complete_game.py individual  # Individual controller tests
 python3 scripts/test_complete_game.py init        # Game initialization only
 ```
 
-### Testing Workflow
-
-**Development Testing:**
-1. Test individual controllers first using their respective test options
-2. Verify basic communication and command processing
-3. Run integration tests using the main test launcher
-
-**Integration Testing:**
-1. Use `test_chessmate_system.sh` for comprehensive system testing
-2. Start with individual controller tests (options 1-2)
-3. Progress to complete game simulation (option 3)
-4. Use interactive modes for debugging (options 4-5)
-
-**Prerequisites:**
-- ChessBoard Pi Pico connected via USB (`/dev/ttyACM0`)
-- Robot Pi Pico connected via USB (`/dev/ttyACM1`) - optional for ChessBoard-only tests
-- User in `dialout` group for USB device access
-- Both controllers running appropriate firmware
-
-### Common Commands
-
+**Common Commands:**
 ```bash
 # Mock game simulation (5 minutes)
 ./scripts/test_chessmate_system.sh game --mode mock --duration 300
@@ -835,8 +821,28 @@ python3 scripts/test_complete_game.py init        # Game initialization only
 ./scripts/test_chessmate_system.sh --help
 ```
 
-### Monitoring
+**Testing Workflow:**
 
+*Development Testing:*
+1. Test individual controllers first using their respective test options
+2. Verify basic communication and command processing
+3. Run integration tests using the main test launcher
+
+*Integration Testing:*
+1. Use `test_chessmate_system.sh` for comprehensive system testing
+2. Start with individual controller tests (options 1-2)
+3. Progress to complete game simulation (option 3)
+4. Use interactive modes for debugging (options 4-5)
+
+*Prerequisites:*
+- ChessBoard Pi Pico connected via USB (`/dev/ttyACM0`)
+- Robot Pi Pico connected via USB (`/dev/ttyACM1`) - optional for ChessBoard-only tests
+- User in `dialout` group for USB device access
+- Both controllers running appropriate firmware
+
+### Monitoring & Diagnostics
+
+**Real-Time Monitoring Commands:**
 ```bash
 ros2 topic echo /game/state              # Game state
 ros2 topic echo /game/human_move         # Human moves
@@ -844,7 +850,127 @@ ros2 topic echo /robot/execute_move_response  # Robot execution
 rqt_graph                                 # System topology
 ```
 
-### Troubleshooting Tests
+**ROS2 Node Reference:**
+
+| Node Name | Function |
+|-----------|----------|
+| `/arduino_communication` | Hardware interface for chessboard and robot arm |
+| `/chess_engine_server` | Stockfish-based move calculation |
+| `/game_management` | Central game orchestration and state management |
+| `/full_game_integration_test` | Test harness simulating human moves |
+
+**ROS2 Topic Reference:**
+
+*Game-Related Topics:*
+| Topic | Type | Publisher | Subscriber(s) |
+|-------|------|-----------|---------------|
+| `/game/state` | `chessmate/msg/GameState` | game_management | full_game_integration_test |
+| `/game/control` | `std_msgs/msg/String` | full_game_integration_test | game_management |
+| `/game/human_move` | `std_msgs/msg/String` | arduino_communication, test | game_management |
+
+*Chess Engine Topics:*
+| Topic | Type | Publisher | Subscriber |
+|-------|------|-----------|------------|
+| `/engine/calculate_move_request` | `std_msgs/msg/String` | game_management | chess_engine_server |
+| `/engine/calculate_move_response` | `std_msgs/msg/String` | chess_engine_server | game_management |
+
+*Robot Control Topics:*
+| Topic | Type | Publisher | Subscriber |
+|-------|------|-----------|------------|
+| `/robot/execute_move_request` | `std_msgs/msg/String` | game_management | arduino_communication |
+| `/robot/execute_move_response` | `std_msgs/msg/String` | arduino_communication | game_management |
+
+*Chessboard Controller Topics:*
+| Topic | Type | Publisher | Subscriber |
+|-------|------|-----------|------------|
+| `/chessboard/legal_moves` | `std_msgs/msg/String` | game_management | arduino_communication |
+| `/chessboard/set_mode_request` | `std_msgs/msg/String` | game_management | arduino_communication |
+| `/chessboard/set_mode_response` | `std_msgs/msg/String` | arduino_communication | game_management |
+
+**Communication Graph:**
+
+```mermaid
+flowchart TB
+    subgraph TestHarness["Test Harness"]
+        TEST[full_game_integration_test]
+    end
+
+    subgraph GameOrchestration["Game Orchestration"]
+        GM[game_management<br/>Central Orchestrator]
+    end
+
+    subgraph ChessAI["Chess AI"]
+        ENGINE[chess_engine_server<br/>Stockfish]
+    end
+
+    subgraph Hardware["Hardware Interface"]
+        ARDUINO[arduino_communication<br/>Robot + Chessboard]
+    end
+
+    %% Test to Game Management
+    TEST -->|/game/control| GM
+    TEST -->|/game/human_move| GM
+
+    %% Game Management to Chess Engine
+    GM -->|/engine/calculate_move_request| ENGINE
+    ENGINE -->|/engine/calculate_move_response| GM
+
+    %% Game Management to Arduino
+    GM -->|/robot/execute_move_request| ARDUINO
+    ARDUINO -->|/robot/execute_move_response| GM
+    GM -->|/chessboard/legal_moves| ARDUINO
+    GM -->|/chessboard/set_mode_request| ARDUINO
+    ARDUINO -->|/chessboard/set_mode_response| GM
+    ARDUINO -->|/game/human_move| GM
+
+    %% Game State broadcast
+    GM -->|/game/state| TEST
+
+    %% Styling
+    style GM fill:#4a90d9,stroke:#2c5aa0,color:#fff
+    style ENGINE fill:#50c878,stroke:#3a9a5c,color:#fff
+    style ARDUINO fill:#f5a623,stroke:#c7851a,color:#fff
+    style TEST fill:#9b59b6,stroke:#7d3c98,color:#fff
+```
+
+### Diagnostic Session Example
+
+This example shows a complete ROS2 system diagnostics session captured during an end-to-end ChessMate system test.
+
+**Test Result**: ✅ SUCCESS - 15 moves played in ~3 minutes
+
+**Test Execution Timeline:**
+
+| Timestamp | Phase | Activity |
+|-----------|-------|----------|
+| 07:14:02 | Start | Test initialization |
+| 07:14:14 | Init | Nodes discovered, first capture |
+| 07:14:18 | Play | Game started, moves 1-4 |
+| 07:15:07 | Play | Capture 1 - moves 5-6 |
+| 07:15:46 | Play | Capture 2 - moves 7-10 |
+| 07:16:27 | End | Capture 3 - test completed, nodes shutting down |
+| 07:17:05 | Final | Final capture - all nodes terminated |
+
+**Diagnostic Files Generated:**
+
+| File | Description |
+|------|-------------|
+| [`system_test_output.log`](test/system/diagnostics/system_test_output.log) | Complete test execution log |
+| [`topic_game_state.log`](test/system/diagnostics/topic_game_state.log) | Game state topic messages |
+| [`topic_human_move.log`](test/system/diagnostics/topic_human_move.log) | Human move commands |
+| [`topic_execute_move_response.log`](test/system/diagnostics/topic_execute_move_response.log) | Robot move confirmations |
+| [`node_info.log`](test/system/diagnostics/node_info.log) | Detailed node pub/sub info |
+| [`service_list.log`](test/system/diagnostics/service_list.log) | ROS2 services timeline |
+
+**System Verification Checklist:**
+
+✅ All ROS2 nodes initialized and communicated correctly
+✅ Topic-based pub/sub communication working as designed
+✅ Game orchestration properly coordinated all components
+✅ Engine-robot-chessboard loop executed 15 complete turns
+✅ Clean shutdown without message loss
+
+### Troubleshooting
 
 | Issue | Solutions |
 |-------|-----------|

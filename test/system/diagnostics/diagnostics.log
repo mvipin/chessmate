@@ -1,0 +1,14 @@
+=== ChessMate ROS2 Diagnostics ===
+Session: /home/smtuser/ChessMate/ros2_diagnostics/session_20260104_191402
+Started: Sun Jan  4 07:14:02 PM PST 2026
+Starting ChessMate system test...
+Test PID: 1495070
+Waiting 12 seconds for nodes to initialize...
+--- Initial System State at Sun Jan  4 07:14:14 PM PST 2026 ---
+Topic monitors started. Beginning periodic capture...
+--- Capture 1 at Sun Jan  4 07:15:07 PM PST 2026 ---
+--- Capture 2 at Sun Jan  4 07:15:46 PM PST 2026 ---
+--- Capture 3 at Sun Jan  4 07:16:27 PM PST 2026 ---
+Test completed at iteration 4
+--- Final System State at Sun Jan  4 07:17:05 PM PST 2026 ---
+Capturing topic frequencies...

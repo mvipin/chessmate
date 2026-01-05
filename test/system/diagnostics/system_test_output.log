@@ -1,0 +1,870 @@
+🎉 ChessMate Full System Integration Test
+==========================================
+Testing complete game management with all components
+Full production functionality!
+
+✅ Virtual environment activated: /home/smtuser/ChessMate/chessmate_env
+✅ ROS2 workspace sourced: /home/smtuser/ChessMate/chessmate_ws/install/setup.bash
+🚀 Starting complete ChessMate system...
+1️⃣ Starting chess engine...
+2️⃣ Starting Arduino communication...
+3️⃣ Starting game management...
+⏳ Waiting for all components to initialize...
+[INFO] [1767582852.099591344] [arduino_communication]: ✅ Serial connections initialized
+[INFO] [1767582852.105085455] [arduino_communication]: 🔧 Setting controllers to mock mode...
+[INFO] [1767582852.641402641] [arduino_communication]: ♟️  ChessBoard mode set to mock: MODE: Mock simulation mode enabled
+[INFO] [1767582852.951237241] [chess_engine_server]: 🔧 Topic-based service interfaces setup complete
+[INFO] [1767582852.980899805] [game_management]: 🔧 Engine client created for engine/calculate_move
+[INFO] [1767582852.994506940] [game_management]: 🔧 Robot client created for robot/execute_move
+[INFO] [1767582853.015779145] [game_management]: 🔧 Board client created for chessboard/set_mode
+[INFO] [1767582853.246551620] [game_management]: 🎮 Game Management initialized
+[INFO] [1767582853.254908979] [game_management]: Hardware mode: mock
+[INFO] [1767582853.263054167] [game_management]: Skill level: 5
+[INFO] [1767582853.276279637] [game_management]: 🔧 Initializing game system...
+✅ All components running successfully:
+   Chess Engine PID: 1495121
+   Arduino Comm PID: 1495122
+   Game Manager PID: 1495123
+
+4️⃣ Running complete ChessMate system test...
+   This will play up to 15 moves or until someone wins!
+   Full chess game with proper orchestration!
+[INFO] [1767582853.773644177] [chess_engine_server]: ✅ Stockfish initialized: Stockfish (Skill: 20/20, Threads: 1)
+[INFO] [1767582853.775929127] [chess_engine_server]: 🧠 Chess Engine Server initialized
+[INFO] [1767582854.157743004] [arduino_communication]: 🤖 Robot mode set to mock: ROBOT: Received command: mode:mock
+[INFO] [1767582854.186486045] [arduino_communication]: ✅ Controller mode configuration complete
+[INFO] [1767582854.301842613] [arduino_communication]: 🔍 Started chessboard monitoring thread (mock mode)
+[INFO] [1767582854.307516931] [arduino_communication]: 🔍 ChessBoard (mock): MODE: Current mode is MOCK
+[INFO] [1767582854.326613827] [arduino_communication]: 🔧 Arduino Communication initialized
+[INFO] [1767582854.379247911] [arduino_communication]: Hardware mode: mock
+[INFO] [1767582855.281565729] [game_management]: ⏳ Waiting for services...
+[INFO] [1767582855.389773060] [game_management]: ✅ Engine service ready
+[INFO] [1767582855.495583487] [game_management]: ✅ Robot service ready
+[INFO] [1767582855.601458290] [game_management]: ✅ Board service ready
+[INFO] [1767582855.606027291] [game_management]: 🔧 Setting board to game mode...
+[INFO] [1767582855.614259607] [arduino_communication]: ♟️  Processing board mode request board_req_1767582855606250
+[INFO] [1767582855.625374809] [arduino_communication]: ♟️  Mock board mode set: 2
+[INFO] [1767582855.734073709] [arduino_communication]: ✅ Board mode response sent for board_req_1767582855606250
+[INFO] [1767582855.754437566] [game_management]: ✅ Board initialized for game
+[INFO] [1767582855.766306197] [game_management]: 🎮 Game system ready - waiting for start command
+[INFO] [1767582856.969093705] [full_game_integration_test]: 🧪 Full game integration test initialized
+[INFO] [1767582860.020261128] [full_game_integration_test]: 🚀 Starting full game integration test...
+[INFO] [1767582860.023065174] [full_game_integration_test]: ⏳ Waiting for game management to initialize...
+[INFO] [1767582865.026558431] [full_game_integration_test]: 🎮 Starting new game...
+[INFO] [1767582865.037048159] [full_game_integration_test]: 📤 Sent game command: start
+[INFO] [1767582865.040729200] [game_management]: 🎮 Starting new chess game...
+[INFO] [1767582865.054129090] [game_management]: ✅ New game started - waiting for human move
+[INFO] [1767582865.062841187] [full_game_integration_test]: 🎮 Game State Update:
+[INFO] [1767582865.061646203] [game_management]: Current position: rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1
+[INFO] [1767582865.068027486] [full_game_integration_test]:    Status: 1 (PLAYING)
+[INFO] [1767582865.074569312] [full_game_integration_test]:    Current player: human
+[INFO] [1767582865.075621778] [game_management]: 📋 Sending 20 legal moves to controller
+[INFO] [1767582865.081194567] [full_game_integration_test]:    Move number: 1
+[INFO] [1767582865.086322651] [game_management]: 📋 Legal moves: ['g1h3', 'g1f3', 'b1c3', 'b1a3', 'h2h3']...
+[INFO] [1767582865.088107732] [full_game_integration_test]:    White to move: True
+[INFO] [1767582865.100725179] [game_management]: 📤 Legal moves sent to chessboard controller
+[INFO] [1767582865.105243415] [game_management]: ⏳ Waiting for chessboard controller to send human move...
+[INFO] [1767582865.106769049] [arduino_communication]: 📋 Received 20 legal moves from game management
+[INFO] [1767582865.127521934] [arduino_communication]: 🔍 ChessBoard (mock): LEGAL: Set 20 legal moves
+[INFO] [1767582866.216219860] [arduino_communication]: 📤 Sent 20 legal moves to chessboard: 
+[INFO] [1767582866.236364859] [arduino_communication]: 🔍 ChessBoard (mock): START: Human turn beginning
+[INFO] [1767582866.325563422] [arduino_communication]: 🎯 Sent start command to chessboard: LEGAL MOVES: g1h3 g1f3 b1c3 b1a3 h2h3 g2g3 f2f3 e2e3 d2d3 c2c3 b2b3 a2a3 h2h4 g2g4 f2f4 e2e4 d2d4 c2c4 b2b4 a2a4
+[INFO] [1767582866.344331005] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Ready for human turn
+[INFO] [1767582866.450032290] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Transitioning to MOVE_START
+[INFO] [1767582866.555948633] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Selected move a2a3 from 20 legal moves
+[INFO] [1767582866.597312647] [full_game_integration_test]: 👤 Triggering human move (legal move generation)
+[INFO] [1767582866.600970775] [full_game_integration_test]: 👤 Sent human move: trigger_legal_move
+[INFO] [1767582866.660410470] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Starting move, will take 3278ms
+[INFO] [1767582869.589403877] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Move completed, confirming...
+[INFO] [1767582869.694398284] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Updated occupancy for move a2a3
+[INFO] [1767582869.799281050] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Confirming move a2a3
+[INFO] [1767582869.905599496] [arduino_communication]: 👤 ChessBoard detected move: a2a3
+[INFO] [1767582869.911338804] [game_management]: 👤 Human move received: a2a3
+[INFO] [1767582869.916527378] [game_management]: ✅ Human played: a2a3
+[INFO] [1767582869.931175103] [game_management]: 🧠 Processing computer move...
+[INFO] [1767582869.939727882] [full_game_integration_test]: 🎮 Game State Update:
+[INFO] [1767582869.950206447] [full_game_integration_test]:    Status: 1 (PLAYING)
+[INFO] [1767582869.961477679] [full_game_integration_test]:    Current player: computer
+[INFO] [1767582869.961495605] [game_management]: 📤 Requesting move from engine...
+[INFO] [1767582869.967517111] [full_game_integration_test]:    Move number: 1
+[INFO] [1767582869.975472767] [full_game_integration_test]:    White to move: False
+[INFO] [1767582869.990915948] [chess_engine_server]: 🧠 Processing move calculation request req_1767582869972599
+[INFO] [1767582872.165655236] [chess_engine_server]: ✅ Calculated best move: e7e5 (eval: 4.0)
+[INFO] [1767582872.187835900] [game_management]: 🔍 Current board FEN: rnbqkbnr/pppppppp/8/8/8/P7/1PPPPPPP/RNBQKBNR b KQkq - 0 1
+[INFO] [1767582872.194476743] [game_management]: 🔍 Legal moves: ['g8h6', 'g8f6', 'b8c6', 'b8a6', 'h7h6', 'g7g6', 'f7f6', 'e7e6', 'd7d6', 'c7c6']...
+[INFO] [1767582872.204997559] [game_management]: ✅ Engine calculated: e7e5 (eval: 4.0)
+[INFO] [1767582872.212941014] [game_management]: 🤖 Executing computer move...
+[INFO] [1767582872.222919047] [arduino_communication]: 🤖 Processing robot execute request robot_req_1767582872213230
+[INFO] [1767582872.227928540] [arduino_communication]: 🤖 Mock robot executing 6-char move: e7pe5p
+[INFO] [1767582872.235681925] [arduino_communication]:    (e7 -> e5, piece: pawn)
+[INFO] [1767582872.742833041] [arduino_communication]: ✅ Robot execute response sent for robot_req_1767582872213230
+[INFO] [1767582872.756792452] [game_management]: ✅ Robot move executed successfully
+[INFO] [1767582872.767746410] [game_management]: ✅ Computer played: e7e5
+[INFO] [1767582872.782797438] [full_game_integration_test]: 🎮 Game State Update:
+[INFO] [1767582872.787292811] [game_management]: 👤 Waiting for human move...
+[INFO] [1767582872.790597100] [full_game_integration_test]:    Status: 1 (PLAYING)
+[INFO] [1767582872.797482315] [game_management]: 📋 Sending 19 legal moves to controller
+[INFO] [1767582872.799609746] [full_game_integration_test]:    Current player: human
+[INFO] [1767582872.805540924] [game_management]: 📋 Legal moves: ['g1h3', 'g1f3', 'b1c3', 'a1a2', 'a3a4']...
+[INFO] [1767582872.808166950] [full_game_integration_test]:    Move number: 2
+[INFO] [1767582872.818472896] [full_game_integration_test]:    White to move: True
+[INFO] [1767582872.819964241] [arduino_communication]: 📋 Received 19 legal moves from game management
+[INFO] [1767582872.825039336] [game_management]: 📤 Legal moves sent to chessboard controller
+[INFO] [1767582872.830488695] [game_management]: ⏳ Waiting for chessboard controller to send human move...
+[INFO] [1767582872.839164241] [arduino_communication]: 🔍 ChessBoard (mock): LEGAL: Set 19 legal moves
+[INFO] [1767582873.928735975] [arduino_communication]: 📤 Sent 19 legal moves to chessboard: 
+[INFO] [1767582873.954429050] [arduino_communication]: 🔍 ChessBoard (mock): START: Human turn beginning
+[INFO] [1767582874.045314553] [arduino_communication]: 🎯 Sent start command to chessboard: LEGAL MOVES: g1h3 g1f3 b1c3 a1a2 a3a4 h2h3 g2g3 f2f3 e2e3 d2d3 c2c3 b2b3 h2h4 g2g4 f2f4 e2e4 d2d4 c2c4 b2b4
+[INFO] [1767582874.065889831] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Ready for human turn
+[INFO] [1767582874.173482925] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Transitioning to MOVE_START
+[INFO] [1767582874.283715334] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Requesting hint...
+[INFO] [1767582874.328157641] [full_game_integration_test]: 👤 Triggering human move (legal move generation)
+[INFO] [1767582874.332288700] [full_game_integration_test]: 👤 Sent human move: trigger_legal_move
+[INFO] [1767582874.393176076] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Hint displayed
+[INFO] [1767582874.505071061] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Selected move e2e4 from 19 legal moves
+[INFO] [1767582874.615458825] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Starting move, will take 3437ms
+[INFO] [1767582877.445506369] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Move completed, confirming...
+[INFO] [1767582877.564253618] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Updated occupancy for move e2e4
+[INFO] [1767582877.672572228] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Confirming move e2e4
+[INFO] [1767582877.787298397] [arduino_communication]: 👤 ChessBoard detected move: e2e4
+[INFO] [1767582877.807872087] [game_management]: 👤 Human move received: e2e4
+[INFO] [1767582877.819689291] [game_management]: ✅ Human played: e2e4
+[INFO] [1767582877.835440608] [game_management]: 🧠 Processing computer move...
+[INFO] [1767582877.839610093] [full_game_integration_test]: 🎮 Game State Update:
+[INFO] [1767582877.847932388] [full_game_integration_test]:    Status: 1 (PLAYING)
+[INFO] [1767582877.855008147] [full_game_integration_test]:    Current player: computer
+[INFO] [1767582877.855397300] [game_management]: 📤 Requesting move from engine...
+[INFO] [1767582877.869611333] [chess_engine_server]: 🧠 Processing move calculation request req_1767582877855697
+[INFO] [1767582877.870217606] [full_game_integration_test]:    Move number: 2
+[INFO] [1767582877.881208629] [full_game_integration_test]:    White to move: False
+[INFO] [1767582880.081614752] [chess_engine_server]: ✅ Calculated best move: g8f6 (eval: 14.0)
+[INFO] [1767582880.110394870] [game_management]: 🔍 Current board FEN: rnbqkbnr/pppp1ppp/8/4p3/4P3/P7/1PPP1PPP/RNBQKBNR b KQkq - 0 2
+[INFO] [1767582880.116390963] [game_management]: 🔍 Legal moves: ['g8e7', 'g8h6', 'g8f6', 'f8e7', 'f8d6', 'f8c5', 'f8b4', 'f8a3', 'e8e7', 'd8e7']...
+[INFO] [1767582880.132891609] [game_management]: ✅ Engine calculated: g8f6 (eval: 14.0)
+[INFO] [1767582880.144060776] [game_management]: 🤖 Executing computer move...
+[INFO] [1767582880.158885007] [arduino_communication]: 🤖 Processing robot execute request robot_req_1767582880144326
+[INFO] [1767582880.168124725] [arduino_communication]: 🤖 Mock robot executing 6-char move: g8pf6p
+[INFO] [1767582880.175528984] [arduino_communication]:    (g8 -> f6, piece: pawn)
+[INFO] [1767582880.690740272] [arduino_communication]: ✅ Robot execute response sent for robot_req_1767582880144326
+[INFO] [1767582880.701634515] [game_management]: ✅ Robot move executed successfully
+[INFO] [1767582880.721334435] [game_management]: ✅ Computer played: g8f6
+[INFO] [1767582880.734022059] [full_game_integration_test]: 🎮 Game State Update:
+[INFO] [1767582880.744176737] [full_game_integration_test]:    Status: 1 (PLAYING)
+[INFO] [1767582880.747057997] [game_management]: 👤 Waiting for human move...
+[INFO] [1767582880.750521580] [full_game_integration_test]:    Current player: human
+[INFO] [1767582880.753051378] [game_management]: 📋 Sending 28 legal moves to controller
+[INFO] [1767582880.756603864] [full_game_integration_test]:    Move number: 3
+[INFO] [1767582880.768181334] [game_management]: 📋 Legal moves: ['g1h3', 'g1f3', 'g1e2', 'f1a6', 'f1b5']...
+[INFO] [1767582880.772452848] [full_game_integration_test]:    White to move: True
+[INFO] [1767582880.781285937] [game_management]: 📤 Legal moves sent to chessboard controller
+[INFO] [1767582880.786066121] [game_management]: ⏳ Waiting for chessboard controller to send human move...
+[INFO] [1767582880.794872596] [arduino_communication]: 📋 Received 28 legal moves from game management
+[INFO] [1767582880.840579364] [arduino_communication]: 🔍 ChessBoard (mock): LEGAL: Set 24 legal moves
+[INFO] [1767582881.907052899] [arduino_communication]: 📤 Sent 28 legal moves to chessboard: 
+[INFO] [1767582881.959440924] [arduino_communication]: 🔍 ChessBoard (mock): START: Human turn beginning
+[INFO] [1767582882.043222904] [arduino_communication]: 🎯 Sent start command to chessboard: LEGAL MOVES: g1h3 g1f3 g1e2 f1a6 f1b5 f1c4 f1d3 f1e2 e1e2 d1h5 d1g4 d1f3 d1e2 b1c3 a1a2 a3a4 h2h3 g2g3 f2f3 d2d3 c2c3 b2b3 h2h4 g2g4
+[INFO] [1767582882.076380840] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Ready for human turn
+[INFO] [1767582882.194231367] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Transitioning to MOVE_START
+[INFO] [1767582882.279623746] [full_game_integration_test]: 👤 Triggering human move (legal move generation)
+[INFO] [1767582882.295167118] [full_game_integration_test]: 👤 Sent human move: trigger_legal_move
+[INFO] [1767582882.307054012] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Requesting hint...
+[INFO] [1767582882.413871502] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Hint displayed
+[INFO] [1767582882.523980744] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Selected move b1c3 from 24 legal moves
+[INFO] [1767582882.641581773] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Starting move, will take 6603ms
+[INFO] [1767582888.586610503] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Move completed, confirming...
+[INFO] [1767582888.691804631] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Updated occupancy for move b1c3
+[INFO] [1767582888.797206129] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Confirming move b1c3
+[INFO] [1767582888.903146061] [arduino_communication]: 👤 ChessBoard detected move: b1c3
+[INFO] [1767582888.907972283] [game_management]: 👤 Human move received: b1c3
+[INFO] [1767582888.911438804] [game_management]: ✅ Human played: b1c3
+[INFO] [1767582888.915402131] [game_management]: 🧠 Processing computer move...
+[INFO] [1767582888.917226264] [full_game_integration_test]: 🎮 Game State Update:
+[INFO] [1767582888.921959471] [full_game_integration_test]:    Status: 1 (PLAYING)
+[INFO] [1767582888.924734902] [full_game_integration_test]:    Current player: computer
+[INFO] [1767582888.928199135] [full_game_integration_test]:    Move number: 3
+[INFO] [1767582888.931731471] [full_game_integration_test]:    White to move: False
+[INFO] [1767582888.933246567] [game_management]: 📤 Requesting move from engine...
+[INFO] [1767582888.940063266] [chess_engine_server]: 🧠 Processing move calculation request req_1767582888933467
+[INFO] [1767582891.081010281] [chess_engine_server]: ✅ Calculated best move: b8c6 (eval: 15.0)
+[INFO] [1767582891.092098557] [game_management]: 🔍 Current board FEN: rnbqkb1r/pppp1ppp/5n2/4p3/4P3/P1N5/1PPP1PPP/R1BQKBNR b KQkq - 2 3
+[INFO] [1767582891.094997718] [game_management]: 🔍 Legal moves: ['h8g8', 'f8e7', 'f8d6', 'f8c5', 'f8b4', 'f8a3', 'e8e7', 'd8e7', 'b8c6', 'b8a6']...
+[INFO] [1767582891.097800326] [game_management]: ✅ Engine calculated: b8c6 (eval: 15.0)
+[INFO] [1767582891.100938196] [game_management]: 🤖 Executing computer move...
+[INFO] [1767582891.104820383] [arduino_communication]: 🤖 Processing robot execute request robot_req_1767582891101127
+[INFO] [1767582891.106819460] [arduino_communication]: 🤖 Mock robot executing 6-char move: b8pc6p
+[INFO] [1767582891.112533304] [arduino_communication]:    (b8 -> c6, piece: pawn)
+[INFO] [1767582891.619824825] [arduino_communication]: ✅ Robot execute response sent for robot_req_1767582891101127
+[INFO] [1767582891.631903789] [game_management]: ✅ Robot move executed successfully
+[INFO] [1767582891.640372064] [game_management]: ✅ Computer played: b8c6
+[INFO] [1767582891.648700071] [game_management]: 👤 Waiting for human move...
+[INFO] [1767582891.652562732] [game_management]: 📋 Sending 32 legal moves to controller
+[INFO] [1767582891.656921037] [game_management]: 📋 Legal moves: ['c3d5', 'c3b5', 'c3a4', 'c3e2', 'c3a2']...
+[INFO] [1767582891.658826023] [full_game_integration_test]: 🎮 Game State Update:
+[INFO] [1767582891.664489290] [arduino_communication]: 📋 Received 32 legal moves from game management
+[INFO] [1767582891.665897844] [game_management]: 📤 Legal moves sent to chessboard controller
+[INFO] [1767582891.667155680] [full_game_integration_test]:    Status: 1 (PLAYING)
+[INFO] [1767582891.672926127] [game_management]: ⏳ Waiting for chessboard controller to send human move...
+[INFO] [1767582891.675456924] [full_game_integration_test]:    Current player: human
+[INFO] [1767582891.678593432] [full_game_integration_test]:    Move number: 4
+[INFO] [1767582891.683395429] [full_game_integration_test]:    White to move: True
+[INFO] [1767582891.733921432] [arduino_communication]: 🔍 ChessBoard (mock): LEGAL: Set 24 legal moves
+[INFO] [1767582892.776405346] [arduino_communication]: 📤 Sent 32 legal moves to chessboard: 
+[INFO] [1767582892.850446165] [arduino_communication]: 🔍 ChessBoard (mock): START: Human turn beginning
+[INFO] [1767582892.890480315] [arduino_communication]: 🎯 Sent start command to chessboard: LEGAL MOVES: c3d5 c3b5 c3a4 c3e2 c3a2 c3b1 g1h3 g1f3 g1e2 f1a6 f1b5 f1c4 f1d3 f1e2 e1e2 d1h5 d1g4 d1f3 d1e2 a1a2 a1b1 a3a4 h2h3 g2g3
+[INFO] [1767582892.962829843] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Ready for human turn
+[INFO] [1767582893.068183502] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Transitioning to MOVE_START
+[INFO] [1767582893.173733369] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Selected move c3b1 from 24 legal moves
+[INFO] [1767582893.187479134] [full_game_integration_test]: 👤 Triggering human move (legal move generation)
+[INFO] [1767582893.191205040] [full_game_integration_test]: 👤 Sent human move: trigger_legal_move
+[INFO] [1767582893.283020204] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Starting move, will take 7491ms
+[INFO] [1767582900.337106694] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Move completed, confirming...
+[INFO] [1767582900.444756353] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Updated occupancy for move c3b1
+[INFO] [1767582900.549396784] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Confirming move c3b1
+[INFO] [1767582900.657291191] [arduino_communication]: 👤 ChessBoard detected move: c3b1
+[INFO] [1767582900.662766976] [game_management]: 👤 Human move received: c3b1
+[INFO] [1767582900.667510071] [game_management]: ✅ Human played: c3b1
+[INFO] [1767582900.675818865] [full_game_integration_test]: 🎮 Game State Update:
+[INFO] [1767582900.677593571] [full_game_integration_test]:    Status: 1 (PLAYING)
+[INFO] [1767582900.678422515] [game_management]: 🧠 Processing computer move...
+[INFO] [1767582900.679268610] [full_game_integration_test]:    Current player: computer
+[INFO] [1767582900.685958867] [full_game_integration_test]:    Move number: 4
+[INFO] [1767582900.690824454] [game_management]: 📤 Requesting move from engine...
+[INFO] [1767582900.692551132] [full_game_integration_test]:    White to move: False
+[INFO] [1767582900.699245952] [chess_engine_server]: 🧠 Processing move calculation request req_1767582900691075
+[INFO] [1767582902.825906381] [chess_engine_server]: ✅ Calculated best move: f6e4 (eval: 230.0)
+[INFO] [1767582902.838367772] [game_management]: 🔍 Current board FEN: r1bqkb1r/pppp1ppp/2n2n2/4p3/4P3/P7/1PPP1PPP/RNBQKBNR b KQkq - 4 4
+[INFO] [1767582902.843045952] [game_management]: 🔍 Legal moves: ['h8g8', 'f8e7', 'f8d6', 'f8c5', 'f8b4', 'f8a3', 'e8e7', 'd8e7', 'a8b8', 'f6g8']...
+[INFO] [1767582902.847084119] [game_management]: ✅ Engine calculated: f6e4 (eval: 230.0)
+[INFO] [1767582902.851332133] [game_management]: 🤖 Executing computer move...
+[INFO] [1767582902.856491056] [arduino_communication]: 🤖 Processing robot execute request robot_req_1767582902851801
+[INFO] [1767582902.859358241] [arduino_communication]: 🤖 Mock robot executing 6-char move: f6pe4p
+[INFO] [1767582902.862015493] [arduino_communication]:    (f6 -> e4, piece: pawn)
+[INFO] [1767582903.368941388] [arduino_communication]: ✅ Robot execute response sent for robot_req_1767582902851801
+[INFO] [1767582903.376258919] [game_management]: ✅ Robot move executed successfully
+[INFO] [1767582903.379823606] [game_management]: ✅ Computer played: f6e4
+[INFO] [1767582903.385060044] [full_game_integration_test]: 🎮 Game State Update:
+[INFO] [1767582903.386890952] [game_management]: 👤 Waiting for human move...
+[INFO] [1767582903.391268920] [full_game_integration_test]:    Status: 1 (PLAYING)
+[INFO] [1767582903.394255322] [game_management]: 📋 Sending 28 legal moves to controller
+[INFO] [1767582903.395240960] [full_game_integration_test]:    Current player: human
+[INFO] [1767582903.397630927] [game_management]: 📋 Legal moves: ['g1h3', 'g1f3', 'g1e2', 'f1a6', 'f1b5']...
+[INFO] [1767582903.400229589] [game_management]: 📤 Legal moves sent to chessboard controller
+[INFO] [1767582903.402344858] [game_management]: ⏳ Waiting for chessboard controller to send human move...
+[INFO] [1767582903.403445313] [full_game_integration_test]:    Move number: 5
+[INFO] [1767582903.406235220] [full_game_integration_test]:    White to move: True
+[INFO] [1767582903.407759378] [arduino_communication]: 📋 Received 28 legal moves from game management
+[INFO] [1767582903.481919689] [arduino_communication]: 🔍 ChessBoard (mock): LEGAL: Set 24 legal moves
+[INFO] [1767582904.515037231] [arduino_communication]: 📤 Sent 28 legal moves to chessboard: 
+[INFO] [1767582904.592385352] [arduino_communication]: 🔍 ChessBoard (mock): START: Human turn beginning
+[INFO] [1767582904.627994332] [arduino_communication]: 🎯 Sent start command to chessboard: LEGAL MOVES: g1h3 g1f3 g1e2 f1a6 f1b5 f1c4 f1d3 f1e2 e1e2 d1h5 d1g4 d1f3 d1e2 b1c3 a1a2 a3a4 h2h3 g2g3 f2f3 d2d3 c2c3 b2b3 h2h4 g2g4
+[INFO] [1767582904.698296569] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Ready for human turn
+[INFO] [1767582904.802995791] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Transitioning to MOVE_START
+[INFO] [1767582904.908375238] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Selected move b2b3 from 24 legal moves
+[INFO] [1767582904.909709452] [full_game_integration_test]: 👤 Triggering human move (legal move generation)
+[INFO] [1767582904.914860500] [full_game_integration_test]: 👤 Sent human move: trigger_legal_move
+[INFO] [1767582905.018359425] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Starting move, will take 4205ms
+[INFO] [1767582908.745571839] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Move completed, confirming...
+[INFO] [1767582908.851302249] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Updated occupancy for move b2b3
+[INFO] [1767582908.958967547] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Confirming move b2b3
+[INFO] [1767582909.063926278] [arduino_communication]: 👤 ChessBoard detected move: b2b3
+[INFO] [1767582909.068551806] [game_management]: 👤 Human move received: b2b3
+[INFO] [1767582909.075296327] [game_management]: ✅ Human played: b2b3
+[INFO] [1767582909.086041753] [game_management]: 🧠 Processing computer move...
+[INFO] [1767582909.088870561] [full_game_integration_test]: 🎮 Game State Update:
+[INFO] [1767582909.102416594] [full_game_integration_test]:    Status: 1 (PLAYING)
+[INFO] [1767582909.109734688] [game_management]: 📤 Requesting move from engine...
+[INFO] [1767582909.118501074] [full_game_integration_test]:    Current player: computer
+[INFO] [1767582909.119578903] [chess_engine_server]: 🧠 Processing move calculation request req_1767582909109990
+[INFO] [1767582909.124269121] [full_game_integration_test]:    Move number: 5
+[INFO] [1767582909.133715709] [full_game_integration_test]:    White to move: False
+[INFO] [1767582911.272736137] [chess_engine_server]: ✅ Calculated best move: f8c5 (eval: 460.0)
+[INFO] [1767582911.286869293] [game_management]: 🔍 Current board FEN: r1bqkb1r/pppp1ppp/2n5/4p3/4n3/PP6/2PP1PPP/RNBQKBNR b KQkq - 0 5
+[INFO] [1767582911.299278207] [game_management]: 🔍 Legal moves: ['h8g8', 'f8e7', 'f8d6', 'f8c5', 'f8b4', 'f8a3', 'e8e7', 'd8e7', 'd8f6', 'd8g5']...
+[INFO] [1767582911.310314818] [game_management]: ✅ Engine calculated: f8c5 (eval: 460.0)
+[INFO] [1767582911.314484491] [game_management]: 🤖 Executing computer move...
+[INFO] [1767582911.320418481] [arduino_communication]: 🤖 Processing robot execute request robot_req_1767582911315390
+[INFO] [1767582911.324728784] [arduino_communication]: 🤖 Mock robot executing 6-char move: f8pc5p
+[INFO] [1767582911.342998223] [arduino_communication]:    (f8 -> c5, piece: pawn)
+[INFO] [1767582911.854445454] [arduino_communication]: ✅ Robot execute response sent for robot_req_1767582911315390
+[INFO] [1767582911.875235377] [game_management]: ✅ Robot move executed successfully
+[INFO] [1767582911.885571262] [game_management]: ✅ Computer played: f8c5
+[INFO] [1767582911.905450288] [full_game_integration_test]: 🎮 Game State Update:
+[INFO] [1767582911.907263145] [game_management]: 👤 Waiting for human move...
+[INFO] [1767582911.914484260] [full_game_integration_test]:    Status: 1 (PLAYING)
+[INFO] [1767582911.917577629] [game_management]: 📋 Sending 28 legal moves to controller
+[INFO] [1767582911.922545844] [full_game_integration_test]:    Current player: human
+[INFO] [1767582911.926133495] [game_management]: 📋 Legal moves: ['g1h3', 'g1f3', 'g1e2', 'f1a6', 'f1b5']...
+[INFO] [1767582911.931879290] [full_game_integration_test]:    Move number: 6
+[INFO] [1767582911.940085806] [full_game_integration_test]:    White to move: True
+[INFO] [1767582911.944397234] [game_management]: 📤 Legal moves sent to chessboard controller
+[INFO] [1767582911.952596799] [arduino_communication]: 📋 Received 28 legal moves from game management
+[INFO] [1767582911.955766133] [game_management]: ⏳ Waiting for chessboard controller to send human move...
+[INFO] [1767582911.990332173] [arduino_communication]: 🔍 ChessBoard (mock): LEGAL: Set 24 legal moves
+[INFO] [1767582913.065242382] [arduino_communication]: 📤 Sent 28 legal moves to chessboard: 
+[INFO] [1767582913.104590306] [arduino_communication]: 🔍 ChessBoard (mock): START: Human turn beginning
+[INFO] [1767582913.181750932] [arduino_communication]: 🎯 Sent start command to chessboard: LEGAL MOVES: g1h3 g1f3 g1e2 f1a6 f1b5 f1c4 f1d3 f1e2 e1e2 d1h5 d1g4 d1f3 d1e2 c1b2 b1c3 a1a2 b3b4 a3a4 h2h3 g2g3 f2f3 d2d3 c2c3 h2h4
+[INFO] [1767582913.215598770] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Ready for human turn
+[INFO] [1767582913.330328576] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Transitioning to MOVE_START
+[INFO] [1767582913.435564843] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Selected move f2f3 from 24 legal moves
+[INFO] [1767582913.451485054] [full_game_integration_test]: 👤 Triggering human move (legal move generation)
+[INFO] [1767582913.462463126] [full_game_integration_test]: 👤 Sent human move: trigger_legal_move
+[INFO] [1767582913.547063350] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Starting move, will take 3629ms
+[INFO] [1767582916.779451447] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Move completed, confirming...
+[INFO] [1767582916.887059255] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Updated occupancy for move f2f3
+[INFO] [1767582916.994608773] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Confirming move f2f3
+[INFO] [1767582917.102806416] [arduino_communication]: 👤 ChessBoard detected move: f2f3
+[INFO] [1767582917.108299114] [game_management]: 👤 Human move received: f2f3
+[INFO] [1767582917.111568965] [game_management]: ✅ Human played: f2f3
+[INFO] [1767582917.119762267] [game_management]: 🧠 Processing computer move...
+[INFO] [1767582917.121378654] [full_game_integration_test]: 🎮 Game State Update:
+[INFO] [1767582917.127018321] [full_game_integration_test]:    Status: 1 (PLAYING)
+[INFO] [1767582917.132554296] [full_game_integration_test]:    Current player: computer
+[INFO] [1767582917.135246162] [game_management]: 📤 Requesting move from engine...
+[INFO] [1767582917.143415163] [full_game_integration_test]:    Move number: 6
+[INFO] [1767582917.147172795] [chess_engine_server]: 🧠 Processing move calculation request req_1767582917135526
+[INFO] [1767582917.150109133] [full_game_integration_test]:    White to move: False
+[INFO] [1767582917.964714807] [chess_engine_server]: ✅ Calculated best move: c5f2 (eval: 1002.0)
+[INFO] [1767582917.975861510] [game_management]: 🔍 Current board FEN: r1bqk2r/pppp1ppp/2n5/2b1p3/4n3/PP3P2/2PP2PP/RNBQKBNR b KQkq - 0 6
+[INFO] [1767582917.980110298] [game_management]: 🔍 Legal moves: ['h8g8', 'h8f8', 'e8f8', 'e8e7', 'd8e7', 'd8f6', 'd8g5', 'd8h4', 'a8b8', 'c6b8']...
+[INFO] [1767582917.983781852] [game_management]: ✅ Engine calculated: c5f2 (eval: 1002.0)
+[INFO] [1767582917.986973199] [game_management]: 🤖 Executing computer move...
+[INFO] [1767582917.995352821] [arduino_communication]: 🤖 Processing robot execute request robot_req_1767582917988270
+[INFO] [1767582917.998641873] [arduino_communication]: 🤖 Mock robot executing 6-char move: c5pf2p
+[INFO] [1767582918.003558874] [arduino_communication]:    (c5 -> f2, piece: pawn)
+[INFO] [1767582918.512456944] [arduino_communication]: ✅ Robot execute response sent for robot_req_1767582917988270
+[INFO] [1767582918.515654367] [game_management]: ✅ Robot move executed successfully
+[INFO] [1767582918.528419045] [game_management]: ✅ Computer played: c5f2
+[INFO] [1767582918.542805085] [full_game_integration_test]: 🎮 Game State Update:
+[INFO] [1767582918.547156739] [game_management]: 👤 Waiting for human move...
+[INFO] [1767582918.549287046] [full_game_integration_test]:    Status: 1 (PLAYING)
+[INFO] [1767582918.557850013] [game_management]: 📋 Sending 1 legal moves to controller
+[INFO] [1767582918.563610846] [full_game_integration_test]:    Current player: human
+[INFO] [1767582918.574600693] [game_management]: 📋 Legal moves: ['e1e2']...
+[INFO] [1767582918.577649735] [full_game_integration_test]:    Move number: 7
+[INFO] [1767582918.587046259] [full_game_integration_test]:    White to move: True
+[INFO] [1767582918.591710426] [game_management]: 📤 Legal moves sent to chessboard controller
+[INFO] [1767582918.596934201] [arduino_communication]: 📋 Received 1 legal moves from game management
+[INFO] [1767582918.601240992] [game_management]: ⏳ Waiting for chessboard controller to send human move...
+[INFO] [1767582918.626579840] [arduino_communication]: 🔍 ChessBoard (mock): LEGAL: Set 1 legal moves
+[INFO] [1767582919.708951223] [arduino_communication]: 📤 Sent 1 legal moves to chessboard: 
+[INFO] [1767582919.752756118] [arduino_communication]: 🔍 ChessBoard (mock): START: Human turn beginning
+[INFO] [1767582919.815234517] [arduino_communication]: 🎯 Sent start command to chessboard: LEGAL MOVES: e1e2
+[INFO] [1767582919.859077014] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Ready for human turn
+[INFO] [1767582919.963224364] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Transitioning to MOVE_START
+[INFO] [1767582920.071420644] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Requesting hint...
+[INFO] [1767582920.097925762] [full_game_integration_test]: 👤 Triggering human move (legal move generation)
+[INFO] [1767582920.104709760] [full_game_integration_test]: 👤 Sent human move: trigger_legal_move
+[INFO] [1767582920.175202555] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Hint displayed
+[INFO] [1767582920.281890403] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Selected move e1e2 from 1 legal moves
+[INFO] [1767582920.396495117] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Starting move, will take 5970ms
+[INFO] [1767582925.750889327] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Move completed, confirming...
+[INFO] [1767582925.859977491] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Updated occupancy for move e1e2
+[INFO] [1767582925.964642811] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Confirming move e1e2
+[INFO] [1767582926.067543838] [arduino_communication]: 👤 ChessBoard detected move: e1e2
+[INFO] [1767582926.072272157] [game_management]: 👤 Human move received: e1e2
+[INFO] [1767582926.074917509] [game_management]: ✅ Human played: e1e2
+[INFO] [1767582926.081644242] [game_management]: 🧠 Processing computer move...
+[INFO] [1767582926.094583214] [game_management]: 📤 Requesting move from engine...
+[INFO] [1767582926.107436445] [full_game_integration_test]: 🎮 Game State Update:
+[INFO] [1767582926.112945257] [chess_engine_server]: 🧠 Processing move calculation request req_1767582926096858
+[INFO] [1767582926.114965297] [full_game_integration_test]:    Status: 1 (PLAYING)
+[INFO] [1767582926.123535576] [full_game_integration_test]:    Current player: computer
+[INFO] [1767582926.137368820] [full_game_integration_test]:    Move number: 7
+[INFO] [1767582926.145524946] [full_game_integration_test]:    White to move: False
+[INFO] [1767582927.646418328] [chess_engine_server]: ✅ Calculated best move: d7d5 (eval: 553.0)
+[INFO] [1767582927.657616546] [game_management]: 🔍 Current board FEN: r1bqk2r/pppp1ppp/2n5/4p3/4n3/PP3P2/2PPKbPP/RNBQ1BNR b kq - 2 7
+[INFO] [1767582927.660726553] [game_management]: 🔍 Legal moves: ['h8g8', 'h8f8', 'e8f8', 'e8e7', 'd8e7', 'd8f6', 'd8g5', 'd8h4', 'a8b8', 'c6b8']...
+[INFO] [1767582927.663555586] [game_management]: ✅ Engine calculated: d7d5 (eval: 553.0)
+[INFO] [1767582927.666497887] [game_management]: 🤖 Executing computer move...
+[INFO] [1767582927.673225883] [arduino_communication]: 🤖 Processing robot execute request robot_req_1767582927666860
+[INFO] [1767582927.677551261] [arduino_communication]: 🤖 Mock robot executing 6-char move: d7pd5p
+[INFO] [1767582927.679942878] [arduino_communication]:    (d7 -> d5, piece: pawn)
+[INFO] [1767582928.193281307] [game_management]: ✅ Robot move executed successfully
+[INFO] [1767582928.195686012] [arduino_communication]: ✅ Robot execute response sent for robot_req_1767582927666860
+[INFO] [1767582928.202210125] [game_management]: ✅ Computer played: d7d5
+[INFO] [1767582928.211372952] [full_game_integration_test]: 🎮 Game State Update:
+[INFO] [1767582928.221476790] [full_game_integration_test]:    Status: 1 (PLAYING)
+[INFO] [1767582928.225031626] [game_management]: 👤 Waiting for human move...
+[INFO] [1767582928.230782747] [full_game_integration_test]:    Current player: human
+[INFO] [1767582928.236988698] [game_management]: 📋 Sending 18 legal moves to controller
+[INFO] [1767582928.246365783] [full_game_integration_test]:    Move number: 8
+[INFO] [1767582928.251055876] [game_management]: 📋 Legal moves: ['e2d3', 'g1h3', 'd1e1', 'c1b2', 'b1c3']...
+[INFO] [1767582928.257191299] [full_game_integration_test]:    White to move: True
+[INFO] [1767582928.260355220] [arduino_communication]: 📋 Received 18 legal moves from game management
+[INFO] [1767582928.262518516] [game_management]: 📤 Legal moves sent to chessboard controller
+[INFO] [1767582928.266050939] [game_management]: ⏳ Waiting for chessboard controller to send human move...
+[INFO] [1767582928.290986759] [arduino_communication]: 🔍 ChessBoard (mock): LEGAL: Set 18 legal moves
+[INFO] [1767582929.372510360] [arduino_communication]: 📤 Sent 18 legal moves to chessboard: 
+[INFO] [1767582929.401355406] [arduino_communication]: 🔍 ChessBoard (mock): START: Human turn beginning
+[INFO] [1767582929.482128695] [arduino_communication]: 🎯 Sent start command to chessboard: LEGAL MOVES: e2d3 g1h3 d1e1 c1b2 b1c3 a1a2 f3e4 f3f4 b3b4 a3a4 h2h3 g2g3 d2d3 c2c3 h2h4 g2g4 d2d4 c2c4
+[INFO] [1767582929.507543246] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Ready for human turn
+[INFO] [1767582929.619608588] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Transitioning to MOVE_START
+[INFO] [1767582929.741368152] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Selected move d2d4 from 18 legal moves
+[INFO] [1767582929.763127438] [full_game_integration_test]: 👤 Triggering human move (legal move generation)
+[INFO] [1767582929.769781606] [full_game_integration_test]: 👤 Sent human move: trigger_legal_move
+[INFO] [1767582929.846914805] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Starting move, will take 5090ms
+[INFO] [1767582934.493253071] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Move completed, confirming...
+[INFO] [1767582934.604148905] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Updated occupancy for move d2d4
+[INFO] [1767582934.708532064] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Confirming move d2d4
+[INFO] [1767582934.816446933] [arduino_communication]: 👤 ChessBoard detected move: d2d4
+[INFO] [1767582934.821518053] [game_management]: 👤 Human move received: d2d4
+[INFO] [1767582934.824621747] [game_management]: ✅ Human played: d2d4
+[INFO] [1767582934.828196047] [game_management]: 🧠 Processing computer move...
+[INFO] [1767582934.833854315] [full_game_integration_test]: 🎮 Game State Update:
+[INFO] [1767582934.834652695] [game_management]: 📤 Requesting move from engine...
+[INFO] [1767582934.840638325] [chess_engine_server]: 🧠 Processing move calculation request req_1767582934834917
+[INFO] [1767582934.842675891] [full_game_integration_test]:    Status: 1 (PLAYING)
+[INFO] [1767582934.845656206] [full_game_integration_test]:    Current player: computer
+[INFO] [1767582934.847815051] [full_game_integration_test]:    Move number: 8
+[INFO] [1767582934.853557222] [full_game_integration_test]:    White to move: False
+[INFO] [1767582936.971737037] [chess_engine_server]: ✅ Calculated best move: f2d4 (eval: 700.0)
+[INFO] [1767582936.983193290] [game_management]: 🔍 Current board FEN: r1bqk2r/ppp2ppp/2n5/3pp3/3Pn3/PP3P2/2P1KbPP/RNBQ1BNR b kq - 0 8
+[INFO] [1767582936.987224082] [game_management]: 🔍 Legal moves: ['h8g8', 'h8f8', 'e8f8', 'e8e7', 'e8d7', 'd8e7', 'd8d7', 'd8f6', 'd8d6', 'd8g5']...
+[INFO] [1767582936.990526409] [game_management]: ✅ Engine calculated: f2d4 (eval: 700.0)
+[INFO] [1767582936.995916066] [game_management]: 🤖 Executing computer move...
+[INFO] [1767582937.001440740] [arduino_communication]: 🤖 Processing robot execute request robot_req_1767582936996167
+[INFO] [1767582937.005324065] [arduino_communication]: 🤖 Mock robot executing 6-char move: f2pd4p
+[INFO] [1767582937.008019968] [arduino_communication]:    (f2 -> d4, piece: pawn)
+[INFO] [1767582937.520599254] [arduino_communication]: ✅ Robot execute response sent for robot_req_1767582936996167
+[INFO] [1767582937.529548311] [game_management]: ✅ Robot move executed successfully
+[INFO] [1767582937.533126798] [game_management]: ✅ Computer played: f2d4
+[INFO] [1767582937.540566771] [full_game_integration_test]: 🎮 Game State Update:
+[INFO] [1767582937.542983589] [game_management]: 👤 Waiting for human move...
+[INFO] [1767582937.546649617] [full_game_integration_test]:    Status: 1 (PLAYING)
+[INFO] [1767582937.548376809] [game_management]: 📋 Sending 26 legal moves to controller
+[INFO] [1767582937.551722237] [game_management]: 📋 Legal moves: ['e2d3', 'e2e1', 'g1h3', 'd1d4', 'd1d3']...
+[INFO] [1767582937.554453030] [game_management]: 📤 Legal moves sent to chessboard controller
+[INFO] [1767582937.556560998] [game_management]: ⏳ Waiting for chessboard controller to send human move...
+[INFO] [1767582937.556775244] [full_game_integration_test]:    Current player: human
+[INFO] [1767582937.557833272] [arduino_communication]: 📋 Received 26 legal moves from game management
+[INFO] [1767582937.560601028] [full_game_integration_test]:    Move number: 9
+[INFO] [1767582937.562607593] [full_game_integration_test]:    White to move: True
+[INFO] [1767582937.636796455] [arduino_communication]: 🔍 ChessBoard (mock): LEGAL: Set 24 legal moves
+[INFO] [1767582938.667238206] [arduino_communication]: 📤 Sent 26 legal moves to chessboard: 
+[INFO] [1767582938.760758585] [arduino_communication]: 🔍 ChessBoard (mock): START: Human turn beginning
+[INFO] [1767582938.787589653] [arduino_communication]: 🎯 Sent start command to chessboard: LEGAL MOVES: e2d3 e2e1 g1h3 d1d4 d1d3 d1d2 d1e1 c1h6 c1g5 c1f4 c1e3 c1d2 c1b2 b1c3 b1d2 a1a2 f3e4 f3f4 b3b4 a3a4 h2h3 g2g3 c2c3 h2h4
+[INFO] [1767582938.865297963] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Ready for human turn
+[INFO] [1767582938.970622496] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Transitioning to MOVE_START
+[INFO] [1767582939.066623470] [full_game_integration_test]: 👤 Triggering human move (legal move generation)
+[INFO] [1767582939.077313693] [full_game_integration_test]: 👤 Sent human move: trigger_legal_move
+[INFO] [1767582939.080431038] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Selected move b1d2 from 24 legal moves
+[INFO] [1767582939.188917105] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Starting move, will take 6017ms
+[INFO] [1767582944.724883011] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Move completed, confirming...
+[INFO] [1767582944.840876166] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Updated occupancy for move b1d2
+[INFO] [1767582944.948783586] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Confirming move b1d2
+[INFO] [1767582945.054749868] [arduino_communication]: 👤 ChessBoard detected move: b1d2
+[INFO] [1767582945.059579103] [game_management]: 👤 Human move received: b1d2
+[INFO] [1767582945.062321509] [game_management]: ✅ Human played: b1d2
+[INFO] [1767582945.066258897] [game_management]: 🧠 Processing computer move...
+[INFO] [1767582945.072649155] [game_management]: 📤 Requesting move from engine...
+[INFO] [1767582945.074919580] [full_game_integration_test]: 🎮 Game State Update:
+[INFO] [1767582945.082907062] [chess_engine_server]: 🧠 Processing move calculation request req_1767582945073022
+[INFO] [1767582945.085871738] [full_game_integration_test]:    Status: 1 (PLAYING)
+[INFO] [1767582945.088087311] [full_game_integration_test]:    Current player: computer
+[INFO] [1767582945.091636185] [full_game_integration_test]:    Move number: 9
+[INFO] [1767582945.096534598] [full_game_integration_test]:    White to move: False
+[INFO] [1767582947.002724959] [chess_engine_server]: ✅ Calculated best move: e4c3 (eval: 906.0)
+[INFO] [1767582947.014276228] [game_management]: 🔍 Current board FEN: r1bqk2r/ppp2ppp/2n5/3pp3/3bn3/PP3P2/2PNK1PP/R1BQ1BNR b kq - 1 9
+[INFO] [1767582947.019405337] [game_management]: 🔍 Legal moves: ['h8g8', 'h8f8', 'e8f8', 'e8e7', 'e8d7', 'd8e7', 'd8d7', 'd8f6', 'd8d6', 'd8g5']...
+[INFO] [1767582947.024815033] [game_management]: ✅ Engine calculated: e4c3 (eval: 906.0)
+[INFO] [1767582947.029873839] [game_management]: 🤖 Executing computer move...
+[INFO] [1767582947.040074481] [arduino_communication]: 🤖 Processing robot execute request robot_req_1767582947030116
+[INFO] [1767582947.042539163] [arduino_communication]: 🤖 Mock robot executing 6-char move: e4pc3p
+[INFO] [1767582947.046617945] [arduino_communication]:    (e4 -> c3, piece: pawn)
+[INFO] [1767582947.567418072] [arduino_communication]: ✅ Robot execute response sent for robot_req_1767582947030116
+[INFO] [1767582947.570655534] [game_management]: ✅ Robot move executed successfully
+[INFO] [1767582947.584747775] [game_management]: ✅ Computer played: e4c3
+[INFO] [1767582947.602572673] [full_game_integration_test]: 🎮 Game State Update:
+[INFO] [1767582947.604124132] [game_management]: 👤 Waiting for human move...
+[INFO] [1767582947.610695685] [full_game_integration_test]:    Status: 1 (PLAYING)
+[INFO] [1767582947.612628159] [game_management]: 📋 Sending 2 legal moves to controller
+[INFO] [1767582947.617697529] [full_game_integration_test]:    Current player: human
+[INFO] [1767582947.623743923] [full_game_integration_test]:    Move number: 10
+[INFO] [1767582947.624722986] [game_management]: 📋 Legal moves: ['e2d3', 'e2e1']...
+[INFO] [1767582947.632121833] [game_management]: 📤 Legal moves sent to chessboard controller
+[INFO] [1767582947.633406919] [full_game_integration_test]:    White to move: True
+[INFO] [1767582947.636587079] [arduino_communication]: 📋 Received 2 legal moves from game management
+[INFO] [1767582947.641366275] [game_management]: ⏳ Waiting for chessboard controller to send human move...
+[INFO] [1767582947.686769769] [arduino_communication]: 🔍 ChessBoard (mock): LEGAL: Set 2 legal moves
+[INFO] [1767582948.748103332] [arduino_communication]: 📤 Sent 2 legal moves to chessboard: 
+[INFO] [1767582948.801607862] [arduino_communication]: 🔍 ChessBoard (mock): START: Human turn beginning
+[INFO] [1767582948.861327605] [arduino_communication]: 🎯 Sent start command to chessboard: LEGAL MOVES: e2d3 e2e1
+[INFO] [1767582948.917476874] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Ready for human turn
+[INFO] [1767582949.030622620] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Transitioning to MOVE_START
+[INFO] [1767582949.137647493] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Selected move e2d3 from 2 legal moves
+[INFO] [1767582949.142414163] [full_game_integration_test]: 👤 Triggering human move (legal move generation)
+[INFO] [1767582949.150867151] [full_game_integration_test]: 👤 Sent human move: trigger_legal_move
+[INFO] [1767582949.242372553] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Starting move, will take 2816ms
+[INFO] [1767582951.575922215] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Move completed, confirming...
+[INFO] [1767582951.686745022] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Updated occupancy for move e2d3
+[INFO] [1767582951.798717747] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Confirming move e2d3
+[INFO] [1767582951.906008618] [arduino_communication]: 👤 ChessBoard detected move: e2d3
+[INFO] [1767582951.922270992] [game_management]: 👤 Human move received: e2d3
+[INFO] [1767582951.928740616] [game_management]: ✅ Human played: e2d3
+[INFO] [1767582951.939847817] [full_game_integration_test]: 🎮 Game State Update:
+[INFO] [1767582951.941506144] [game_management]: 🧠 Processing computer move...
+[INFO] [1767582951.947259990] [full_game_integration_test]:    Status: 1 (PLAYING)
+[INFO] [1767582951.954158892] [full_game_integration_test]:    Current player: computer
+[INFO] [1767582951.957435143] [full_game_integration_test]:    Move number: 10
+[INFO] [1767582951.959622214] [full_game_integration_test]:    White to move: False
+[INFO] [1767582951.960757458] [game_management]: 📤 Requesting move from engine...
+[INFO] [1767582951.970309775] [chess_engine_server]: 🧠 Processing move calculation request req_1767582951961551
+[INFO] [1767582954.098833850] [chess_engine_server]: ✅ Calculated best move: c8f5 (eval: 1485.0)
+[INFO] [1767582954.111723408] [game_management]: 🔍 Current board FEN: r1bqk2r/ppp2ppp/2n5/3pp3/3b4/PPnK1P2/2PN2PP/R1BQ1BNR b kq - 3 10
+[INFO] [1767582954.117038175] [game_management]: 🔍 Legal moves: ['h8g8', 'h8f8', 'e8f8', 'e8e7', 'e8d7', 'd8e7', 'd8d7', 'd8f6', 'd8d6', 'd8g5']...
+[INFO] [1767582954.123411307] [game_management]: ✅ Engine calculated: c8f5 (eval: 1485.0)
+[INFO] [1767582954.129362148] [game_management]: 🤖 Executing computer move...
+[INFO] [1767582954.135154083] [arduino_communication]: 🤖 Processing robot execute request robot_req_1767582954129631
+[INFO] [1767582954.139351632] [arduino_communication]: 🤖 Mock robot executing 6-char move: c8pf5p
+[INFO] [1767582954.143656834] [arduino_communication]:    (c8 -> f5, piece: pawn)
+[INFO] [1767582954.653145140] [arduino_communication]: ✅ Robot execute response sent for robot_req_1767582954129631
+[INFO] [1767582954.666309108] [game_management]: ✅ Robot move executed successfully
+[INFO] [1767582954.679910918] [game_management]: ✅ Computer played: c8f5
+[INFO] [1767582954.701429882] [game_management]: 👤 Waiting for human move...
+[INFO] [1767582954.704836075] [full_game_integration_test]: 🎮 Game State Update:
+[INFO] [1767582954.714254049] [full_game_integration_test]:    Status: 1 (PLAYING)
+[INFO] [1767582954.722395662] [full_game_integration_test]:    Current player: human
+[INFO] [1767582954.722911719] [game_management]: 📋 Sending 1 legal moves to controller
+[INFO] [1767582954.737444578] [game_management]: 📋 Legal moves: ['d2e4']...
+[INFO] [1767582954.745282329] [full_game_integration_test]:    Move number: 11
+[INFO] [1767582954.751012436] [game_management]: 📤 Legal moves sent to chessboard controller
+[INFO] [1767582954.756582813] [full_game_integration_test]:    White to move: True
+[INFO] [1767582954.758875538] [arduino_communication]: 📋 Received 1 legal moves from game management
+[INFO] [1767582954.767514683] [game_management]: ⏳ Waiting for chessboard controller to send human move...
+[INFO] [1767582954.852019866] [arduino_communication]: 🔍 ChessBoard (mock): LEGAL: Set 1 legal moves
+[INFO] [1767582955.876017782] [arduino_communication]: 📤 Sent 1 legal moves to chessboard: 
+[INFO] [1767582955.984282915] [arduino_communication]: 🔍 ChessBoard (mock): START: Human turn beginning
+[INFO] [1767582955.999397683] [arduino_communication]: 🎯 Sent start command to chessboard: LEGAL MOVES: d2e4
+[INFO] [1767582956.100805115] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Ready for human turn
+[INFO] [1767582956.219357919] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Transitioning to MOVE_START
+[INFO] [1767582956.272257738] [full_game_integration_test]: 👤 Triggering human move (legal move generation)
+[INFO] [1767582956.279927070] [full_game_integration_test]: 👤 Sent human move: trigger_legal_move
+[INFO] [1767582956.328499410] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Selected move d2e4 from 1 legal moves
+[INFO] [1767582956.441499238] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Starting move, will take 4716ms
+[INFO] [1767582960.681500346] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Move completed, confirming...
+[INFO] [1767582960.789065440] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Updated occupancy for move d2e4
+[INFO] [1767582960.897626884] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Confirming move d2e4
+[INFO] [1767582961.002830588] [arduino_communication]: 👤 ChessBoard detected move: d2e4
+[INFO] [1767582961.012291726] [game_management]: 👤 Human move received: d2e4
+[INFO] [1767582961.020462902] [game_management]: ✅ Human played: d2e4
+[INFO] [1767582961.032466576] [game_management]: 🧠 Processing computer move...
+[INFO] [1767582961.033637196] [full_game_integration_test]: 🎮 Game State Update:
+[INFO] [1767582961.039102356] [full_game_integration_test]:    Status: 1 (PLAYING)
+[INFO] [1767582961.043343018] [game_management]: 📤 Requesting move from engine...
+[INFO] [1767582961.052158895] [full_game_integration_test]:    Current player: computer
+[INFO] [1767582961.053640177] [chess_engine_server]: 🧠 Processing move calculation request req_1767582961045204
+[INFO] [1767582961.062367887] [full_game_integration_test]:    Move number: 11
+[INFO] [1767582961.069833173] [full_game_integration_test]:    White to move: False
+[INFO] [1767582962.851644333] [chess_engine_server]: ✅ Calculated best move: d5e4 (eval: 1609.0)
+[INFO] [1767582962.863963143] [game_management]: 🔍 Current board FEN: r2qk2r/ppp2ppp/2n5/3ppb2/3bN3/PPnK1P2/2P3PP/R1BQ1BNR b kq - 5 11
+[INFO] [1767582962.868365375] [game_management]: 🔍 Legal moves: ['h8g8', 'h8f8', 'e8f8', 'e8e7', 'e8d7', 'd8c8', 'd8b8', 'd8e7', 'd8d7', 'd8f6']...
+[INFO] [1767582962.871939700] [game_management]: ✅ Engine calculated: d5e4 (eval: 1609.0)
+[INFO] [1767582962.875916315] [game_management]: 🤖 Executing computer move...
+[INFO] [1767582962.883578184] [arduino_communication]: 🤖 Processing robot execute request robot_req_1767582962876141
+[INFO] [1767582962.886740918] [arduino_communication]: 🤖 Mock robot executing 6-char move: d5pe4p
+[INFO] [1767582962.890046358] [arduino_communication]:    (d5 -> e4, piece: pawn)
+[INFO] [1767582963.393617786] [arduino_communication]: ✅ Robot execute response sent for robot_req_1767582962876141
+[INFO] [1767582963.404586744] [game_management]: ✅ Robot move executed successfully
+[INFO] [1767582963.408590998] [game_management]: ✅ Computer played: d5e4
+[INFO] [1767582963.415268955] [game_management]: 👤 Waiting for human move...
+[INFO] [1767582963.419633385] [full_game_integration_test]: 🎮 Game State Update:
+[INFO] [1767582963.422047965] [game_management]: 📋 Sending 3 legal moves to controller
+[INFO] [1767582963.426242739] [full_game_integration_test]:    Status: 1 (PLAYING)
+[INFO] [1767582963.427610416] [game_management]: 📋 Legal moves: ['d3c4', 'd3d2', 'f3e4']...
+[INFO] [1767582963.430988846] [game_management]: 📤 Legal moves sent to chessboard controller
+[INFO] [1767582963.433091677] [game_management]: ⏳ Waiting for chessboard controller to send human move...
+[INFO] [1767582963.438436132] [full_game_integration_test]:    Current player: human
+[INFO] [1767582963.439528099] [arduino_communication]: 📋 Received 3 legal moves from game management
+[INFO] [1767582963.443400035] [full_game_integration_test]:    Move number: 12
+[INFO] [1767582963.446818379] [full_game_integration_test]:    White to move: True
+[INFO] [1767582963.529089339] [arduino_communication]: 🔍 ChessBoard (mock): LEGAL: Set 3 legal moves
+[INFO] [1767582964.552591235] [arduino_communication]: 📤 Sent 3 legal moves to chessboard: 
+[INFO] [1767582964.638773132] [arduino_communication]: 🔍 ChessBoard (mock): START: Human turn beginning
+[INFO] [1767582964.661434565] [arduino_communication]: 🎯 Sent start command to chessboard: LEGAL MOVES: d3c4 d3d2 f3e4
+[INFO] [1767582964.743300034] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Ready for human turn
+[INFO] [1767582964.847405558] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Transitioning to MOVE_START
+[INFO] [1767582964.953618762] [full_game_integration_test]: 👤 Triggering human move (legal move generation)
+[INFO] [1767582964.960922905] [full_game_integration_test]: 👤 Sent human move: trigger_legal_move
+[INFO] [1767582964.964884470] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Requesting hint...
+[INFO] [1767582965.078352165] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Hint displayed
+[INFO] [1767582965.185383701] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Selected move f3e4 from 3 legal moves
+[INFO] [1767582965.291474088] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Starting move, will take 2256ms
+[INFO] [1767582966.909040189] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Move completed, confirming...
+[INFO] [1767582967.014097412] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Updated occupancy for move f3e4
+[INFO] [1767582967.118379504] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Confirming move f3e4
+[INFO] [1767582967.226990488] [arduino_communication]: 👤 ChessBoard detected move: f3e4
+[INFO] [1767582967.232979043] [game_management]: 👤 Human move received: f3e4
+[INFO] [1767582967.236145127] [game_management]: ✅ Human played: f3e4
+[INFO] [1767582967.240295074] [game_management]: 🧠 Processing computer move...
+[INFO] [1767582967.246619630] [game_management]: 📤 Requesting move from engine...
+[INFO] [1767582967.248004733] [full_game_integration_test]: 🎮 Game State Update:
+[INFO] [1767582967.251464653] [chess_engine_server]: 🧠 Processing move calculation request req_1767582967246886
+[INFO] [1767582967.254229310] [full_game_integration_test]:    Status: 1 (PLAYING)
+[INFO] [1767582967.260171450] [full_game_integration_test]:    Current player: computer
+[INFO] [1767582967.268274036] [full_game_integration_test]:    Move number: 12
+[INFO] [1767582967.270416906] [full_game_integration_test]:    White to move: False
+[INFO] [1767582968.799812196] [chess_engine_server]: ✅ Calculated best move: c3d1 (eval: 1982.0)
+[INFO] [1767582968.812281975] [game_management]: 🔍 Current board FEN: r2qk2r/ppp2ppp/2n5/4pb2/3bP3/PPnK4/2P3PP/R1BQ1BNR b kq - 0 12
+[INFO] [1767582968.816508575] [game_management]: 🔍 Legal moves: ['h8g8', 'h8f8', 'e8f8', 'e8e7', 'e8d7', 'd8c8', 'd8b8', 'd8e7', 'd8d7', 'd8f6']...
+[INFO] [1767582968.822652673] [game_management]: ✅ Engine calculated: c3d1 (eval: 1982.0)
+[INFO] [1767582968.826585087] [game_management]: 🤖 Executing computer move...
+[INFO] [1767582968.832882254] [arduino_communication]: 🤖 Processing robot execute request robot_req_1767582968827461
+[INFO] [1767582968.837682900] [arduino_communication]: 🤖 Mock robot executing 6-char move: c3pd1p
+[INFO] [1767582968.842181411] [arduino_communication]:    (c3 -> d1, piece: pawn)
+[INFO] [1767582969.345995923] [arduino_communication]: ✅ Robot execute response sent for robot_req_1767582968827461
+[INFO] [1767582969.358066262] [game_management]: ✅ Robot move executed successfully
+[INFO] [1767582969.364213710] [game_management]: ✅ Computer played: c3d1
+[INFO] [1767582969.376369502] [full_game_integration_test]: 🎮 Game State Update:
+[INFO] [1767582969.378534785] [game_management]: 👤 Waiting for human move...
+[INFO] [1767582969.385495803] [full_game_integration_test]:    Status: 1 (PLAYING)
+[INFO] [1767582969.387982236] [full_game_integration_test]:    Current player: human
+[INFO] [1767582969.389774605] [full_game_integration_test]:    Move number: 13
+[INFO] [1767582969.390148782] [game_management]: 📋 Sending 24 legal moves to controller
+[INFO] [1767582969.391463157] [full_game_integration_test]:    White to move: True
+[INFO] [1767582969.399188704] [game_management]: 📋 Legal moves: ['d3c4', 'd3e2', 'd3d2', 'g1h3', 'g1f3']...
+[INFO] [1767582969.403818857] [game_management]: 📤 Legal moves sent to chessboard controller
+[INFO] [1767582969.406539449] [game_management]: ⏳ Waiting for chessboard controller to send human move...
+[INFO] [1767582969.406870761] [arduino_communication]: 📋 Received 24 legal moves from game management
+[INFO] [1767582969.444353576] [arduino_communication]: 🔍 ChessBoard (mock): LEGAL: Set 24 legal moves
+[INFO] [1767582970.515259406] [arduino_communication]: 📤 Sent 24 legal moves to chessboard: 
+[INFO] [1767582970.555577017] [arduino_communication]: 🔍 ChessBoard (mock): START: Human turn beginning
+[INFO] [1767582970.627417476] [arduino_communication]: 🎯 Sent start command to chessboard: LEGAL MOVES: d3c4 d3e2 d3d2 g1h3 g1f3 g1e2 f1e2 c1h6 c1g5 c1f4 c1e3 c1d2 c1b2 a1a2 a1b1 e4f5 b3b4 a3a4 h2h3 g2g3 c2c3 h2h4 g2g4 c2c4
+[INFO] [1767582970.659861022] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Ready for human turn
+[INFO] [1767582970.764854717] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Transitioning to MOVE_START
+[INFO] [1767582970.869682206] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Selected move e4f5 from 24 legal moves
+[INFO] [1767582970.896335180] [full_game_integration_test]: 👤 Triggering human move (legal move generation)
+[INFO] [1767582970.902734400] [full_game_integration_test]: 👤 Sent human move: trigger_legal_move
+[INFO] [1767582970.974941286] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Starting move, will take 4249ms
+[INFO] [1767582974.815456689] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Move completed, confirming...
+[INFO] [1767582974.923995582] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Updated occupancy for move e4f5
+[INFO] [1767582975.030390631] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Confirming move e4f5
+[INFO] [1767582975.136089016] [arduino_communication]: 👤 ChessBoard detected move: e4f5
+[INFO] [1767582975.140982366] [game_management]: 👤 Human move received: e4f5
+[INFO] [1767582975.145282369] [game_management]: ✅ Human played: e4f5
+[INFO] [1767582975.151171858] [game_management]: 🧠 Processing computer move...
+[INFO] [1767582975.157354645] [full_game_integration_test]: 🎮 Game State Update:
+[INFO] [1767582975.158753549] [game_management]: 📤 Requesting move from engine...
+[INFO] [1767582975.162501568] [full_game_integration_test]:    Status: 1 (PLAYING)
+[INFO] [1767582975.166270375] [chess_engine_server]: 🧠 Processing move calculation request req_1767582975158993
+[INFO] [1767582975.169711170] [full_game_integration_test]:    Current player: computer
+[INFO] [1767582975.176744690] [full_game_integration_test]:    Move number: 13
+[INFO] [1767582975.184653644] [full_game_integration_test]:    White to move: False
+[INFO] [1767582975.890056836] [chess_engine_server]: ✅ Calculated best move: d4b6 (eval: 10000)
+[INFO] [1767582975.906523669] [game_management]: 🔍 Current board FEN: r2qk2r/ppp2ppp/2n5/4pP2/3b4/PP1K4/2P3PP/R1Bn1BNR b kq - 0 13
+[INFO] [1767582975.911432682] [game_management]: 🔍 Legal moves: ['h8g8', 'h8f8', 'e8f8', 'e8e7', 'e8d7', 'd8c8', 'd8b8', 'd8e7', 'd8d7', 'd8f6']...
+[INFO] [1767582975.923254886] [game_management]: ✅ Engine calculated: d4b6 (eval: 10000.0)
+[INFO] [1767582975.928880590] [game_management]: 🤖 Executing computer move...
+[INFO] [1767582975.934624760] [arduino_communication]: 🤖 Processing robot execute request robot_req_1767582975929965
+[INFO] [1767582975.938922338] [arduino_communication]: 🤖 Mock robot executing 6-char move: d4pb6p
+[INFO] [1767582975.942775011] [arduino_communication]:    (d4 -> b6, piece: pawn)
+[INFO] [1767582976.448515223] [arduino_communication]: ✅ Robot execute response sent for robot_req_1767582975929965
+[INFO] [1767582976.458415703] [game_management]: ✅ Robot move executed successfully
+[INFO] [1767582976.462338179] [game_management]: ✅ Computer played: d4b6
+[INFO] [1767582976.467441175] [game_management]: 👤 Waiting for human move...
+[INFO] [1767582976.469091400] [full_game_integration_test]: 🎮 Game State Update:
+[INFO] [1767582976.473649776] [full_game_integration_test]:    Status: 1 (PLAYING)
+[INFO] [1767582976.475593225] [game_management]: 📋 Sending 3 legal moves to controller
+[INFO] [1767582976.481277393] [game_management]: 📋 Legal moves: ['d3e4', 'd3c4', 'd3e2']...
+[INFO] [1767582976.482104913] [full_game_integration_test]:    Current player: human
+[INFO] [1767582976.487128818] [game_management]: 📤 Legal moves sent to chessboard controller
+[INFO] [1767582976.489491259] [game_management]: ⏳ Waiting for chessboard controller to send human move...
+[INFO] [1767582976.490943052] [arduino_communication]: 📋 Received 3 legal moves from game management
+[INFO] [1767582976.491991842] [full_game_integration_test]:    Move number: 14
+[INFO] [1767582976.494428974] [full_game_integration_test]:    White to move: True
+[INFO] [1767582976.554437891] [arduino_communication]: 🔍 ChessBoard (mock): LEGAL: Set 3 legal moves
+[INFO] [1767582977.604119069] [arduino_communication]: 📤 Sent 3 legal moves to chessboard: 
+[INFO] [1767582977.668521980] [arduino_communication]: 🔍 ChessBoard (mock): START: Human turn beginning
+[INFO] [1767582977.710054887] [arduino_communication]: 🎯 Sent start command to chessboard: LEGAL MOVES: d3e4 d3c4 d3e2
+[INFO] [1767582977.773829412] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Ready for human turn
+[INFO] [1767582977.880557536] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Transitioning to MOVE_START
+[INFO] [1767582977.986570608] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Selected move d3c4 from 3 legal moves
+[INFO] [1767582977.997124951] [full_game_integration_test]: 👤 Triggering human move (legal move generation)
+[INFO] [1767582978.000496005] [full_game_integration_test]: 👤 Sent human move: trigger_legal_move
+[INFO] [1767582978.091929804] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Starting move, will take 5906ms
+[INFO] [1767582983.542934237] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Move completed, confirming...
+[INFO] [1767582983.650266947] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Updated occupancy for move d3c4
+[INFO] [1767582983.760877158] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Confirming move d3c4
+[INFO] [1767582983.863951642] [arduino_communication]: 👤 ChessBoard detected move: d3c4
+[INFO] [1767582983.870793592] [game_management]: 👤 Human move received: d3c4
+[INFO] [1767582983.875151109] [game_management]: ✅ Human played: d3c4
+[INFO] [1767582983.880923718] [game_management]: 🧠 Processing computer move...
+[INFO] [1767582983.888429344] [game_management]: 📤 Requesting move from engine...
+[INFO] [1767582983.890756484] [full_game_integration_test]: 🎮 Game State Update:
+[INFO] [1767582983.894473464] [full_game_integration_test]:    Status: 1 (PLAYING)
+[INFO] [1767582983.897125978] [full_game_integration_test]:    Current player: computer
+[INFO] [1767582983.900052428] [full_game_integration_test]:    Move number: 14
+[INFO] [1767582983.904824449] [full_game_integration_test]:    White to move: False
+[INFO] [1767582983.908017972] [chess_engine_server]: 🧠 Processing move calculation request req_1767582983889163
+[INFO] [1767582984.123821472] [chess_engine_server]: ✅ Calculated best move: d8d4 (eval: 10000)
+[INFO] [1767582984.143622145] [game_management]: 🔍 Current board FEN: r2qk2r/ppp2ppp/1bn5/4pP2/2K5/PP6/2P3PP/R1Bn1BNR b kq - 2 14
+[INFO] [1767582984.151599452] [game_management]: 🔍 Legal moves: ['h8g8', 'h8f8', 'e8f8', 'e8e7', 'e8d7', 'd8c8', 'd8b8', 'd8e7', 'd8d7', 'd8f6']...
+[INFO] [1767582984.161596836] [game_management]: ✅ Engine calculated: d8d4 (eval: 10000.0)
+[INFO] [1767582984.173135491] [game_management]: 🤖 Executing computer move...
+[INFO] [1767582984.183438562] [arduino_communication]: 🤖 Processing robot execute request robot_req_1767582984174961
+[INFO] [1767582984.191233361] [arduino_communication]: 🤖 Mock robot executing 6-char move: d8pd4p
+[INFO] [1767582984.197610594] [arduino_communication]:    (d8 -> d4, piece: pawn)
+[INFO] [1767582984.708090700] [arduino_communication]: ✅ Robot execute response sent for robot_req_1767582984174961
+[INFO] [1767582984.719589654] [game_management]: ✅ Robot move executed successfully
+[INFO] [1767582984.723914720] [game_management]: ✅ Computer played: d8d4
+[INFO] [1767582984.732758535] [game_management]: 👤 Waiting for human move...
+[INFO] [1767582984.734155514] [full_game_integration_test]: 🎮 Game State Update:
+[INFO] [1767582984.741796632] [game_management]: 📋 Sending 1 legal moves to controller
+[INFO] [1767582984.744329192] [full_game_integration_test]:    Status: 1 (PLAYING)
+[INFO] [1767582984.750515054] [full_game_integration_test]:    Current player: human
+[INFO] [1767582984.756277776] [game_management]: 📋 Legal moves: ['c4b5']...
+[INFO] [1767582984.761717072] [game_management]: 📤 Legal moves sent to chessboard controller
+[INFO] [1767582984.762966095] [full_game_integration_test]:    Move number: 15
+[INFO] [1767582984.764097126] [game_management]: ⏳ Waiting for chessboard controller to send human move...
+[INFO] [1767582984.766018137] [arduino_communication]: 📋 Received 1 legal moves from game management
+[INFO] [1767582984.774855327] [full_game_integration_test]:    White to move: True
+[INFO] [1767582984.779420415] [arduino_communication]: 🔍 ChessBoard (mock): LEGAL: Set 1 legal moves
+[INFO] [1767582984.784382605] [full_game_integration_test]: 📤 Sent game command: stop
+[INFO] [1767582984.788499138] [game_management]: 🛑 Stopping current game...
+[INFO] [1767582984.799200724] [full_game_integration_test]: 🎮 Game State Update:
+[INFO] [1767582984.803839227] [full_game_integration_test]:    Status: 0 (OTHER)
+[INFO] [1767582984.806599771] [full_game_integration_test]:    Current player: human
+[INFO] [1767582984.809387040] [full_game_integration_test]:    Move number: 15
+[INFO] [1767582984.811846560] [full_game_integration_test]:    White to move: True
+[INFO] [1767582985.187437010] [full_game_integration_test]: 🏁 Integration test completed!
+[INFO] [1767582985.193394102] [full_game_integration_test]: Moves played: 15/15
+[INFO] [1767582985.199486373] [full_game_integration_test]: Result: ✅ SUCCESS
+[INFO] [1767582985.205214818] [full_game_integration_test]: 🎯 System demonstrated:
+[INFO] [1767582985.208875921] [full_game_integration_test]:    ✅ Complete game orchestration
+[INFO] [1767582985.212657916] [full_game_integration_test]:    ✅ Engine-robot coordination
+[INFO] [1767582985.216433461] [full_game_integration_test]:    ✅ Multi-move game flow
+[INFO] [1767582985.222017351] [full_game_integration_test]:    ✅ Full ChessMate functionality
+🔧 Full Game Integration Test
+========================================
+Testing complete ChessMate system with proper game orchestration...
+
+
+==================================================
+🎉 INTEGRATION TEST SUCCESS!
+✅ Complete ChessMate system working!
+✅ Game management orchestration working!
+✅ Full game flow with all components!
+✅ Full production functionality verified!
+
+🚀 READY FOR PRODUCTION DEPLOYMENT!
+==================================================
+
+==============================================
+🎉 INTEGRATION TEST SUCCESS!
+✅ Chess engine: WORKING
+✅ Arduino communication: WORKING
+✅ Game management: WORKING
+✅ Full game orchestration: WORKING
+✅ Human-computer game flow: WORKING
+
+🎯 Complete ChessMate system verified!
+
+🚀 READY FOR:
+   - Real hardware deployment
+   - Production use
+   - Full chess games
+==============================================
+🧹 Cleaning up all components...
+[INFO] [1767582985.873499922] [arduino_communication]: 📤 Sent 1 legal moves to chessboard: 
+[INFO] [1767582985.896119666] [arduino_communication]: 🔍 ChessBoard (mock): START: Human turn beginning
+[INFO] [1767582986.002020134] [arduino_communication]: 🎯 Sent start command to chessboard: LEGAL MOVES: c4b5
+[INFO] [1767582986.055534339] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Ready for human turn
+[INFO] [1767582986.174198309] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Transitioning to MOVE_START
+Initializing Stockfish from path: /usr/games/stockfish
+Stockfish process started successfully
+Stockfish configuration applied successfully
+[INFO] [1767582986.294727113] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Selected move c4b5 from 1 legal moves
+[INFO] [1767582986.410904375] [arduino_communication]: 🔍 ChessBoard (mock): MOCK: Starting move, will take 3449ms
+Failed to publish log message to rosout: publisher's context is invalid, at ./src/rcl/publisher.c:423
+Traceback (most recent call last):
+  File "/home/smtuser/ChessMate/chessmate_ws/install/chessmate/lib/chessmate/chess_engine_server.py", line 194, in main
+    rclpy.spin(engine_server)
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/__init__.py", line 244, in spin
+    executor.spin_once()
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 839, in spin_once
+    self._spin_once_impl(timeout_sec)
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 823, in _spin_once_impl
+    handler, entity, node = self.wait_for_ready_callbacks(
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 793, in wait_for_ready_callbacks
+    return next(self._cb_iter)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 701, in _wait_for_ready_callbacks
+    raise ExternalShutdownException()
+rclpy.executors.ExternalShutdownException
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/smtuser/ChessMate/chessmate_ws/install/chessmate/lib/chessmate/chess_engine_server.py", line 206, in <module>
+    main()
+  File "/home/smtuser/ChessMate/chessmate_ws/install/chessmate/lib/chessmate/chess_engine_server.py", line 202, in main
+    rclpy.shutdown()
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/__init__.py", line 134, in shutdown
+    _shutdown(context=context)
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/utilities.py", line 82, in shutdown
+    context.shutdown()
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/context.py", line 129, in shutdown
+    self.__context.shutdown()
+rclpy._rclpy_pybind11.RCLError: failed to shutdown: rcl_shutdown already called on the given context, at ./src/rcl/init.c:333
+Traceback (most recent call last):
+  File "/home/smtuser/ChessMate/chessmate_ws/install/chessmate/lib/chessmate/game_management.py", line 448, in main
+    rclpy.spin(game_manager)
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/__init__.py", line 244, in spin
+    executor.spin_once()
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 839, in spin_once
+    self._spin_once_impl(timeout_sec)
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 823, in _spin_once_impl
+    handler, entity, node = self.wait_for_ready_callbacks(
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 793, in wait_for_ready_callbacks
+    return next(self._cb_iter)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 701, in _wait_for_ready_callbacks
+    raise ExternalShutdownException()
+rclpy.executors.ExternalShutdownException
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/smtuser/ChessMate/chessmate_ws/install/chessmate/lib/chessmate/game_management.py", line 459, in <module>
+    main()
+  File "/home/smtuser/ChessMate/chessmate_ws/install/chessmate/lib/chessmate/game_management.py", line 456, in main
+    rclpy.shutdown()
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/__init__.py", line 134, in shutdown
+    _shutdown(context=context)
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/utilities.py", line 82, in shutdown
+    context.shutdown()
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/context.py", line 129, in shutdown
+    self.__context.shutdown()
+rclpy._rclpy_pybind11.RCLError: failed to shutdown: rcl_shutdown already called on the given context, at ./src/rcl/init.c:333
+Traceback (most recent call last):
+  File "/home/smtuser/ChessMate/chessmate_ws/install/chessmate/lib/chessmate/arduino_communication.py", line 424, in main
+    rclpy.spin(arduino_node)
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/__init__.py", line 244, in spin
+    executor.spin_once()
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 839, in spin_once
+    self._spin_once_impl(timeout_sec)
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 823, in _spin_once_impl
+    handler, entity, node = self.wait_for_ready_callbacks(
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 793, in wait_for_ready_callbacks
+    return next(self._cb_iter)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 701, in _wait_for_ready_callbacks
+    raise ExternalShutdownException()
+rclpy.executors.ExternalShutdownException
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/smtuser/ChessMate/chessmate_ws/install/chessmate/lib/chessmate/arduino_communication.py", line 435, in <module>
+    main()
+  File "/home/smtuser/ChessMate/chessmate_ws/install/chessmate/lib/chessmate/arduino_communication.py", line 432, in main
+    rclpy.shutdown()
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/__init__.py", line 134, in shutdown
+    _shutdown(context=context)
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/utilities.py", line 82, in shutdown
+    context.shutdown()
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/context.py", line 129, in shutdown
+    self.__context.shutdown()
+rclpy._rclpy_pybind11.RCLError: failed to shutdown: rcl_shutdown already called on the given context, at ./src/rcl/init.c:333

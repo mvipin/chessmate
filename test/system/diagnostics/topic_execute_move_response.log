@@ -1,0 +1,25 @@
+=== Robot Execute Move Response ===
+data: '{"id": "robot_req_1767582891101127", "success": true, "message": "Robot move executed: b8 -> c6"}'
+---
+data: '{"id": "robot_req_1767582902851801", "success": true, "message": "Robot move executed: f6 -> e4"}'
+---
+data: '{"id": "robot_req_1767582911315390", "success": true, "message": "Robot move executed: f8 -> c5"}'
+---
+data: '{"id": "robot_req_1767582917988270", "success": true, "message": "Robot move executed: c5 -> f2"}'
+---
+data: '{"id": "robot_req_1767582927666860", "success": true, "message": "Robot move executed: d7 -> d5"}'
+---
+data: '{"id": "robot_req_1767582936996167", "success": true, "message": "Robot move executed: f2 -> d4"}'
+---
+data: '{"id": "robot_req_1767582947030116", "success": true, "message": "Robot move executed: e4 -> c3"}'
+---
+data: '{"id": "robot_req_1767582954129631", "success": true, "message": "Robot move executed: c8 -> f5"}'
+---
+data: '{"id": "robot_req_1767582962876141", "success": true, "message": "Robot move executed: d5 -> e4"}'
+---
+data: '{"id": "robot_req_1767582968827461", "success": true, "message": "Robot move executed: c3 -> d1"}'
+---
+data: '{"id": "robot_req_1767582975929965", "success": true, "message": "Robot move executed: d4 -> b6"}'
+---
+data: '{"id": "robot_req_1767582984174961", "success": true, "message": "Robot move executed: d8 -> d4"}'
+---
