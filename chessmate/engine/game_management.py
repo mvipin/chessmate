@@ -3,10 +3,10 @@
 # Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 """
-Topic-Based Game Management Node
+Game Management Node
 
-This orchestrates the complete chess game flow using topic-based communication
-instead of ROS2 services to avoid communication issues.
+ROS2 node that orchestrates the complete chess game flow using topic-based
+communication. Manages turn-taking, move validation, and game state.
 """
 
 import rclpy
@@ -19,12 +19,13 @@ import chess
 import random
 from chessmate.srv import CalculateMove, ExecuteMove, SetBoardMode
 from chessmate.msg import GameState, ChessMove
-from chessmate.hardware.topic_engine_client import TopicEngineClient
-from chessmate.hardware.topic_arduino_clients import TopicRobotClient, TopicBoardClient
+from chessmate.hardware.engine_client import EngineClient
+from chessmate.hardware.arduino_clients import RobotClient, BoardClient
 
-class TopicGameManagement(Node):
+
+class GameManagement(Node):
     def __init__(self):
-        super().__init__('topic_game_management')
+        super().__init__('game_management')
         
         # Parameters
         self.hardware_mode = self.declare_parameter('hardware_mode', 'mock').value
@@ -39,10 +40,10 @@ class TopicGameManagement(Node):
         self.move_count = 0
         self.game_history = []
         
-        # Topic-based service clients (using working patterns)
-        self.engine_client = TopicEngineClient(self, 'engine/calculate_move')
-        self.robot_client = TopicRobotClient(self, 'robot/execute_move')
-        self.board_client = TopicBoardClient(self, 'chessboard/set_mode')
+        # Service clients for communication with other nodes
+        self.engine_client = EngineClient(self, 'engine/calculate_move')
+        self.robot_client = RobotClient(self, 'robot/execute_move')
+        self.board_client = BoardClient(self, 'chessboard/set_mode')
         
         # Game state publisher
         self.game_state_publisher = self.create_publisher(GameState, 'game/state', 10)
@@ -55,7 +56,7 @@ class TopicGameManagement(Node):
         self.human_move_subscriber = self.create_subscription(
             String, 'game/human_move', self.handle_human_move, 10)
         
-        self.get_logger().info("🎮 Topic-based Game Management initialized")
+        self.get_logger().info("🎮 Game Management initialized")
         self.get_logger().info(f"Hardware mode: {self.hardware_mode}")
         self.get_logger().info(f"Skill level: {self.skill_level}")
         
@@ -443,7 +444,7 @@ def main():
     rclpy.init()
     
     try:
-        game_manager = TopicGameManagement()
+        game_manager = GameManagement()
         rclpy.spin(game_manager)
     except KeyboardInterrupt:
         pass

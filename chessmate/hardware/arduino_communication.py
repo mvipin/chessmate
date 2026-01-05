@@ -3,11 +3,10 @@
 # Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 """
-Topic-Based Arduino Communication Node
+Arduino Communication Node
 
-This provides the same functionality as arduino_communication_node but uses
-topic-based communication instead of ROS2 services to avoid communication issues.
-Includes real chessboard controller integration via /dev/ttyUSB0.
+ROS2 node providing serial communication with Pi Pico microcontrollers.
+Handles robot arm movement commands and chessboard sensor data via USB serial.
 """
 
 import rclpy
@@ -19,9 +18,9 @@ import threading
 import serial
 from chessmate.msg import ChessMove
 
-class TopicArduinoCommunication(Node):
+class ArduinoCommunication(Node):
     def __init__(self):
-        super().__init__('topic_arduino_communication')
+        super().__init__('arduino_communication')
         
         # Parameters (using udev symlinks for persistent naming)
         self.hardware_mode = self.declare_parameter('hardware_mode', 'mock').value
@@ -51,7 +50,7 @@ class TopicArduinoCommunication(Node):
         # Start chessboard monitoring (works in both mock and real mode)
         self.start_chessboard_monitoring()
         
-        self.get_logger().info("🔧 Topic-based Arduino Communication initialized")
+        self.get_logger().info("🔧 Arduino Communication initialized")
         self.get_logger().info(f"Hardware mode: {self.hardware_mode}")
     
     def setup_topic_services(self):
@@ -421,7 +420,7 @@ def main():
     rclpy.init()
     
     try:
-        arduino_node = TopicArduinoCommunication()
+        arduino_node = ArduinoCommunication()
         rclpy.spin(arduino_node)
     except KeyboardInterrupt:
         pass

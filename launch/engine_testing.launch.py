@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 """
-ChessMate Topic-Based Engine Testing Launch File
+ChessMate Engine Testing Launch File
 
-This launch file uses the working topic-based chess engine instead of
-the broken ROS2 service-based engine.
+Launch file for testing the chess engine and end-to-end game flow.
 """
 
 import os
@@ -46,19 +45,19 @@ def generate_launch_description():
     # Nodes to launch
     nodes = []
     
-    # Topic-based Chess Engine Server
+    # Chess Engine Server
     nodes.append(
         Node(
             package='chessmate',
-            executable='topic_chess_engine_server',
-            name='topic_chess_engine_server',
+            executable='chess_engine_server',
+            name='chess_engine_server',
             parameters=common_parameters,
             arguments=['--ros-args', '--log-level', log_level],
             output='screen'
         )
     )
     
-    # Test End-to-End Game Node (with topic-based engine)
+    # Test End-to-End Game Node
     nodes.append(
         TimerAction(
             period=3.0,  # Wait 3 seconds for engine to start

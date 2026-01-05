@@ -3,11 +3,10 @@
 # Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 """
-Topic-Based Chess Engine Server
+Chess Engine Server
 
-This provides the same chess engine functionality as chess_engine_server.py
-but uses topic-based communication instead of ROS2 services to work around
-service communication issues in the Pi environment.
+ROS2 node providing chess engine functionality via topic-based communication.
+Integrates with Stockfish for move calculation and position evaluation.
 """
 
 import rclpy
@@ -25,16 +24,16 @@ from chessmate.engine.stockfish_interface import StockfishInterface, DifficultyL
 from chessmate.engine.message_converters import MessageConverter
 
 
-class TopicChessEngineServer(Node):
+class ChessEngineServer(Node):
     """
-    Topic-Based Chess Engine Server Node
-    
+    Chess Engine Server Node
+
     Provides chess engine functionality using topic-based communication:
     - engine/calculate_move_request -> engine/calculate_move_response
     """
-    
+
     def __init__(self):
-        super().__init__('topic_chess_engine_server')
+        super().__init__('chess_engine_server')
         
         # Initialize components
         self.stockfish = StockfishInterface()
@@ -53,7 +52,7 @@ class TopicChessEngineServer(Node):
         else:
             stockfish_info = self.stockfish.get_engine_info()
             self.get_logger().info(f"✅ Stockfish initialized: {stockfish_info}")
-            self.get_logger().info("🧠 Topic-based Chess Engine Server initialized")
+            self.get_logger().info("🧠 Chess Engine Server initialized")
 
     def destroy_node(self):
         """Clean up resources on shutdown"""
@@ -191,7 +190,7 @@ def main(args=None):
     rclpy.init(args=args)
     
     try:
-        engine_server = TopicChessEngineServer()
+        engine_server = ChessEngineServer()
         rclpy.spin(engine_server)
     except KeyboardInterrupt:
         pass

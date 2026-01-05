@@ -61,12 +61,12 @@ install(DIRECTORY chessmate/
 # ============ EXECUTABLE NODES ============
 # Install Python executable scripts
 install(PROGRAMS
-  # Engine nodes (production topic-based)
-  chessmate/engine/topic_chess_engine_server.py
-  chessmate/engine/topic_game_management.py
+  # Engine nodes
+  chessmate/engine/chess_engine_server.py
+  chessmate/engine/game_management.py
   chessmate/engine/simple_chess_engine.py
-  # Hardware nodes (production topic-based)
-  chessmate/hardware/topic_arduino_communication.py
+  # Hardware nodes
+  chessmate/hardware/arduino_communication.py
   chessmate/hardware/rotary_encoder_node.py
   chessmate/hardware/lcd_display_node.py
   chessmate/hardware/robot_animation_controller.py

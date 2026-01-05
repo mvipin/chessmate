@@ -125,9 +125,9 @@ fi
 # Cleanup function
 cleanup() {
     echo "🧹 Cleaning up production components..."
-    pkill -f "topic_chess_engine_server" 2>/dev/null
-    pkill -f "topic_arduino_communication" 2>/dev/null
-    pkill -f "topic_game_management" 2>/dev/null
+    pkill -f "chess_engine_server" 2>/dev/null
+    pkill -f "arduino_communication" 2>/dev/null
+    pkill -f "game_management" 2>/dev/null
     wait
     exit
 }
@@ -137,12 +137,12 @@ echo "🚀 Starting ChessMate production system..."
 
 # Start chess engine
 echo "1️⃣ Starting Stockfish chess engine..."
-ros2 run chessmate_engine topic_chess_engine_server &
+ros2 run chessmate chess_engine_server &
 ENGINE_PID=$!
 
 # Start Arduino communication with real hardware
 echo "2️⃣ Starting Arduino communication (${HARDWARE_MODE} mode)..."
-ros2 run chessmate_hardware topic_arduino_communication \
+ros2 run chessmate arduino_communication \
     --ros-args \
     --param hardware_mode:=${HARDWARE_MODE} \
     --param chessboard_port:=${CHESSBOARD_PORT} \
@@ -151,7 +151,7 @@ ARDUINO_PID=$!
 
 # Start game management
 echo "3️⃣ Starting game management..."
-ros2 run chessmate_engine topic_game_management \
+ros2 run chessmate game_management \
     --ros-args \
     --param hardware_mode:=${HARDWARE_MODE} \
     --param auto_start:=true \

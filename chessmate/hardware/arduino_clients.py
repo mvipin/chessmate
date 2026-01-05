@@ -3,10 +3,10 @@
 # Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 """
-Topic-Based Arduino Client Wrappers
+Arduino Client Wrappers
 
-These provide the same interface as ROS2 service clients but use
-topic-based communication to work around service issues.
+Client wrappers for communicating with Arduino Communication node
+via topic-based request/response patterns.
 """
 
 from rclpy.node import Node
@@ -17,9 +17,9 @@ import threading
 from chessmate.srv import ExecuteMove, SetBoardMode
 from chessmate.msg import ChessMove
 
-class TopicRobotClient:
-    """Topic-based client for robot execute move service"""
-    
+class RobotClient:
+    """Client for robot execute move communication"""
+
     def __init__(self, node: Node, service_name: str):
         self.node = node
         self.service_name = service_name
@@ -37,7 +37,7 @@ class TopicRobotClient:
         self.pending_requests = {}
         self.response_lock = threading.Lock()
         
-        node.get_logger().info(f"🔧 Topic-based robot client created for {service_name}")
+        node.get_logger().info(f"🔧 Robot client created for {service_name}")
     
     def _handle_response(self, msg):
         """Handle incoming response"""
@@ -59,7 +59,7 @@ class TopicRobotClient:
     
     def call_async(self, request):
         """Asynchronous call that returns a future-like object"""
-        return TopicRobotFuture(self, request)
+        return RobotFuture(self, request)
     
     def call(self, request):
         """Synchronous call (blocks until response)"""
@@ -75,7 +75,7 @@ class TopicRobotClient:
             time.sleep(0.01)
         
         # Timeout
-        self.node.get_logger().error("❌ Topic-based robot service call timed out")
+        self.node.get_logger().error("❌ Robot service call timed out")
         return None
     
     def _send_request(self, request, request_id):
@@ -105,10 +105,10 @@ class TopicRobotClient:
         except Exception as e:
             self.node.get_logger().error(f"❌ Error sending robot request: {e}")
 
-class TopicRobotFuture:
-    """Future-like object for topic-based robot async calls"""
-    
-    def __init__(self, client: TopicRobotClient, request):
+class RobotFuture:
+    """Future-like object for robot async calls"""
+
+    def __init__(self, client: RobotClient, request):
         self.client = client
         self.request = request
         self.request_id = f"robot_req_{int(time.time() * 1000000)}"
@@ -168,9 +168,9 @@ class TopicRobotFuture:
             response.message = f"Response conversion error: {e}"
             return response
 
-class TopicBoardClient:
-    """Topic-based client for chessboard set mode service"""
-    
+class BoardClient:
+    """Client for chessboard set mode communication"""
+
     def __init__(self, node: Node, service_name: str):
         self.node = node
         self.service_name = service_name
@@ -188,7 +188,7 @@ class TopicBoardClient:
         self.pending_requests = {}
         self.response_lock = threading.Lock()
         
-        node.get_logger().info(f"🔧 Topic-based board client created for {service_name}")
+        node.get_logger().info(f"🔧 Board client created for {service_name}")
     
     def _handle_response(self, msg):
         """Handle incoming response"""
@@ -248,7 +248,7 @@ class TopicBoardClient:
                 time.sleep(0.01)
             
             # Timeout
-            self.node.get_logger().error("❌ Topic-based board service call timed out")
+            self.node.get_logger().error("❌ Board service call timed out")
             return None
             
         except Exception as e:

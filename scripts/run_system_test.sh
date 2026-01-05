@@ -67,9 +67,9 @@ setup_ros2_env
 # Cleanup function
 cleanup() {
     echo "🧹 Cleaning up all components..."
-    pkill -f "topic_chess_engine_server" 2>/dev/null
-    pkill -f "topic_arduino_communication" 2>/dev/null
-    pkill -f "topic_game_management" 2>/dev/null
+    pkill -f "chess_engine_server" 2>/dev/null
+    pkill -f "arduino_communication" 2>/dev/null
+    pkill -f "game_management" 2>/dev/null
     pkill -f "test_full_game" 2>/dev/null
     wait
     exit
@@ -79,18 +79,18 @@ trap cleanup EXIT INT TERM
 echo "🚀 Starting complete ChessMate system..."
 
 # Start all components (using consolidated chessmate package)
-echo "1️⃣ Starting topic-based chess engine..."
-ros2 run chessmate topic_chess_engine_server.py &
+echo "1️⃣ Starting chess engine..."
+ros2 run chessmate chess_engine_server.py &
 ENGINE_PID=$!
 
-echo "2️⃣ Starting topic-based Arduino communication..."
-ros2 run chessmate topic_arduino_communication.py \
+echo "2️⃣ Starting Arduino communication..."
+ros2 run chessmate arduino_communication.py \
     --ros-args \
     --param hardware_mode:=mock &
 ARDUINO_PID=$!
 
-echo "3️⃣ Starting topic-based game management..."
-ros2 run chessmate topic_game_management.py \
+echo "3️⃣ Starting game management..."
+ros2 run chessmate game_management.py \
     --ros-args \
     --param hardware_mode:=mock \
     --param auto_start:=false \

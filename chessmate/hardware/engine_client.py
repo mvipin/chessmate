@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
-Topic-Based Engine Client
+Engine Client
 
-This provides the same interface as ROS2 service clients but uses
-topic-based communication to work around service issues.
+Client wrapper for communicating with the Chess Engine Server node
+via topic-based request/response pattern.
 """
 
 from rclpy.node import Node
@@ -14,9 +14,9 @@ import threading
 from chessmate.srv import CalculateMove
 from chessmate.msg import ChessMove
 
-class TopicEngineClient:
-    """Topic-based client that mimics ROS2 service client interface"""
-    
+class EngineClient:
+    """Client for chess engine communication via topic-based request/response"""
+
     def __init__(self, node: Node, service_name: str):
         self.node = node
         self.service_name = service_name
@@ -34,7 +34,7 @@ class TopicEngineClient:
         self.pending_requests = {}
         self.response_lock = threading.Lock()
         
-        node.get_logger().info(f"🔧 Topic-based client created for {service_name}")
+        node.get_logger().info(f"🔧 Engine client created for {service_name}")
     
     def _handle_response(self, msg):
         """Handle incoming response"""
@@ -57,7 +57,7 @@ class TopicEngineClient:
     
     def call_async(self, request):
         """Asynchronous call that returns a future-like object"""
-        return TopicFuture(self, request)
+        return EngineFuture(self, request)
     
     def call(self, request):
         """Synchronous call (blocks until response)"""
@@ -73,7 +73,7 @@ class TopicEngineClient:
             time.sleep(0.01)
         
         # Timeout
-        self.node.get_logger().error("❌ Topic-based service call timed out")
+        self.node.get_logger().error("❌ Engine service call timed out")
         return None
     
     def _send_request(self, request, request_id):
@@ -100,10 +100,10 @@ class TopicEngineClient:
         except Exception as e:
             self.node.get_logger().error(f"❌ Error sending request: {e}")
 
-class TopicFuture:
-    """Future-like object for topic-based async calls"""
-    
-    def __init__(self, client: TopicEngineClient, request):
+class EngineFuture:
+    """Future-like object for engine async calls"""
+
+    def __init__(self, client: EngineClient, request):
         self.client = client
         self.request = request
         self.request_id = f"req_{int(time.time() * 1000000)}"
