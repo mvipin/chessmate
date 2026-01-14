@@ -9,7 +9,7 @@
 
 **An AI chess master with expressive eyes, custom electronics, and a precision arm that will checkmate you with style!**
 
-ChessMate is a fully autonomous chess-playing robot that physically moves pieces on a real chessboard. Built with ROS2, it combines professional-grade chess AI (Stockfish), custom electronics with home-fabricated PCBs, a 6-DOF SCARA robotic arm, and expressive animatronics to create an engaging chess opponent with personality.
+ChessMate is a fully autonomous chess-playing robot that physically moves pieces on a real chessboard. Built with ROS2, it combines professional-grade chess AI (Stockfish), custom electronics with home-fabricated PCBs, a 3-DOF SCARA robotic arm, and expressive animatronics to create an engaging chess opponent with personality.
 
 ## Introduction
 
@@ -18,7 +18,7 @@ ChessMate is a fully autonomous chess-playing robot that physically moves pieces
 | Category | Features |
 |----------|----------|
 | **Chess Intelligence** | Stockfish engine integration (skill levels 1-20), real-time move validation, FEN notation tracking, position analysis |
-| **Robotic Precision** | 6-DOF SCARA arm, sub-millimeter positioning accuracy, adaptive gripping, four-corner calibration |
+| **Robotic Precision** | 3-DOF SCARA arm (θ1 base, θ2 shoulder, Z height), sub-millimeter positioning accuracy, adaptive gripping, four-corner calibration |
 | **Board Sensing** | 64 hall effect sensors, custom CNC-fabricated PCBs, 8×8 NeoPixel LED matrix, real-time move detection |
 | **User Interface** | OLED display with rotary encoder, expressive servo-driven eyes, text-to-speech synthesis |
 | **Architecture** | Three-controller distributed design (Pi + 2× Pico), topic-based ROS2 communication, mock/real mode support |
@@ -138,15 +138,18 @@ TODO: Add actual image files to assets/images/ directory:
 
 ### SCARA Arm
 
-The 6-DOF SCARA robotic arm provides precise piece manipulation across the entire chessboard.
+The 3-DOF SCARA (Selective Compliance Assembly Robot Arm) provides precise piece manipulation across the entire chessboard using two rotational joints plus one linear axis.
 
 | Specification | Value |
 |---------------|-------|
-| Arm Type | 6-DOF SCARA |
+| Arm Type | 3-DOF SCARA |
+| Joint 1 (θ1) | Base rotation - positions arm radially |
+| Joint 2 (θ2) | Shoulder rotation - extends/retracts reach |
+| Joint 3 (Z) | Vertical translation - raises/lowers entire arm |
 | Workspace | Full 8×8 chessboard coverage |
 | Repeatability | Sub-millimeter positioning accuracy |
 | Actuation | NEMA 17 steppers with microstepping |
-| Gripper | Adaptive gripping for different piece sizes |
+| Gripper | Servo-controlled adaptive gripping |
 
 **Arm Calibration:** Home position via limit switches → four-corner board registration → 64-point square mapping → EEPROM storage.
 
@@ -155,7 +158,7 @@ The 6-DOF SCARA robotic arm provides precise piece manipulation across the entir
 | CAD Rendering | Assembled Arm |
 |:-------------:|:-------------:|
 | ![SCARA CAD](assets/images/scara_arm_cad.png) | ![SCARA Photo](assets/images/scara_arm_photo.jpg) |
-| *6-DOF SCARA arm CAD model showing joint configuration* | *Assembled robotic arm mounted on chess platform* |
+| *3-DOF SCARA arm CAD model showing joint configuration* | *Assembled robotic arm mounted on chess platform* |
 
 | Gripper Mechanism |
 |:-----------------:|
@@ -164,7 +167,7 @@ The 6-DOF SCARA robotic arm provides precise piece manipulation across the entir
 
 <!--
 TODO: Add actual image files to assets/images/ directory:
-- scara_arm_cad.png: CAD rendering showing 6-DOF arm design and joint layout
+- scara_arm_cad.png: CAD rendering showing 3-DOF arm design and joint layout
 - scara_arm_photo.jpg: Photo of fully assembled robotic arm
 - gripper_detail.jpg: Close-up photo of gripper mechanism
 -->
