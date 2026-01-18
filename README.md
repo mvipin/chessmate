@@ -59,6 +59,7 @@ ChessMate is a fully autonomous chess-playing robot that physically moves pieces
   - [Monitoring & Diagnostics](#monitoring--diagnostics)
   - [Diagnostic Session Example](#diagnostic-session-example)
   - [Troubleshooting](#troubleshooting)
+- [Continuous Integration](#continuous-integration)
 
 ---
 
@@ -982,6 +983,27 @@ This example shows a complete ROS2 system diagnostics session captured during an
 | Communication failures | Verify baud rate (9600), check controller firmware is running, try resetting controllers |
 | Test failures | Run individual controller tests first, enable debug mode in controller firmware |
 | Timeout errors | Ensure controllers are not busy, check for responsive controller state |
+
+---
+
+## Continuous Integration
+
+ChessMate uses Jenkins for automated testing on every push to `main`.
+
+| Stage | Description | Status |
+|-------|-------------|--------|
+| Build | ROS2 colcon build | ✅ |
+| Unit Tests | 41 pytest tests (kinematics, chess logic, coordinate mapping) | ✅ |
+| Integration Tests | ROS2 node communication tests | On PR/main |
+| Hardware Tests | Physical hardware validation | Manual trigger |
+
+**Pipeline Configuration:** See [`Jenkinsfile`](Jenkinsfile) for full pipeline definition.
+
+**Local Test Execution:**
+```bash
+source ~/ChessMate/chessmate_env/bin/activate
+python3 -m pytest test/unit/ -v
+```
 
 ---
 
