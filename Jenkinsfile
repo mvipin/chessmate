@@ -97,7 +97,7 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 sh '''
-                    source ${VENV_PATH}/bin/activate
+                    . ${VENV_PATH}/bin/activate
                     pip install --upgrade pip --quiet
                     pip install pytest pytest-cov --quiet
 
@@ -114,8 +114,8 @@ pipeline {
         stage('Build') {
             steps {
                 sh '''
-                    source /opt/ros/${ROS_DISTRO}/setup.bash
-                    source ${VENV_PATH}/bin/activate
+                    . /opt/ros/${ROS_DISTRO}/setup.bash
+                    . ${VENV_PATH}/bin/activate
                     cd ${CI_WORKSPACE}
 
                     echo "=== Building ChessMate ==="
@@ -134,11 +134,11 @@ pipeline {
         stage('Unit Tests') {
             steps {
                 sh '''
-                    source /opt/ros/${ROS_DISTRO}/setup.bash
-                    source ${VENV_PATH}/bin/activate
+                    . /opt/ros/${ROS_DISTRO}/setup.bash
+                    . ${VENV_PATH}/bin/activate
                     # Source workspace setup if available (not required for pure unit tests)
                     if [ -f ${CI_WORKSPACE}/install/setup.bash ]; then
-                        source ${CI_WORKSPACE}/install/setup.bash
+                        . ${CI_WORKSPACE}/install/setup.bash
                     fi
                     cd ${CI_WORKSPACE}/src/chessmate
 
@@ -173,9 +173,9 @@ pipeline {
                     // Use returnStatus to capture exit code without failing immediately
                     def testResult = sh(
                         script: '''
-                            source /opt/ros/${ROS_DISTRO}/setup.bash
-                            source ${VENV_PATH}/bin/activate
-                            source ${CI_WORKSPACE}/install/setup.bash
+                            . /opt/ros/${ROS_DISTRO}/setup.bash
+                            . ${VENV_PATH}/bin/activate
+                            . ${CI_WORKSPACE}/install/setup.bash
                             cd ${CI_WORKSPACE}/src/chessmate
 
                             echo "=== Running Integration Tests (Unstable Mode) ==="
@@ -212,9 +212,9 @@ pipeline {
             }
             steps {
                 sh '''
-                    source /opt/ros/${ROS_DISTRO}/setup.bash
-                    source ${VENV_PATH}/bin/activate
-                    source ${CI_WORKSPACE}/install/setup.bash
+                    . /opt/ros/${ROS_DISTRO}/setup.bash
+                    . ${VENV_PATH}/bin/activate
+                    . ${CI_WORKSPACE}/install/setup.bash
                     cd ${CI_WORKSPACE}/src/chessmate
 
                     echo "=== Running Hardware Tests (Allow Failure Mode) ==="
