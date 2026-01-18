@@ -19,9 +19,12 @@ pipeline {
 
     environment {
         ROS_DISTRO = 'jazzy'
-        // Use dedicated CI workspace to avoid conflicts with development workspace
-        CI_WORKSPACE = "${env.HOME}/ChessMate_CI/chessmate_ws"
-        VENV_PATH = "${env.HOME}/ChessMate/chessmate_env"  // Reuse existing venv
+        // These paths should be configured in Jenkins:
+        // Manage Jenkins → System → Global properties → Environment variables
+        //   CHESSMATE_CI_WORKSPACE = /path/to/ci/workspace
+        //   CHESSMATE_VENV_PATH = /path/to/python/venv
+        CI_WORKSPACE = "${env.CHESSMATE_CI_WORKSPACE ?: '/tmp/chessmate_ci/workspace'}"
+        VENV_PATH = "${env.CHESSMATE_VENV_PATH ?: '/tmp/chessmate_ci/venv'}"
         ROS_DOMAIN_ID = '42'  // Use different domain ID to isolate CI from dev
         PYTHONDONTWRITEBYTECODE = '1'  // Prevent .pyc file conflicts
     }
@@ -133,7 +136,10 @@ pipeline {
                 sh '''
                     source /opt/ros/${ROS_DISTRO}/setup.bash
                     source ${VENV_PATH}/bin/activate
-                    source ${CI_WORKSPACE}/install/setup.bash
+                    # Source workspace setup if available (not required for pure unit tests)
+                    if [ -f ${CI_WORKSPACE}/install/setup.bash ]; then
+                        source ${CI_WORKSPACE}/install/setup.bash
+                    fi
                     cd ${CI_WORKSPACE}/src/chessmate
 
                     echo "=== Running Unit Tests (Fail Fast Mode) ==="
