@@ -96,7 +96,7 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                sh '''
+                sh '''#!/bin/bash
                     . ${VENV_PATH}/bin/activate
                     pip install --upgrade pip --quiet
                     pip install pytest pytest-cov --quiet
@@ -113,7 +113,7 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh '''
+                sh '''#!/bin/bash
                     . /opt/ros/${ROS_DISTRO}/setup.bash
                     . ${VENV_PATH}/bin/activate
                     cd ${CI_WORKSPACE}
@@ -133,7 +133,7 @@ pipeline {
 
         stage('Unit Tests') {
             steps {
-                sh '''
+                sh '''#!/bin/bash
                     . /opt/ros/${ROS_DISTRO}/setup.bash
                     . ${VENV_PATH}/bin/activate
                     # Source workspace setup if available (not required for pure unit tests)
@@ -172,7 +172,7 @@ pipeline {
                 script {
                     // Use returnStatus to capture exit code without failing immediately
                     def testResult = sh(
-                        script: '''
+                        script: '''#!/bin/bash
                             . /opt/ros/${ROS_DISTRO}/setup.bash
                             . ${VENV_PATH}/bin/activate
                             . ${CI_WORKSPACE}/install/setup.bash
@@ -211,7 +211,7 @@ pipeline {
                 }
             }
             steps {
-                sh '''
+                sh '''#!/bin/bash
                     . /opt/ros/${ROS_DISTRO}/setup.bash
                     . ${VENV_PATH}/bin/activate
                     . ${CI_WORKSPACE}/install/setup.bash
