@@ -31,7 +31,6 @@ pipeline {
         buildDiscarder(logRotator(numToKeepStr: '10'))
         timestamps()
         disableConcurrentBuilds()  // Prevent hardware conflicts
-        ansiColor('xterm')  // Enable ANSI color support for emoji/colors
     }
 
     stages {
